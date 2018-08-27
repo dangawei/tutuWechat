@@ -1,0 +1,73 @@
+<!--pages/levelfive/levelfive.wxml-->
+<view class="page">
+  <!--加分绿色  -->
+<view class="{{errorselectindex!=-1?'redfont':'greenfont'}} {{clicking==1?'addscore_common':''}} " style='opacity:0;position: absolute;right:210rpx;top:0rpx;'>
+{{errorselectindex!=-1?'-5':'+20'}}分
+</view>
+  <!--头部  -->
+  <view class="level_mark_common">
+    <view class="left">{{xuhao}}/{{number}}</view>
+    <view class="right">{{score}}分</view>
+  </view>
+
+  <!--level5内容 begin -->
+
+
+  <!--六图及六图以下的input框 最多6图 -->
+  <view class=" {{exercises.rightlist.length>6? 'levelthree_select_many':'levelthree_select_three'}}">
+    <view wx:for="{{exercises.rightlist}}" class='selectthree_border {{exercises.rightlist.length>6? "fl":""}} {{errorselectindex==index?"redbordersmall":""}} {{selectindex>index?"greenbordersmall":""}} {{selectindex==index?"greenbordersmallbili":""}}'>
+      <image src="{{exercises.selectlist[index]}}" mode="aspectFill"></image>
+    </view>
+
+
+  </view>
+  <!--七图及七图以上的input框  -->
+  <!-- <view class="levelthree_select_many {{toptype==1?'':'hiddencontent'}}">
+    <view class="selectthree_border fl greenbordersmall  ">
+      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
+    </view>
+    <view class="selectthree_border fl redbordersmall">
+      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
+    </view>
+    <view class="selectthree_border fl greenbordersmallbili">
+      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
+    </view>
+    <view class="selectthree_border fl">
+      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
+    </view>
+    <view class="selectthree_border fl">
+      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
+    </view>
+    <view class="selectthree_border fl">
+      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
+    </view>
+    <view class="selectthree_border fl">
+      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
+    </view>
+    <view class="selectthree_border fl">
+      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
+    </view>
+
+  </view> -->
+  <!--相同的图片  -->
+
+  <view class="levelthree_beselected">
+    <!-- manyImgborder_image_maxthree三图以下的时候  manyImgborder_imagefour四图以上的时候-->
+    <view class='manyImgborder_image manyImgborder_image{{exercises.rightlist.length}}type   {{len>3?"manyImgborder_imagefour":""}} '>
+      <view wx:for="{{arr}}" class="imgborder{{len<4?'_3':''}} {{item.eff==1?'grayborder':''}}"  data-id='{{item.id}}' data-eff="{{item.eff}}"  bindtap='selectClick'>
+      <image mode="aspectFill"  src="{{item.img_path}}"></image>
+      <text class="{{item.eff==1?'graymengban':''}}"></text>
+
+      </view>
+    </view>
+
+  </view>
+
+
+  <!--level5内容 end -->
+  <!--底部下一题  -->
+  <view class="next_subject_border">
+    <view wx:if="{{wancheng}}" bindtap='xiayiti' class="pageBtn nex_subject_btn">跳过</view>
+    <view wx:else bindtap='xiayiti' class="pageBtn nex_subject_btn">跳过</view>
+  </view>
+</view>

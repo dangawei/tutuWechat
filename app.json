@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/partlist/partlist",
+    "pages/beforeindex/beforeindex",
+    "pages/afterindex/afterindex",
+    "pages/levelfive/levelfive",
+    
+    "pages/addsubject/addsubject",
+    "pages/slidemenu/slidemenu",
+    "pages/gameresult/gameresult",
+    "pages/mind/mind",
+    "pages/aboutus/aboutus",
+    "pages/levelone/levelone",
+    "pages/leveltwo/leveltwo",
+    "pages/levelthree/levelthree",
+    "pages/levelfour/levelfour",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffd744",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
+}

@@ -1,0 +1,36 @@
+<view class="page">
+  <!--关卡2 begin -->
+  <view class="leveltwo">
+    <!--加分绿色  -->
+    <view class="{{errorborder==-1?'greenfont':'redfont'}} {{clicking == 1 ?'addscore_common1':''}} " style='opacity:0;position: absolute;right:170rpx;top:0rpx;'>
+    {{errorborder==-1?'+20':'-5'}}分
+  </view>
+    <!--头部  -->
+    <view class="level_mark_common">
+      <view class="left">{{xuhao}}/{{number}}</view>
+      <view class="right">{{score}}分</view>
+    </view>
+    <view class="soundBorder text-center">
+      <image class="sound" src="https://www.chengxuyuantoutiao.com/a/listen.png" bindtap='soundClick' />
+      <view class="  {{clicksound==1?'pulse':'hiddencontent'}}" ></view>
+    </view>
+    <!--四图选择内容  -->
+    <view class="level_stationone_twoimg_four text-center">
+    
+      <view wx:for="{{data}}" wx:key="key" class=" {{item.red == 1?'redborder':''}}  twoimg_commonborder_four {{item.green == 1?'greenborder':''}}  ">
+ 
+        <image src="{{item.img}}"  data-xia="{{index}}" mode="widthFix" data-id="{{item.id}}" bindtap='singelClick'><image class="gouimg" wx:if="{{item.green == 1}}" src="../images/gou.png"></image></image>
+          
+       
+      </view>
+    </view>
+    <!--底部下一题  -->
+    <view class="next_subject_border">
+      <view wx:if="{{xiayiti}}" bindtap='xiayiti' class="pageBtn nex_subject_btn">跳过</view>
+         <view wx:else bindtap='wancheng' class="pageBtn nex_subject_btn">跳过</view>
+      
+    </view>
+
+  </view>
+  <!--关卡2 end -->
+</view>

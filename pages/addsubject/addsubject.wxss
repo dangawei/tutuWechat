@@ -1,0 +1,117 @@
+.b-line{
+  height:1px;
+  background-color:#ebebeb;
+  width:100%
+}
+/*内容小导航  */
+.nav_tag{ 
+position: fixed;
+top:0rpx;
+width:100%;
+background-color: #fff;
+z-index:999;
+padding:30rpx;
+
+}
+
+.tag_active{
+  width:148rpx;
+  height:64rpx;
+  line-height:60rpx;
+  background-image: url("https://www.chengxuyuantoutiao.com/a/addsubject1.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align:center;
+  font-size:30rpx;
+  letter-spacing: 0.03rem;
+  color:#343436;
+}
+.tag_default{
+width:144rpx;
+height:60rpx;
+line-height: 60rpx;
+font-size:30rpx;
+letter-spacing: 0.03rem;
+color:#a3a3a3;
+border-radius:50px;
+border:1px solid #a3a3a3;
+text-align:center;
+box-sizing: border-box;
+
+}
+.nav_tag .tag_common{
+  text-align:center;
+  display: inline-block;
+  margin-right:30rpx;
+  margin-bottom:20rpx;
+  box-sizing: border-box;
+}
+.nav_tag .tag_common:nth-child(4n){
+  margin-right:0rpx;
+}
+/*内容开始  */
+.nav_tag_container{
+  position: relative;
+  top:100rpx;
+  margin-top:10px;
+}
+.nav_tag_container2{
+  position: relative;
+  top:200rpx;
+  margin-top:10px;
+}
+.tag_container_title{
+  line-height:82rpx;
+  width:92%;
+  margin:0 auto;
+  
+}
+.tag_container_title .black{
+  font-size:34rpx;
+  color:#333333;
+
+}
+.tag_container_title .gray{
+  font-size:30rpx;
+  color:#a1a1a1;
+  margin-left:10rpx;
+
+}
+.tag_list_contain{
+  width:92%;
+  margin:0rpx  auto;
+  height:280rpx;
+  padding:30rpx 0px;
+}
+.tag_list_contain .left image{
+   width:198rpx;
+   height:280rpx;
+   border-radius:10px;
+   float:left;
+}
+.tag_list_contain .right{
+   margin-left:228rpx;
+}
+.tag_list_contain .right .book_name{
+  position: relative;
+   top:66rpx;
+   font-size:32rpx;
+   color:#333;
+}
+.addsubjectbtntype2{
+  width:188rpx;
+  height:64rpx;
+  line-height:60rpx;
+  background-image: url("https://www.chengxuyuantoutiao.com/a/addsubject2.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align:center;
+  font-size:30rpx;
+  letter-spacing: 0.05rem;
+  position: relative;
+  top:92rpx;
+ 
+
+}

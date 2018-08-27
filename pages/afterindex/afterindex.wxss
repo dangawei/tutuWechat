@@ -1,0 +1,218 @@
+@import "../common/index.wxss";
+.hidecontent{
+  display: none;
+}
+.clearfix{
+  clear:both;
+}
+page,.page{
+  background: #ffd644;
+}
+.indexbg{
+  width:100%;
+  position: relative;
+}
+.present100{
+  width:100%;
+}
+.indextitle{
+  position: absolute;
+  top:26%;
+  height:44px;
+  margin-top:-22px;
+  width:100%;
+  float:left;
+  line-height:44px;
+}
+.indextitle_border{
+  padding:0 4%;
+  width:92%;
+  float:left;
+}
+.title_left{
+  
+  width:70%;
+  float:left;
+  color:#303430;
+  font-size:38rpx;
+  font-weight:600;
+}
+.title_right{
+ 
+  width:30%;
+  float:right;
+  text-align:right;
+}
+.indexbook{
+  width:34rpx;
+  height:41rpx;
+}
+.topborder{
+   background-color:#fff;
+   border-radius:20rpx;
+   width:92%;
+   position: relative;
+   left:4%;
+   top:-210rpx;
+   height:423rpx;
+   box-shadow:1px 2px 10px rgba(0,0,0,.2)
+   
+}
+.topborder .left{
+  width:40%;
+  float:left;
+}
+.topborder .right{
+  width:60%;
+  float:left;
+}
+.topborder .left .bookimg{
+  width:236rpx;
+  height:327rpx;
+  margin-top:48rpx;
+  margin-left:48rpx;
+  border-radius:16px;
+
+
+}
+.Startbreaktext{
+  text-align:center;
+  margin-top:132rpx;
+  margin-bottom:30rpx;
+  font-size:38rpx;
+  color:#323232;
+  font-weight:400;
+  letter-spacing: 0.2rem;
+}
+.Startbreak_btn{
+  width:310rpx;
+  height:74rpx;
+  margin:0 auto;
+  line-height:70rpx;
+  background-image: url("https://www.chengxuyuantoutiao.com/a/indexbtnbg.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align:center;
+  font-size:30rpx;
+  letter-spacing: 0.2rem;
+ 
+
+}
+/*有历史记录  */
+.Startbreaktext_have{
+  text-align:center;
+  margin-top:58rpx;
+  margin-bottom:20rpx;
+  font-size:38rpx;
+  color:#323232;
+  font-weight:400;
+  letter-spacing: 0.2rem;
+}
+.Startbreaktext_history{
+  text-align:center;
+  margin-bottom:20rpx;
+  font-size:28rpx;
+  color:#323232;
+  font-weight:400;
+  letter-spacing: 0.1rem;
+
+}
+.selectpart_btn{
+  
+  width:310rpx;
+  height:74rpx;
+  margin:20rpx auto 0 auto;
+  line-height:74rpx;
+  text-align:center;
+  font-size:30rpx;
+  letter-spacing: 0.2rem;
+  border:3rpx solid #fdba42;
+  color:#fd9c22;
+  border-radius:50px;
+}
+/*单元列表*/
+.unitlist{
+  position: relative;
+  top:-180rpx;
+}
+.unitlistborder{
+  display: flex;
+  justify-content: space-between;
+  width:92%;
+  margin:0 auto;
+  height:140rpx;
+  line-height:14rpx;
+  box-shadow: 1px 2px 10px rgba(0,0,0,.1);
+  border-radius:20rpx;
+  margin-bottom:30rpx;
+  background-color: #fff;
+}
+.unitlistborder_right image{
+  width:34rpx;
+  height:34rpx;
+}
+.unitlistborder_left,.unitlistborder_right{
+  line-height:140rpx;
+}
+.unitlistborder_left{
+  padding-left:48rpx;
+}
+.unitlistborder_right{
+   padding-right:48rpx;
+}
+
+
+
+.zan-dialog__mask {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+z-index: 10;
+background: rgba(0, 0, 0, 0.4);
+display: none;
+}
+
+.zan-dialog__container1{
+position: fixed;
+bottom: 80%;
+width: 80%;
+left:10%;
+/* background: white; */
+transform: translateY(150%);
+transition: all 0.4s ease;
+z-index: 12;
+/* border-radius:5px; */
+}
+
+.zan-dialog--show .zan-dialog__container {
+transform: translateY(0);
+}
+
+.zan-dialog--show .zan-dialog__mask {
+display: block;
+}
+
+
+
+.gouxuanicon{
+width:305rpx;
+height:305rpx;
+margin-top:-84rpx;
+margin-bottom:30rpx;
+}
+.allerweima button.bluesurebtn{
+background-color:#32c9f0;
+border:none;
+width:80%;
+margin:40rpx auto;
+}
+.welcome{
+  font-size:30rpx;
+  color:#333;
+}
+swiper{
+  height:180px;
+}

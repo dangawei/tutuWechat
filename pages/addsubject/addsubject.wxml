@@ -1,0 +1,46 @@
+<view class="page" bindtouchmove='touchdataindex'>
+  <!--内容小导航  -->
+  <view class="nav_tag">
+
+    <view wx:for="{{groupBooks}}" wx:key="key" class="tag_common {{tag_active==index?'tag_active':'tag_default'}}" data-index="{{index}}" bindtap='selectdataindex'>
+      {{item.grade}}年级
+    </view>
+
+  </view>
+  <!--内容开始-->
+  <view wx:for="{{groupBooks}}" wx:key="key" class="nav_tag_container " data-index="{{index}}" id="dataindex{{index}}">
+    <view class="tag_container_title">
+      <text class="black">{{item.grade}}年级</text>
+      <text class="gray">(共{{item.books.length}}本)</text>
+    </view>
+    <view class="b-line">
+
+    </view>
+    <view class="tag_container_list">
+      <!--列表循环begin -->
+      <view wx:for="{{item.books}}" wx:key="key" wx:for-item="books">
+
+        <view class="tag_list_contain">
+          <view class="left">
+             <image src="{{books.book_cover_url}}"></image> 
+            <!-- <image src="https://www.chengxuyuantoutiao.com/a/book3s.png"></image> -->
+          </view>
+          <view class="right">
+            <view class="book_name">{{books.book_name}}</view>
+            <view wx:if="{{book_id == books.id}}" bindtap='add' data-id="{{books.id}}" class="addsubjectbtntype2" hover-class="none;">继续学习</view>
+            <view bindtap='add' wx:else data-id="{{books.id}}" class="addsubjectbtntype2" hover-class="none;">添加教材</view>
+
+          </view>
+
+        </view>
+           <view class="b-line"></view>
+      </view>
+      
+      <!--列表循环end -->
+   
+
+    </view>
+  </view>
+  <!--内容结束-->
+
+</view>

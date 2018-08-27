@@ -1,0 +1,101 @@
+<!--index.wxml-->
+<view class="page">
+  <!--头部背景及标题 begin -->
+  <image src="https://www.chengxuyuantoutiao.com/a/indexbg.png" class="present100 indexbg" mode="widthFix">
+    <view class="indextitle">
+      <view class="indextitle_border">
+        <view class="title_left">
+          {{book_name}}
+        </view>
+        <view class="title_right">
+          <navigator url="/pages/addsubject/addsubject?book_id={{book_id}}" hover-class='none'>
+            <image src="https://www.chengxuyuantoutiao.com/a/indexbook.png" class="indexbook" mode="widthFix"> </image>
+          </navigator>
+        </view>
+      </view>
+    </view>
+  </image>
+  <!--头部背景及标题 end -->
+  <!-- 头部主内容 begin  -->
+  <view class="topborder">
+    <view class="left">
+      <image src="{{book_img}}" class="bookimg"></image>
+    </view>
+    <view class="right">
+      <view class="{{type == 1 ? 'hidecontent':''}}">
+        <view class="text-center Startbreaktext">开始闯关</view>
+        <navigator hover-class='none' url="/pages/slidemenu/slidemenu?book_name={{book_name}}">
+          <view class="Startbreak_btn">开始闯关</view>
+        </navigator>
+      </view>
+      <view class="{{type == 0 ? 'hidecontent':''}}">
+        <view class="text-center Startbreaktext_have">上次闯关</view>
+        <view class="text-center Startbreaktext_history">{{existence_unit}} > {{existence_part}}</view>
+        <view bindtap='jixu' hover-class='none'>
+          <view  class="Startbreak_btn">继续闯关</view>
+        </view>
+        <navigator hover-class='none' url="/pages/slidemenu/slidemenu?book_name={{book_name}}">
+          <view class="selectpart_btn">选择Part</view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+  <!-- 头部主内容 end  -->
+  <view class="clearfix"></view>
+  <!--单元列表 begin -->
+  <view class="unitlist"> 
+   <view wx:for="{{unitlist}}" wx:key="key">
+    <block>
+      
+      <navigator url="/pages/slidemenu/slidemenu?id={{item.id}}&unitname={{item.unit_name}}&book_name={{book_name}}" class="unitlistborder" hover-class='none'> 
+          <view class="unitlistborder_left"> 
+             {{item.unit_name}}
+          </view>
+          <view class="unitlistborder_right"> 
+             <image src="https://www.chengxuyuantoutiao.com/a/indexright.png"></image>
+          </view>
+      </navigator>
+     
+      
+    </block>
+    </view>
+  </view>
+  <!--单元列表 end -->
+
+  <!--底部导航 begin  -->
+  <view  class="nav_border">
+    <navigator open-type="redirect" class="nav_border_common" hover-class='none'>
+        <view class="{{exercise==0?'active':'default'}}" bindtap="exercise">
+         <view class="nav_border_common_img"></view>
+         <view class="nav_border_common_text">练习</view>
+        </view>
+    </navigator>
+    <navigator open-type="redirect" url="/pages/mind/mind" class="nav_border_common" hover-class='none'>
+        <view class="{{mind==0?'active':'default'}}" bindtap="mind">
+         <view class="nav_border_common_img2"></view>
+         <view class="nav_border_common_text">我的</view>
+        </view>
+        
+    </navigator>
+  </view>
+  <!--底部导航 end  -->
+</view>
+
+<!--等待-->
+<view class="zan-dialog {{ showDialogshare? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" />
+  <view class="zan-dialog__container1" wx:if="{{showDialogshare}}">
+    <view class="sharecontent text-center">
+      <!--内容开始 -->
+      <view class="text-center allerweima">
+        <view>
+          <image class="gouxuanicon" src="https://www.chengxuyuantoutiao.com/a/loading.gif"></image>
+        </view>
+       
+
+        <!-- 内容结束 -->
+      </view>
+    </view>
+  </view>
+</view>

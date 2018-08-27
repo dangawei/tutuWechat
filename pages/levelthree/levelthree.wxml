@@ -1,0 +1,72 @@
+<!--pages/levelthree/levelthree.wxml-->
+<view class="page">
+  <!--加分绿色  -->
+<view class="{{errorselectindex!=-1?'redfont':'greenfont'}} {{clicking==1?'addscore_common':''}} " style='opacity:0;position: absolute;right:210rpx;top:0rpx;'>
+{{errorselectindex!=-1?'-5':'+20'}}分
+</view>
+  <!--头部  -->
+  <view class="level_mark_common">
+    <view class="left">{{xuhao}}/{{number}}</view>
+    <view class="right">{{score}}分</view>
+  </view>
+  <view class="soundBorder text-center">
+    <image class="sound" src="https://www.chengxuyuantoutiao.com/a/listen.png" bindtap='soundClick' />
+     <view class="  {{clicksound==1?'pulse':'hiddencontent'}}" ></view>
+  </view>
+  <!--level3内容  -->
+
+  <view class="levelthree_threepart_img">
+    <!--六图levelthree_select_three以下 七个图以上levelthree_select_many的样式-->
+    <view class="{{exercises.rightlist.length>6? 'levelthree_select_many':'levelthree_select_three'}} ">
+      <view wx:for="{{exercises.rightlist}}" class='selectthree_border {{exercises.rightlist.length>6? "fl":""}} {{errorselectindex==index?"redbordersmall":""}} {{selectindex>index?"greenbordersmall":""}} {{selectindex==index?"greenbordersmallbili":""}}' >
+        <image src="{{exercises.selectlist[index]}}"></image>
+      </view>
+
+
+    </view>
+
+
+    <!--2倍格式的选择  -->
+    <view class="levelthree_beselected">
+
+     <view class="manyImgborder_image {{len < 9?'':'hiddencontent'}}  manyImgborder_image{{exercises.rightlist.length}}type   {{len>7 ?'manyImgborder_imagefour':''}} manyImgborder_imagefour text-left">
+
+     <view class="imgborder{{len<8?'_3':''}} {{len<8?'_3':''}}"  wx:for="{{arr}}"  data-id='{{item.id}}' data-eff="{{item.eff}}"bindtap='selectClick' >
+        <image src="{{item.img_path}}"></image>
+        <text class="{{item.eff==1?'graymengban':''}}"></text>
+</view>
+      </view>
+
+
+       <!--8个以上的时候  -->
+      <view class="ml25">
+    <view class="levelthree_beselected_more {{len > 8?'':'hiddencontent'}}">
+      <swiper class="swiper-box" current="{{currentid}}" indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorcolor}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block>
+          <swiper-item class="banner" wx:for="{{ dataArr }}">
+            <view class="manytextborder_text  manyImgborder_image manytextborder_textfour text-left ">
+            <view  wx:for="{{ item }}" data-id="{{k.id}}" data-eff="{{k.eff}}" wx:for-item="k" bindtap="selectClick"  class='imgborder {{k.eff==1?"grayborder":""}}'>
+              <image src="{{k.img_path}}"  ></image>
+              <text class="{{k.eff==1?'graymengban':''}}"></text>
+              </view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    </view>
+
+
+    </view>
+
+  </view>
+
+
+  <!--底部下一题  -->
+  <view class="next_subject_border">
+ 
+     <view wx:if="{{xiayiti}}" bindtap='xiayiti' class="pageBtn nex_subject_btn">跳过</view>
+         <view wx:else bindtap='wancheng' class="pageBtn nex_subject_btn">跳过</view>
+      
+  </view>
+</view>

@@ -1,0 +1,134 @@
+@import "../common/index.wxss";
+page,.page{
+  background-color:#f5ede2;
+  background-image: url("https://www.chengxuyuantoutiao.com/a/bj_gk.png");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size:100%;
+  width:100%;
+  height:100%;
+  overflow: hidden;
+}
+/*选择内容  */
+.level_stationone_twoimg_four{
+  width:92%;
+  margin:0 auto;
+  margin-top:60rpx;
+
+}
+.twoimg_commonborder_four{
+  width:48%;
+  height:auto;
+  float:left;
+  padding:5%;
+  box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+  -webkit-box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+  background-color: #fff;
+  border-radius:20rpx;
+  margin-bottom:16rpx;
+  box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+ 
+}
+.twoimg_commonborder_four:nth-child(1){
+  margin-right:3%;
+  
+   
+}
+.twoimg_commonborder_four:nth-child(3){
+  margin-right:3%;
+  
+   
+}
+.twoimg_commonborder_four image{
+  width:100%;
+  border-radius:20rpx;
+ 
+ 
+}
+/* .redborder{ 
+-webkit-animation: twinkling 2s 2 ease-in-out;
+-o-animation: twinkling 2s 2  ease-in-out;
+-ms-animation: twinkling 2s 2  ease-in-out;
+-moz-animation: twinkling 2s 2  ease-in-out;
+
+
+}  */
+.greenborder{
+  border:12rpx solid #09ce33;
+  position: relative;
+}
+  .redborder{
+ border:12rpx solid red;
+   position: relative;
+}  
+
+.animated{ 
+-webkit-animation-duration: 1s; 
+-o-animation-duration: 1s; 
+-ms-animation-duration: 1s; 
+-moz-animation-duration: 1s; 
+animation-duration: 1s; 
+-webkit-animation-fill-mode: both; 
+animation-fill-mode: both 
+} 
+@-webkit-keyframes twinkling{ 
+0%{ 
+opacity: 0.5; 
+border:12rpx solid #e82327;
+} 
+100%{ 
+opacity: 1; 
+border:12rpx solid #e82327;
+} 
+} 
+@keyframes twinkling{ 
+0%{ 
+opacity: 0.5; 
+border:12rpx solid #e82327;
+} 
+100%{ 
+opacity: 1; 
+border:12rpx solid #e82327;
+} 
+}
+/* 底部下一题 */
+.next_subject_border{
+  width:92%;
+  margin:0 auto;
+  position: absolute;
+  bottom:40rpx;
+  left:4%;
+  right:4%;
+  text-align:center;
+
+
+}
+.pageBtn{
+  width:148rpx;
+  height:64rpx;
+  line-height:64rpx;
+  border-radius:50px;
+  text-align:center;
+  font-size:28rpx;
+
+}
+.nex_subject_btn{
+  margin:0 auto;
+}
+.twoimg_commonborder_four image.selectimg_common{
+width:100%;
+border-radius:20rpx;
+}
+.twoimg_commonborder_four image.gouimg{
+width:162rpx;
+height:117rpx;
+position: absolute;
+top:50%;
+left:50%;
+margin-left:-81rpx;
+margin-top:-58.5rpx;
+
+
+}
+

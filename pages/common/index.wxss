@@ -1,0 +1,404 @@
+.text-center{
+  text-align:center;
+}
+.text-left{
+  text-align:left;
+}
+.clearfix{
+   clear: both;
+}
+.ml30{
+  margin-left:30rpx;
+}
+.fl{
+ float: left;
+
+}
+.fr{
+  float:right;
+}
+.hiddencontent{
+  display: none;
+}
+
+/*关卡头部公共  */
+.addscore_common{
+position: absolute;
+right:210rpx;
+top:0rpx;
+font-size:30rpx;
+}
+.greenfont{
+  color:#07ce32;
+}
+.redfont{
+  color:#e92229;
+}
+.addscore_common{
+  opacity:0;
+  /* transform: translate(-50%, -50%); */
+  animation: change 2s;
+  -moz-animation: change 2s;    
+  -webkit-animation: change 2s;    
+  -o-animation: change 2s;
+
+}
+/*关卡2  */
+
+.addscore_common1{
+position: absolute;
+right:210rpx;
+top:0rpx;
+font-size:30rpx;
+}
+
+.addscore_common1{
+  opacity:0;
+  /* transform: translate(-50%, -50%); */
+  animation: change 1s;
+  -moz-animation: change 1s;    
+  -webkit-animation: change 1s;    
+  -o-animation: change 1s;
+
+}
+/* 关卡底部下一题 */
+.next_subject_border{
+  width:92%;
+  margin:0 auto;
+  position: absolute;
+  bottom:40rpx;
+  left:4%;
+  right:4%;
+  text-align:center;
+
+
+}
+.pageBtn{
+  width:148rpx;
+  height:64rpx;
+  line-height:64rpx;
+  border-radius:50px;
+  text-align:center;
+  font-size:28rpx;
+  background-color:rgba(255,255,255,.5);
+  color:#47a27f;
+
+}
+.nex_subject_btn{
+  margin:0 auto;
+}
+@keyframes change{
+            from {opacity:0;}
+            to {opacity:1;display: block;}
+}
+.level_mark_common{
+  width:92%;
+  margin:0 auto;
+  display: flex;
+  justify-content: space-between;
+   line-height:80rpx;
+}
+.level_mark_common .left{
+  color:#333;
+  font-size:34rpx;
+ 
+
+
+}
+.level_mark_common .right{
+  font-size:58rpx;
+  color:#333;
+
+}
+
+.soundBorder .sound{
+  width:160rpx;
+  height:160rpx;
+  margin:0 auto;
+  margin-top:20rpx;
+
+}
+/*底部导航  */
+.nav_border{
+  position: fixed;
+ width:100%;
+ height:100rpx;
+ bottom:0px;
+ background-color:#fff;
+ box-shadow: 1px 2px 10px rgba(0,0,0,.2)
+}
+.nav_border_common{
+  width:50%;
+  text-align:center;
+  display: inline-block
+}
+.nav_border_common .default .nav_border_common_img{
+  width:32rpx;
+  height:44rpx;
+  background-image: url('https://www.chengxuyuantoutiao.com/a/indexdh.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size:100%;
+  margin:12rpx  auto 5rpx auto ;
+
+}
+.nav_border_common .active .nav_border_common_img{
+  width:34rpx;
+  height:44rpx;
+  background-image: url('https://www.chengxuyuantoutiao.com/a/indexdh2.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size:100%;
+  margin:12rpx  auto 5rpx auto ;
+
+}
+.nav_border_common .default .nav_border_common_img2{
+  width:29rpx;
+  height:45rpx;
+  background-image: url('https://www.chengxuyuantoutiao.com/a/indexdhrabit.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size:100%;
+  margin:12rpx  auto 5rpx auto ;
+
+}
+.nav_border_common .active .nav_border_common_img2{
+  width:34rpx;
+  height:45rpx;
+  background-image: url('https://www.chengxuyuantoutiao.com/a/indexdhrabit2.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size:100%;
+  margin:12rpx  auto 5rpx auto ;
+
+}
+.nav_border_common .default .nav_border_common_text{
+  color:#a3a3a3;
+  font-size:28rpx;
+}
+.nav_border_common .active .nav_border_common_text{
+  color:#323232;
+  font-size:28rpx;
+}
+
+/* 大喇叭外闪 */
+@keyframes warn {  
+    0% {  
+        transform: scale(0);  
+        opacity: 0.0;  
+    }  
+    25% {  
+        transform: scale(0);  
+        opacity: 0.5;  
+    }  
+    50% {  
+        transform: scale(0.1);  
+        opacity: 0.8;  
+    }  
+    75% {  
+        transform: scale(0.5);  
+        opacity: 1;  
+    }  
+    100% {  
+        transform: scale(1);  
+        opacity: 0.0;  
+    }  
+}  
+@-webkit-keyframes warn {  
+    0% {  
+        -webkit-transform: scale(0);  
+        opacity: 0;  
+    }  
+    25% {  
+        -webkit-transform: scale(0);  
+        opacity: 0.5;  
+    } 
+    50% {  
+        -webkit-transform:scale(0.1); 
+        opacity: 0.8;  
+    }  
+    75% {  
+        -webkit-transform: scale(0.5);  
+        opacity: 1;  
+    }  
+    100% {  
+        -webkit-transform: scale(1);  
+        opacity: 0.0;  
+    }  
+}  
+  
+.container {  
+    position: relative;  
+    width: 40px;  
+    height: 40px;  
+    border: 1px solid #000;  
+}  
+/* 保持大小不变的小圆圈  */  
+.soundBorder .sound {  
+    position: relative;  
+    width:160rpx;
+    height:160rpx;
+    
+    -webkit-border-radius: 50%;  
+    -moz-border-radius: 50%;   
+    border-radius: 50%;  
+    z-index: 2;  
+    
+}  
+/* 产生动画（向外扩散变大）的圆圈  */  
+.pulse {  
+    position: absolute;  
+    width: 240rpx;   
+    height: 240rpx;  
+    left:50%;  
+    top: 60rpx;
+    margin-left:-120rpx;    
+    background-color:#ff8a00;  
+    -webkit-border-radius: 50%;  
+    -moz-border-radius: 50%;  
+    border-radius: 50%;  
+    z-index: 1;  
+    opacity: 0;  
+    -webkit-animation: warn 2s 1  ease-in-out;  
+    -moz-animation: warn 2s 1  ease-in-out;  
+    animation: warn 2s 1  ease-in-out;  
+    /* -webkit-animation-iteration-count: 2s;  
+    -moz-animation-iteration-count: 2s;  
+    animation-iteration-count: 2s;   */
+}  
+
+.level_stationone_twoimg_four {
+width:92%;
+margin:0 auto;
+
+
+}
+.thinkabout_contain .right{
+  position: relative;
+}
+.pulsesmall {  
+    position: absolute;  
+    width: 120rpx;   
+    height: 120rpx;  
+    left:50%;  
+    top: 10rpx;
+    margin-left:-70rpx;    
+    background-color: #ff8a00;  
+    -webkit-border-radius: 50%;  
+    -moz-border-radius: 50%;  
+    border-radius: 50%;  
+    z-index: 1;  
+    opacity: 0;  
+    -webkit-animation: warn 2s 1  ease-in-out;  
+    -moz-animation: warn 2s 1  ease-in-out;  
+    animation: warn 2s 1  ease-in-out;  
+    /* -webkit-animation-iteration-count: 2s;  
+    -moz-animation-iteration-count: 2s;  
+    animation-iteration-count: 2s;   */
+}
+.soundimage_border {
+  position: relative;
+  
+
+
+}
+.pulsesmall_single{
+    position: absolute;  
+    width: 80rpx;   
+    height: 80rpx;  
+    left:50%;  
+    top: 0rpx;
+    margin-left:-30rpx;    
+    background-color: #ff8a00;  
+    -webkit-border-radius: 50%;  
+    -moz-border-radius: 50%;  
+    border-radius: 50%;  
+    z-index: 0;  
+    opacity: 0;  
+    -webkit-animation: warn 2s 1  ease-in-out;  
+    -moz-animation: warn 2s 1  ease-in-out;  
+    animation: warn 2s 1  ease-in-out;  
+}
+.imgborder{
+width:22.7%;
+height:145rpx;
+display: inline-block;
+background-color: #fff;
+box-sizing: border-box; 
+box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+-webkit-box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+border-radius:20rpx;
+margin-right:8rpx;
+margin-left:8rpx;
+margin-bottom:16rpx;
+position: relative;
+text-align:center;
+overflow: hidden;
+}
+.imgborder image,.imgborder_1 image,.imgborder_2 image,.imgborder_3 image,.imgborder_many image{
+padding-top:10rpx;
+}
+
+
+.imgborder_3{
+width:145rpx;
+height:145rpx;
+display: inline-block;
+background-color: #fff;
+box-sizing: border-box; 
+box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+-webkit-box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+border-radius:20rpx;
+margin-right:8rpx;
+margin-left:8rpx;
+margin-bottom:16rpx;
+position: relative;
+text-align:center;
+}
+.imgborder_many{
+width:22.7%;
+height:145rpx;
+display: inline-block;
+background-color: #fff;
+box-sizing: border-box; 
+box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+-webkit-box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+border-radius:20rpx;
+margin-right:8rpx;
+margin-left:8rpx;
+margin-bottom:16rpx;
+position: relative;
+text-align:center;
+}
+.imgborder_2{
+width:47%;
+height:300rpx;
+display: inline-block;
+background-color: #fff;
+box-sizing: border-box; 
+box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+-webkit-box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+border-radius:20rpx;
+margin-right:8rpx;
+margin-left:8rpx;
+margin-bottom:16rpx;
+position: relative;
+text-align:center;
+}
+.imgborder_1{
+width:100%;
+height:400rpx;
+display: inline-block;
+background-color: #fff;
+box-sizing: border-box; 
+border-radius:20rpx;
+margin-right:8rpx;
+margin-left:8rpx;
+/* margin-bottom:16rpx; */
+margin-bottom:-15rpx;
+position: relative;
+text-align:center;
+}
+
+
+

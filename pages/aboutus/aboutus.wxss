@@ -1,0 +1,26 @@
+@import "../common/index.wxss";
+page,.page{
+  background-color:#f7f7f7;
+  width:100%;
+  height:100%;
+  overflow: hidden;
+
+}
+.aboutus_border image.logo{
+   width:167rpx;
+   height:289rpx;
+   margin-top:177rpx;
+}
+.aboutus_title{
+ font-size:32rpx;
+ color:#333;
+ margin-top:50rpx; 
+ margin-bottom:26rpx;
+ font-weight: 400;
+ 
+}
+.aboutus_content{
+  font-size:28rpx;
+  color:#333;
+  line-height:50rpx;
+}

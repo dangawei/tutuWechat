@@ -1,0 +1,23 @@
+<view class="page text-center">
+ <view class="aboutus_border">
+   <image class="logo" src="https://www.chengxuyuantoutiao.com/a/aboutus.png"></image>
+   <view>
+
+      <view class="aboutus_title">
+        图图英语
+   
+      </view>
+       <view class="aboutus_content text-center">
+          <view>专注于小学生英语课后趣味练习，</view>
+           <view>最科学有效的图片记忆教学法</view>
+           <view>配合线上视频教学与游戏闯关练习的环节</view>
+           <view>让小朋友的听、说、读、写全面发展</view>
+           <view>小朋友看图就会说英语</view>
+            <view>从此告别枯燥乏味的背单词、记语法</view>
+            <view>快乐学英语，轻松提分数！</view>
+   
+      </view>
+   </view>
+
+</view>
+</view>

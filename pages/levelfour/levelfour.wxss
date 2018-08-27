@@ -1,0 +1,339 @@
+@import "../common/index.wxss";
+page,.page{
+  background-color:#f5ede2;
+  background-image: url("https://www.chengxuyuantoutiao.com/a/bj_gk.png");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size:100%;
+  width:100%;
+  height:100%;
+  overflow: hidden;
+}
+.levelfour_border_img image{
+  width:240rpx;
+  height:240rpx;
+
+}
+
+.levelfour_border_img{
+  width:400rpx;
+  height:300rpx;
+  margin:0 auto;
+  text-align:center;
+  padding:11rpx 80rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+  -webkit-box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+  border-radius:20rpx;
+  color:#a3a3a3;
+  font-size:24rpx;
+  margin-top:40rpx;
+
+}
+.levelfour_border_img2 image{
+  margin-top:20rpx;
+}
+.levelfour_border_img view{
+  width:240rpx;
+  margin-bottom:12rpx;
+}
+ .levefour_top{
+  width:92%;
+  margin:0 auto;
+} 
+
+.levefour_top text.Unfilled{
+  color:#a3a3a3;
+  font-weight:bolder;
+margin-right:20rpx;
+font-size:30px;
+
+}
+.levefour_top text.word_circle{
+  color:#333;
+  font-weight:bolder;
+margin-right:20rpx;
+font-size:30px;
+}
+.levefour_top text.greenfont_line{
+  color:#09ce33;
+  font-weight:bolder;
+  margin-right:20rpx;
+  font-size:30px;
+}
+
+.levefour_top text.greenfont_linebili{
+  -webkit-animation: twinklinggreen_line 1s infinite ease-in-out;
+-o-animation: twinklinggreen_line 1s infinite  ease-in-out;
+-ms-animation: twinklinggreen_line 1s infinite  ease-in-out;
+-moz-animation: twinklinggreen_line 1s infinite  ease-in-out;
+
+}
+.animated{ 
+-webkit-animation-duration: 1s; 
+-o-animation-duration: 1s; 
+-ms-animation-duration: 1s; 
+-moz-animation-duration: 1s; 
+animation-duration: 1s; 
+-webkit-animation-fill-mode: both; 
+animation-fill-mode: both 
+} 
+.checksureimg{
+  width:56rpx;
+  height:42rpx;
+  position: relative;
+  top:15rpx;
+}
+
+/*  */
+@-webkit-keyframes twinklinggreen_line{ 
+0%{ 
+opacity: 0.5; 
+ color:#09d034;
+} 
+100%{ 
+opacity: 1; 
+ color:#09d034;
+} 
+} 
+@keyframes twinklinggreen_line{ 
+0%{ 
+opacity: 0.5; 
+ color:#09d034;
+} 
+100%{ 
+opacity: 1; 
+color:#09d034;
+} 
+
+}
+@keyframes twinklinggreen_line{ 
+100%{ 
+opacity: 1; 
+color:#09d034;
+} 
+100%{ 
+opacity: 0; 
+ color:#09d034;
+} 
+}
+.levefour_top{
+  margin-top:0rpx;
+}
+
+.levefour_top text{
+  font-size:38rpx;
+  color:#333;
+}
+.levefour_top text.redfont_line{
+ 
+  font-weight:bolder;
+  margin-right:20rpx;
+  font-size:30px;
+}
+.levefour_top text.redfont_line{ 
+-webkit-animation: twinklingred_line 1s 3 ease-in-out;
+-o-animation: twinklingred_line 1s 3  ease-in-out;
+-ms-animation: twinklingred_line 1s 3  ease-in-out;
+-moz-animation: twinklingred_line 1s 3  ease-in-out;
+
+} 
+@-webkit-keyframes twinklingred_line{ 
+0%{ 
+opacity: 0.5; 
+ color:#e82327;
+} 
+100%{ 
+opacity: 1; 
+ color:#e82327;
+} 
+} 
+@keyframes twinklingred_line{ 
+0%{ 
+opacity: 0.5; 
+ color:#e82327;
+} 
+100%{ 
+opacity: 1; 
+color:#e82327;
+} 
+
+}
+@keyframes twinklingred_line{ 
+100%{ 
+opacity: 1; 
+color:#e82327;
+} 
+100%{ 
+opacity: 0; 
+ color:#e82327;
+} 
+}
+
+/*下面选择的部分  */
+/*6个及8个的样式  */
+.levelthree_beselected{
+ 
+   position: relative;
+   
+   margin-top:-20rpx;
+   margin:0 80rpx;
+
+}
+.manytextborder_text{
+  margin-top:80rpx;
+}
+
+.manytextborder_text text{
+  width:102rpx;
+  height:102rpx;
+  display: block;
+ box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+  -webkit-box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+  margin-right:16rpx;
+  border-radius:20rpx;
+  background-color: #fff;
+  color:#333;
+
+}
+.manytextborder_text text:last-child{
+  margin-right:0px;
+}
+.manytextborder_textfour text{
+  margin-bottom:7rpx;
+
+}
+.manytextborder_contain  .left{
+  width:90%;
+  float:left;
+  line-height:50rpx;
+   
+}
+.manytextborder_contain  .right{
+  width:10%;
+  float:right;
+  text-align:right;
+   
+}
+.manytextborder_contain{
+  margin-top:30rpx;
+  color:#333;
+}
+
+.manytextborder_contain .right  text{
+   width:60rpx;
+   height:60rpx;
+}
+
+.manytextborder_text_maxthree{
+  width:75%;
+  position:relative;
+left:12.5%;
+right:12.5%;
+top:80rpx; 
+}
+.manytextborder_text_maxthree text{
+  margin-bottom:7rpx;
+}
+.levelthree_beselected_more_text swiper{
+  height:180px;
+}
+.manytextborder_text text{
+  display: inline-block;
+  text-align:center;
+  line-height:100rpx; 
+  margin-bottom:14rpx;
+  font-size:28rpx;
+  color:#333;
+ box-sizing: border-box;
+
+}
+.manytextborder_text1type{
+  width:42%;
+  margin:0 auto;
+  margin-top:80rpx;
+}
+.manytextborder_text1type text{
+  margin-bottom:14rpx;
+}
+/*二图的时候分布  */
+.manytextborder_text1type{
+  width:42%;
+  margin:0 auto;
+  margin-top:80rpx;
+}
+.manytextborder_text1type text{
+  margin-bottom:14rpx;
+}
+/*四图的时候两两分布  */
+.manytextborder_text2type{
+  width:42%;
+  margin:0 auto;
+  margin-top:80rpx;
+}
+.manytextborder_text2type text{
+  margin-bottom:14rpx;
+}
+/*六图的时候三三分布  */
+.manytextborder_text3type{
+  width:62%;
+  margin:0 auto;
+  margin-top:80rpx;
+}
+.manytextborder_text3type text{
+  margin-bottom:14rpx;
+}
+
+
+.grayborder {
+  background-color: #ededed;
+  border:6rpx solid #ddd;
+  z-index:99;
+  color:#a3a3a3;
+  box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+  -webkit-box-shadow: 0px -1px 20rpx rgba(230,203,167,.75);
+ 
+
+
+
+} 
+.levefour_top text.normaltext{
+  font-size:35rpx;
+  color:#333;
+  margin-right:0px;
+}
+.checksureimg{
+  margin-left:20rpx;
+}
+.manytextborder_text text.grayborder{
+
+  background-color: #ededed;
+  border:6rpx solid #ddd;
+  z-index:99;
+  color:#a3a3a3;
+  line-height:90rpx;
+}
+
+/*8图的时候四四分布 */
+.manytextborder_text4type{
+width:80%;
+margin:0 auto;
+margin-top:80rpx;
+}
+.manytextborder_text4type text{
+margin-bottom:14rpx;
+}
+/*五五分部  */
+.manytextborder_text5type{
+
+
+margin-top:80rpx;
+width:100%;
+
+}
+.manytextborder_text5type text{
+margin-bottom:14rpx;
+margin-left:8rpx;
+margin-right:8rpx;
+}

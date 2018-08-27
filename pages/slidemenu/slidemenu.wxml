@@ -1,0 +1,41 @@
+<view class='page'>
+
+
+  <view class='tab_l'>
+    <block wx:for="{{unit_list}}" wx:key="key">
+      <view class="nav_left_items text-center {{curNav == item.id ? 'active' : ''}}" bindtap="switchRightTab" data-name="{{item.unit_name}}" data-index="{{index}}" data-id="{{item.id}}">{{item.unit_name}}</view>
+    </block>
+  </view>
+  <view class='tab_r'>
+    <block wx:for="{{part_list}}" wx:key="key">
+      <view class="nav_right_items">
+        <navigator url="/pages/partlist/partlist?id={{item.id}}&name={{item.title_name}}&qing=1" hover-class='none'>
+          <image src="{{image}}">
+            <text class="sectionpartTitle">{{item.part_name}}</text>
+            <text class="sectionpart">{{item.completed_cards}}/{{item.contain_card_number}}</text>
+          </image>
+          <text>{{item.title_name}}</text>
+        </navigator>
+      </view>
+    </block>
+  </view>
+</view>
+
+
+<!--等待-->
+<view class="zan-dialog {{ showDialogshare? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" />
+  <view class="zan-dialog__container1" wx:if="{{showDialogshare}}">
+    <view class="sharecontent text-center">
+      <!--内容开始 -->
+      <view class="text-center allerweima">
+        <view>
+          <image class="gouxuanicon" src="https://www.chengxuyuantoutiao.com/a/loading.gif"></image>
+        </view>
+       
+
+        <!-- 内容结束 -->
+      </view>
+    </view>
+  </view>
+</view>

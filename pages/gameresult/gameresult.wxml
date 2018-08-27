@@ -1,0 +1,88 @@
+<view class="page">
+  <view class="gameresult_head ">
+
+    <view class="center">
+      <image class="userimg" src="{{user_img}}"></image>
+      <!--右标识四种状态begin -->
+
+      <view class="scores_icon {{types==0?'scores_icon_excelent':''}}"></view>
+      <view class="scores_icon {{types==1?'scores_icon_good':''}}"></view>
+      <view class="scores_icon {{types==2?'scores_icon_notbad':''}}"></view>
+      <view class="scores_icon {{types==3?'scores_icon_bad':''}}"></view>
+      <!--右标识四种状态end -->
+      <view class="text-center gameresultTitle">
+        <text class="nickname">{{username}}</text><text wx:if="{{socre >= 60}}">闯关成功</text><text wx:if="{{socre < 60}}">闯关结束</text>
+      </view>
+      <!--勋章三种状态 begin-->
+      <view class="centerbg">
+        <view class="centerbg_status  {{types==0?'goodstatus':'hiddencontent'}}"></view>
+        <view class="centerbg_status  {{types==1||types==2?'notbadstatus':'hiddencontent'}}"></view>
+        <view class="centerbg_status  {{types==3?'badstatus':'hiddencontent'}}"></view>
+      </view>
+
+      <!--勋章三种状态 end-->
+      <!--分数三种状态 begin-->
+      <view class="scorescommon text-center {{types==0?'green':'hiddencontent'}}">得分
+        <text class="ml30">{{socre}}</text>
+      </view>
+      <view class="scorescommon text-center {{types==1||types==2?'blue':'hiddencontent'}}">得分
+        <text class="ml30">{{socre}}</text>
+      </view>
+      <view class="scorescommon text-center {{types==3?'red':'hiddencontent'}}">得分
+        <text class="ml30">{{socre}}</text>
+      </view>
+      <!--分数三种状态 end-->
+      <view class="now_status text-center">当前关卡 : {{unit_name}} > {{part_name}} > {{card_name}}</view>
+
+    </view>
+    <view class="bottom">
+    <view wx:if="{{type == 5}}" class="next_btn" bindtap='wancheng'>完成</view>
+      <view wx:else class="next_btn" bindtap='xiayiguan'>下一关</view>
+    </view>
+  </view>
+  <!--底部内容开始  -->
+  <view class="gameresult_bottom">
+    <view class="gameresult_bottom_common fl">
+      <button class=" text-center" plain="false" bindtap='toggleDialogposter'>
+        <view class="top_text text-center">
+          <view class="top_text_contain">生成图片</view>
+          <view class="triangle_border_down">
+            <text></text>
+          </view>
+        </view>
+        <view class="bottom_img text-center ">
+          <image src="https://www.chengxuyuantoutiao.com/a/GeneratPoster.png"></image>
+        </view>
+      </button>
+    </view>
+
+    <view class="gameresult_bottom_common fr">
+      <button class=" text-center" plain="false" open-type="share" bindtap='ttt'>
+        <view class="top_text text-center">
+          <view class="top_text_contain">分享好友</view>
+          <view class="triangle_border_down">
+            <text></text>
+          </view>
+        </view>
+        <view class="bottom_img text-center">
+          <image src="https://www.chengxuyuantoutiao.com/a/sharebtn.png"></image>
+        </view>
+      </button>
+    </view>
+    <view class="gameresult_bottom_center text-center"  bindtap='tiaozhuan'>
+      <view class="tryaginBtn">重新闯关</view>
+    </view>
+
+
+  </view>
+  <!--底部内容结束  -->
+  <view class="{{showDialogposter?'haibaodilog':''}} haibao">
+    <view class="savebtn" bindtap='saveImgToPhotosAlbumTap'>保存到本地</view>
+    <image bindtap='toggleDialogposter' style="width:600rpx;height:1067rpx;margin-top:10rpx;" src="{{imagesrc}}"></image>
+  
+    <view class="{{showDialogposter?'zhezhao':''}}" bindtap='toggleDialogposter'></view>
+  </view>
+  <view class="" style="display:block;position:relative;margin-top:-99999rpx;">
+    <canvas style="width: 750px;height: 1334px;" canvas-id="mycanvas" />
+  </view>
+</view>

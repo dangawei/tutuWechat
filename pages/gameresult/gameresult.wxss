@@ -1,0 +1,260 @@
+@import "../common/index.wxss";
+page,.page{
+  background-color:#ffd744;
+  background-image: url("https://www.chengxuyuantoutiao.com/a/gameresultbg.png");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size:100%;
+  width:100%;
+  height:100%;
+  overflow: hidden;
+}
+.gameresult_head .center  image.userimg{
+  width:174rpx;
+  height:174rpx;
+  margin:0 auto;
+  border-radius:50%;
+  border:3px solid #ffd742;
+  z-index:5;
+  position: absolute;
+  top:-90rpx;
+  left:50%;
+  margin-left:-90rpx;
+}
+.scores_icon{
+  width:140rpx;
+  height:140rpx;
+  margin:0 auto;
+  z-index:5;
+  position: absolute;
+  right:-10rpx;
+  top:-10rpx;
+  margin-left:-90rpx;
+  background-size:100%;
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+.scores_icon_excelent{
+  background-image: url("https://www.chengxuyuantoutiao.com/a/exelent.png");
+}
+.scores_icon_good{
+  background-image: url("https://www.chengxuyuantoutiao.com/a/good.png");
+}
+.scores_icon_notbad{
+  background-image: url("https://www.chengxuyuantoutiao.com/a/notbad.png");
+}
+.scores_icon_bad{
+  background-image: url("https://www.chengxuyuantoutiao.com/a/bad.png");
+}
+.gameresult_head .center{
+  width:92%;
+  margin:0 auto;
+  border-radius:20rpx;
+  background-color: #fff;
+  position:relative;
+  top:120rpx;
+  z-index:1;
+  height:700rpx;
+
+}
+.gameresultTitle{
+  color:#333;
+  font-size:36rpx;
+  line-height:80rpx;
+  position: relative;
+  top:110rpx;
+}
+.gameresultTitle .nickname{
+  color:#ffa025;
+  margin-left:16rpx;
+  margin-right:16rpx;
+}
+.centerbg_status{
+  height:268rpx;
+  margin:0 auto;
+  z-index:5;
+  background-size:100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  top:130rpx;
+  /* transform: translate(-50%, -50%); */
+  transform: scale(1);
+  animation: change 1s;
+  -moz-animation: change 1s;    
+  -webkit-animation: change 1s;    
+  -o-animation: change 1s;
+   
+
+}
+
+@keyframes change{
+            from {width: 10rpx;height: 5.2rpx;opacity: 0;}
+            to {width: 515rpx;height: 268rpx;opacity: 1;display: block; transform: scale(1.2);}
+}
+.centerbg{
+  width: 515rpx;height: 268rpx;
+   margin:0 auto;
+
+}
+.goodstatus{
+   background-image: url("https://www.chengxuyuantoutiao.com/a/centerbgexcellent.png");
+}
+.notbadstatus{
+   background-image: url("https://www.chengxuyuantoutiao.com/a/centerbggood.png");
+}
+.badstatus{
+   background-image: url("https://www.chengxuyuantoutiao.com/a/centerbgbad.png");
+}
+.hiddencontent{
+  display: none;
+}
+.scorescommon{
+  font-size:58rpx;
+  margin-top:60rpx;
+  position: relative;
+  top:105rpx;
+  font-weight:600;
+}
+.green{
+  color:#09ce31;
+}
+.blue{
+  color:#006fda;
+}
+.red{
+  color:#e82327;
+}
+.now_status{
+  font-size:28rpx;
+  position: relative;
+  top:120rpx;
+  color:#333;
+}
+.gameresult_head .bottom{
+  position: relative;
+  top:80rpx;
+  z-index:999;
+}
+.next_btn{
+  width:429rpx;
+  height:99rpx;
+  margin:0 auto;
+  line-height:95rpx;
+  background-image: url("https://www.chengxuyuantoutiao.com/a/gameresultnext.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align:center;
+  font-size:30rpx;
+  letter-spacing: 0.2rem;
+  color:#333;
+  
+ 
+}
+/*底部内容  */
+
+.gameresult_bottom{
+  position: absolute;
+  bottom:40rpx;
+  width:100%;
+
+}
+.gameresult_bottom_common {
+  width:155rpx;
+}
+.gameresult_bottom_common button{
+  width:140rpx;
+  height:140rpx;
+  border:none;
+  padding:0px;
+  margin:0px;
+  z-index:999;
+
+}
+.top_text_contain{
+  background-color:#fff;
+  color:#333;
+  border-radius:50rpx;
+  font-size:24rpx;
+  width:120rpx;
+  line-height:40rpx;
+  margin:0 auto;
+  margin-left:15rpx;
+}
+.bottom_img,.top_text{
+  width:100%;
+}
+.bottom_img image{
+  width:80rpx;
+  height:80rpx;
+  margin-top:6rpx;
+}
+
+.gameresult_bottom_center{
+  
+  height:140rpx;
+  position: relative;
+}
+.tryaginBtn{
+  width:316rpx;
+  height:80rpx;
+  margin:0 auto;
+  line-height:76rpx;
+  background-image: url("https://www.chengxuyuantoutiao.com/a/gameresultTryagin.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align:center;
+  font-size:30rpx;
+  letter-spacing: 0.2rem;
+  color:#343334;
+  position: absolute;
+  bottom:0;
+  left:50%;
+  margin-left:-158rpx;
+  
+}
+/*向下的三角形  */
+.triangle_border_down{
+    width:0;
+    height:0;
+    border-width:10rpx 10rpx 0;
+    border-style:solid;
+    border-color:#fff transparent transparent;/*灰 透明 透明 */
+    margin:0px auto;
+    margin-left:60rpx;
+   
+}
+.haibao{
+  display: none;
+}
+.haibaodilog{
+  z-index: 9999;position:absolute;top:0;
+  height:1334rpx;
+  text-align:center;
+  width:750rpx;
+  margin-top: 10rpx;
+  display: block;
+}
+.zhezhao{
+  position:absolute;
+  height:2000rpx;
+  top:0;
+  width:750rpx;
+  z-index: -10;
+  background:#000;
+  opacity:0.5;
+}
+.savebtn{
+  background: url("https://www.chengxuyuantoutiao.com/a/beginbtn.png") no-repeat center center ;
+  background-size:100%;
+  height:74rpx;
+  line-height:70rpx;
+  width: 310rpx;
+  margin: auto;
+  font-size:32rpx;
+  color:#333;
+  margin-top:10rpx;
+
+}

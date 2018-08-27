@@ -1,0 +1,52 @@
+<view class="page"> 
+  <view class="mindhead">
+      <image src="{{img}}" ></image>
+      <view class="mindhead_text" >{{name}}</view>
+  </view>
+  
+   <!--单元列表 begin -->
+  <view class="unitlist"> 
+   <view>
+    <block>
+      
+      <navigator url="/pages/aboutus/aboutus" class="unitlistborder" hover-class='none'> 
+          <view class="unitlistborder_left"> 
+             关于我们
+          </view>
+          <view class="unitlistborder_right"> 
+             <image src="https://www.chengxuyuantoutiao.com/a/indexright.png"></image>
+          </view>
+      </navigator>
+     
+    </block>
+    </view>
+  </view>
+  <!--单元列表 end -->
+  <!--二维码扫描begin  -->
+  <view class="ScanQR text-center">
+      <view class="ScanQRborder text-center">
+      <image src="https://www.chengxuyuantoutiao.com/a/minderweima.png"></image>
+      <view class="ScanQR_text">扫描二维码关注微信公众号</view>
+      <view class="ScanQR_text">领取36G小学英语课外阅读海量资源包哟~</view>
+      </view>
+  </view>
+   <!--二维码扫描end  -->
+
+    <!--底部导航 begin  -->
+  <view class="nav_border">
+    <navigator  open-type="redirect"  url="/pages/afterindex/afterindex" class="nav_border_common" hover-class='none'>
+        <view class="{{exercise==0?'active':'default'}}" bindtap="exercise">
+         <view class="nav_border_common_img"></view>
+         <view class="nav_border_common_text">练习</view>
+        </view>
+    </navigator>
+    <navigator  open-type="redirect"  url="/pages/mind/mind" class="nav_border_common" hover-class='none'>
+        <view class="{{mind==0?'active':'default'}}" bindtap="mind">
+         <view class="nav_border_common_img2"></view>
+         <view class="nav_border_common_text">我的</view>
+        </view>
+        
+    </navigator>
+  </view>
+  <!--底部导航 end  -->
+</view>

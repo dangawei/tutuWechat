@@ -1,0 +1,9 @@
+<!--pages/login/login.wxml-->
+<view wx:if="{{xianshi}}">
+<view class="logo">
+  <image src="https://www.chengxuyuantoutiao.com/a/logoimg.png" />
+</view>
+<view class="signin">
+<button class="tryaginBtn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>
+</view>
+</view>
