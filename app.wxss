@@ -1,5 +1,9 @@
 /**app.wxss**/
 @import 'weui.wxss';
+.page{
+  padding-left: 30px;
+  padding-right: 30px;
+}
 .container {
   height: 100%;
   display: flex;
@@ -8,4 +12,20 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
+.pl15{
+  padding-left: 15px;
+}
+.mr15{
+  margin-right:15px;
+}
+.mg30{
+  margin:30px 40px 15px;
+}
+.plr30{
+  padding-left:30px;
+  padding-right: 30px;
+}
+.pl0{
+  padding-left: 0px;
+}

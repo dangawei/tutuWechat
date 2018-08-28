@@ -4,27 +4,19 @@ const app = getApp();
 const http_host = util.http_host;
 const regPhone = /^[1][3,4,5,6,7,8][0-9]{9}$/;
 Page({
-  data: {
+  data:{
     time: '获取验证码',
     currentTime: 10,
     disabled: false,
-    phoneValue: '',//手机号
-    phoneError: false,
-    passwordValue:'',
-    errorInfo:'手机号错误',//错误信息
-    errorShow:true,
+    phoneValue:'',
+    phoneError:false
   },
   cancelPhone: function () {
     this.setData({
-      phoneValue: ''
+      phoneValue:''
     })
   },
-  cancelPassword: function () {
-    this.setData({
-      passwordValue: ''
-    })
-  },
-  bindKeyInput: function (e) {
+  bindKeyInput: function (e){
     this.setData({
       phoneValue: e.detail.value
     })
@@ -33,27 +25,6 @@ Page({
         phoneError: false
       })
     }
-  },
-  bindKeyPassword: function (e) {
-    this.setData({
-      passwordValue: e.detail.value
-    })
-    if (regPhone.test(this.data.phoneValue)) {
-      this.setData({
-        phoneError: false
-      })
-    }
-  },
-  quickLogin(){
-    // 进入verification页面
-    wx.navigateTo({
-      url: "/pages/quicklogin/login"
-    })
-  },
-  resetPassword(){
-    wx.navigateTo({
-      url: "/pages/quicklogin/login"
-    })
   },
   // 点击下一步
   nextBtn() {
@@ -82,7 +53,7 @@ Page({
     that.setData({
       time: currentTime + '秒'
     })
-    that.data.disabled = true
+    that.data.disabled=true
     var interval = setInterval(function () {
       that.setData({
         time: (currentTime - 1) + '秒'
@@ -109,5 +80,5 @@ Page({
   */
   onHide: function () {
 
-  },
+  }, 
 })

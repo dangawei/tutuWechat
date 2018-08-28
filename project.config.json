@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
-	"appid": "wxaec8437092a728f6",
-	"projectname": "tutu5",
+	"appid": "touristappid",
+	"projectname": "tutu",
 	"condition": {
 		"search": {
 			"current": -1,

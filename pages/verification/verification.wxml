@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">输入验证码</view>
+    <view class='title-text' wx:if="{{ttShow}}">{{titleText}}</view>
+  </view>
+  <view class="">
+      <form bindsubmit="formSubmit"> 
+        <view class='content'>
+            <!-- <view wx:if="{{(value_length==item-1)&&focus_class}}" class="cursor"></view> -->
+            <block wx:for="{{Length}}" wx:key="item">
+                <input class="{{((valueLength==item)&&isFocus)?'sel-iptbox':'iptbox'}}" value="{{Value.length>=index+1?Value[index]:''}}" disabled catchtap='Tap'></input> 
+            </block> 
+        </view>
+        <view class="content-bottom">
+          <button class="content-text" size="mini" bindtap='countDown' disabled='{{isDisabled}}'>{{time}}</button>
+          <!-- <view class="content-text">{{time}}</view> -->
+        </view>
+        <input type="number" class='ipt' maxlength="{{Length}}" focus="{{isFocus}}" bindinput="Focus"></input> 
+        <!-- <view> 
+            <button class="btn-area" formType="submit">Submit</button> 
+        </view>  -->
+      </form>
+  </view>
+  <view class="mg30">
+    <button class="next-btn" size='default' disabled="{{false}}"  bindtap="nextBtn">下一步</button>
+  </view>
+  <view wx:if="{{isError}}" class='tip-error'>
+    <text class='tip-error-text'>验证码错误</text>
+  </view>
+</view>

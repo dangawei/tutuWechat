@@ -8,20 +8,12 @@ Page({
     time: '获取验证码',
     currentTime: 10,
     disabled: false,
-    phoneValue: '',//手机号
-    phoneError: false,
-    passwordValue:'',
-    errorInfo:'手机号错误',//错误信息
-    errorShow:true,
+    phoneValue: '',
+    phoneError: false
   },
   cancelPhone: function () {
     this.setData({
       phoneValue: ''
-    })
-  },
-  cancelPassword: function () {
-    this.setData({
-      passwordValue: ''
     })
   },
   bindKeyInput: function (e) {
@@ -33,27 +25,6 @@ Page({
         phoneError: false
       })
     }
-  },
-  bindKeyPassword: function (e) {
-    this.setData({
-      passwordValue: e.detail.value
-    })
-    if (regPhone.test(this.data.phoneValue)) {
-      this.setData({
-        phoneError: false
-      })
-    }
-  },
-  quickLogin(){
-    // 进入verification页面
-    wx.navigateTo({
-      url: "/pages/quicklogin/login"
-    })
-  },
-  resetPassword(){
-    wx.navigateTo({
-      url: "/pages/quicklogin/login"
-    })
   },
   // 点击下一步
   nextBtn() {

@@ -49,8 +49,9 @@ App({
 
   globalData: {
     // 用户基本信息
-    userInfo: null
-    
+    userInfo: null,
+    // 手机号
+    phone:''
   },
   // 用户信息  token 及 用户UID
   user:{

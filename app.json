@@ -1,6 +1,11 @@
 {
   "pages": [
+    "pages/resetpassword/resetpassword",
     "pages/login/login",
+    "pages/password/password",
+    "pages/verification/verification",
+    
+    "pages/quicklogin/login",
     "pages/index/index",
     "pages/partlist/partlist",
     "pages/beforeindex/beforeindex",
