@@ -14,11 +14,13 @@ Page({
     Length: 6,    //输入框个数 
     isFocus: false,  //聚焦 
     Value: "",    //输入的内容 
-    titleText: "验证码已发送至+86 " + app.globalData.phone,
+    titleText: "验证码已发送至+86 ",
     ttShow:true,
     valueLength:0,//输入验证码 的位数
-    isDisabled:false,//获取验证码
+    isDisabled:false,//获取验证码是否禁用
     isError:false,//验证码检验
+    getData:{},//得到的数据
+    errorInfo:'验证码错误'
   },
   Focus(e) {
     var that = this;
@@ -60,18 +62,72 @@ Page({
         })
       }
     }, 1000)
+    console.log(app.globalData.phone)
+    wx.request({
+      url: http_host + '/user/sms/' + app.globalData.phone,
+      data: {
+        mobile: app.globalData.phone
+      },
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // 判断是否正确传回数据
+        if (res.data.code == 0) {
+          wx.showToast({
+            title: '已发送',
+            icon: 'success',
+            duration: 3000
+          });
+        } else {
+          //返回数据失败
+          app.tanchuang(res.message)
+        }
+      }
+    })
   },
   nextBtn(){
-    if (!this.data.isError) {
-      // 进入verification页面
-      wx.navigateTo({
-        url: "/pages/password/password"
+      let _this=this
+      wx.request({
+        url: http_host + '/user/login/sms',
+        method:"POST",
+        data: {
+          code:this.data.Value,
+          mobile: app.globalData.phone
+        },
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: function (res) {
+          // 判断是否正确传回数据
+          if (res.data.code == 0) {
+              _this.setData({
+                isError: false
+              })
+              wx.setStorage({
+                key:"basicInfo",
+                data: res.data.data
+              })
+             app.globalData.userInfo=res.data.data
+              // 进入verification页面
+              wx.navigateTo({
+                url: "/pages/beforeindex/beforeindex"
+              })
+          } else {
+            //返回数据失败
+            _this.setData({
+              errorInfo:res.data.message,
+              isError:true
+            })
+          }
+        }
       })
-    }
   },
   /** 生命周期函数--监听页面加载 */
   onLoad: function (options) {
-    
+    this.setData({
+      titleText:"验证码已发送至+86 "+app.globalData.phone
+    })
   },
   /**
   * 生命周期函数--监听页面初次渲染完成

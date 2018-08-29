@@ -1,0 +1,10 @@
+.content{
+  margin-top: 30px;
+}
+.next-btn{
+  background-color: #FFD744;
+  border-radius:30px;
+  color:#333;
+  font-weight: 500;
+  border:1px solid #DFDFDF;
+}

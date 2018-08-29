@@ -1,6 +1,6 @@
 <!--pages/beforeindex/beforeindex.wxml-->
 <!--index.wxml-->
-<view class="page">
+<view class="pages">
   <!--头部背景及标题 begin -->
   <image src="https://www.chengxuyuantoutiao.com/a/indexbg.png" class="present100 indexbg" mode="widthFix">
    

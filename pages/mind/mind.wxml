@@ -1,4 +1,4 @@
-<view class="page"> 
+<view class="pages"> 
   <view class="mindhead">
       <image src="{{img}}" ></image>
       <view class="mindhead_text" >{{name}}</view>
@@ -6,8 +6,8 @@
   
    <!--单元列表 begin -->
   <view class="unitlist"> 
-   <view>
-    <block>
+    <view>
+    <!-- <block>
       
       <navigator url="/pages/aboutus/aboutus" class="unitlistborder" hover-class='none'> 
           <view class="unitlistborder_left"> 
@@ -18,7 +18,30 @@
           </view>
       </navigator>
      
-    </block>
+    </block> -->
+      <view class="weui-cells weui-cells_after-title">
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="../images/关于我们@2x.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                </view>
+                <view class="weui-cell__bd">关于我们</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <navigator url="/pages/set/set" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="../images/设置@2x.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                </view>
+                <view class="weui-cell__bd">设置</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <image src="../images/意见反馈@2x.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                </view>
+                <view class="weui-cell__bd">意见反馈</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+        </view>
     </view>
   </view>
   <!--单元列表 end -->

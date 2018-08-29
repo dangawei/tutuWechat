@@ -33,10 +33,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(app.globalData.userInfo);
     var that = this;
     that.setData({
-      name: app.globalData.userInfo.nickName,
-      img: app.globalData.userInfo.avatarUrl
+      // name: app.globalData.userInfo.realName,
+      // img: app.globalData.userInfo.icon || '../images/spellcheck.png'
+      name: wx.getStorageSync('basicInfo').realName,
+      img: wx.getStorageSync('basicInfo').icon || '../images/spellcheck.png'
     })
     wx.setNavigationBarColor({
 

@@ -7,13 +7,13 @@
       <view class="weui-cell weui-cell_input weui-cell_vcode">
           <view class="weui-cell__hd">
               <!-- <view class="weui-label">手机号</view> -->
-              <image src='../images/listen.png' style="width: 20px; height: 20px;"></image>
+              <image src='../images/组 1@2x.png' style="width: 20px; height: 20px;"></image>
           </view>
           <view class="weui-cell__bd">
               <input type='number' class="weui-input pl15" placeholder="请输入手机号" bindinput="bindKeyInput" value='{{phoneValue}}'/>
           </view>
           <view class="weui-cell__ft mr15">
-            <icon type="cancel" size="22" color="#E64340" bindtap='cancelPhone'></icon>
+            <image src='../images/组 21@2x.png' style="width: 20px; height: 20px;" bindtap='cancelPhone'></image>
           </view>
       </view>
   </view>

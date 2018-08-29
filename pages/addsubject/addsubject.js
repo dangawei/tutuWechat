@@ -61,13 +61,12 @@ Page({
 
     //获取所有教材
     wx.request({
-      url: http_host + 'getbooklist',
+      url: http_host + '/user/choose/bookVersion/' + wx.getStorageSync('basicInfo').bookVersionId,
       data: {
-        //从app中取出用户数据
-        token: app.user.token,
-        uid: app.user.uid
+        bookVersionId: wx.getStorageSync('basicInfo').bookVersionId
       },
       header: {
+        'token': wx.getStorageSync('basicInfo').token,
         'Content-Type': 'application/json'
       },
       success: function (res) {

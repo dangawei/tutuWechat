@@ -22,9 +22,9 @@
       </form>
   </view>
   <view class="mg30">
-    <button class="next-btn" size='default' disabled="{{false}}"  bindtap="nextBtn">下一步</button>
+    <button class="next-btn" size='default' disabled="{{false}}"  bindtap="nextBtn">登录</button>
   </view>
   <view wx:if="{{isError}}" class='tip-error'>
-    <text class='tip-error-text'>验证码错误</text>
+    <text class='tip-error-text'>{{errorInfo}}</text>
   </view>
 </view>
