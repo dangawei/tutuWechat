@@ -1,21 +1,22 @@
 {
   "pages": [
+    "pages/addsubject/addsubject",
     "pages/mind/mind",
-    "pages/beforeindex/beforeindex",
+    "pages/login/login",
     "pages/quicklogin/login",
     "pages/verification/verification",
     "pages/resetpassword/resetpassword",
-    "pages/login/login",
+    "pages/updatapassword/updatapassword",
+    
     "pages/password/password",
     "pages/set/set",
     
     "pages/index/index",
     "pages/partlist/partlist",
-    
+    "pages/beforeindex/beforeindex",
     "pages/afterindex/afterindex",
     "pages/levelfive/levelfive",
     
-    "pages/addsubject/addsubject",
     "pages/slidemenu/slidemenu",
     "pages/gameresult/gameresult",
     

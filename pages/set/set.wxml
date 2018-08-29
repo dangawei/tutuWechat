@@ -1,7 +1,7 @@
 <view class='pages'>
   <view class='content'>
     <view class="weui-cells weui-cells_after-title">
-        <navigator url="/pages/resetpassword/resetpassword" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <navigator url="/pages/password/password" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
             <view class="weui-cell__bd">修改密码</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>

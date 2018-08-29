@@ -16,37 +16,110 @@ Page({
     //移动方向
     movefx: 1,
     tocheY: 0,
-    grades: [1, 2, 3]
+    grades: [1, 2, 3],
+    bookVersion:'',//版本号
+  },
+  getBooks: function (e) {
+    console.log(e)
+    if (e.currentTarget){
+      let e = e.currentTarget.dataset
+    }else{
+      let e=e;
+    }
+     
+    let that=this
+    this.setData({
+      tag_active: e
+    });
+    //获取所有教材版本
+    wx.request({
+      url: http_host + '/practice/book/' + e,
+      data: {
+        bookVersionId: e
+      },
+      header: {
+        // 'token': app.globalData.userInfo.token,
+        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // 判断是否正确传回数据
+        if (res.data.code == 0) {
+          that.setData({
+            //数据
+            groupBooks: res.data.data
+          })
 
+        } else {
+          //返回数据失败
+          app.tanchuang('获取数据错误！')
+        }
+      }
+    })
+
+  },
+  //选择版本获得教材
+  selectdataindex: function (event) {
+    let e = event.currentTarget.dataset.index
+    console.log(e)
+    let that = this
+    this.setData({
+      tag_active: e
+    });
+    //获取所有教材版本
+    wx.request({
+      url: http_host + '/practice/book/' + e,
+      data: {
+        bookVersionId: e
+      },
+      header: {
+        // 'token': app.globalData.userInfo.token,
+        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // 判断是否正确传回数据
+        if (res.data.code == 0) {
+          that.setData({
+            //数据
+            groupBooks: res.data.data
+          })
+
+        } else {
+          //返回数据失败
+          app.tanchuang('获取数据错误！')
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-    console.log(e)
-    this.setData({
-      book_id:e.book_id
-    })
+    // console.log(e)
+    // this.setData({
+    //   book_id:e.book_id
+    // })
     var that = this
-    for (var i = 0; i < this.data.allnum; i++) {
-      wx.createIntersectionObserver().relativeToViewport().observe('#dataindex' + i, (res) => {
+    // for (var i = 0; i < this.data.allnum; i++) {
+    //   wx.createIntersectionObserver().relativeToViewport().observe('#dataindex' + i, (res) => {
        
-        if (this.data.movefx == 0) {
-          if (this.data.tag_active < this.data.allnum) {
-            this.setData({
-              tag_active: this.data.tag_active + 1
-            })
-          }
+    //     if (this.data.movefx == 0) {
+    //       if (this.data.tag_active < this.data.allnum) {
+    //         this.setData({
+    //           tag_active: this.data.tag_active + 1
+    //         })
+    //       }
 
-        } else if (this.data.movefx == 1) {
-          if (this.data.tag_active > 0) {
-            this.setData({
-              tag_active: this.data.tag_active - 1
-            })
-          }
-        }
-      })
-    }
+    //     } else if (this.data.movefx == 1) {
+    //       if (this.data.tag_active > 0) {
+    //         this.setData({
+    //           tag_active: this.data.tag_active - 1
+    //         })
+    //       }
+    //     }
+    //   })
+    // }
     // var a = { "code": 0, "data": { "groupBooks": [{ "grade": 1, "books": [{ "id": "123", "book_cover_url": "http://www.tutukids.com/人教版/三年年级上_3/1_unit/1_part/1_听音看图学习/1_question_1/2_content_image_3.jpeg", "book_name": "人教版三年年级上", "book_publish_company": "人教版", "book_grade": 1, "contain_unit_number": 8 }, { "id": "456", "book_cover_url": "", "book_name": "人教版三年年级下", "book_publish_company": "人教版", "book_grade": 1, "contain_unit_number": 8 }] }, { "grade": 2, "books": [{ "id": "223", "book_cover_url": "http://www.tutukids.com/人教版/三年年级上_3/2_unit/2_part/2_听音看图学习/2_question_2/2_content_image_3.jpeg", "book_name": "人教版三年年级上", "book_publish_company": "人教版", "book_grade": 2, "contain_unit_number": 8 }, { "id": "456", "book_cover_url": "", "book_name": "人教版三年年级下", "book_publish_company": "人教版", "book_grade": 2, "contain_unit_number": 8 }] }], "grades": [1, 2, 3] }, "errMsg": "success" }
  
     // that.setData({
@@ -55,41 +128,33 @@ Page({
     //   groupBooks: a.data.groupBooks
     // })
 
-    
- 
-    // 逻辑层
-
-    //获取所有教材
+    // 获取所有的教材版本
     wx.request({
-      url: http_host + '/user/choose/bookVersion/' + wx.getStorageSync('basicInfo').bookVersionId,
+      url: http_host + 'practice/version/list',
       data: {
-        bookVersionId: wx.getStorageSync('basicInfo').bookVersionId
+        // bookVersionId: app.globalData.userInfo.bookVersionId
       },
       header: {
-        'token': wx.getStorageSync('basicInfo').token,
+        // 'token': app.globalData.userInfo.token,
+        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
         'Content-Type': 'application/json'
       },
       success: function (res) {
         // 判断是否正确传回数据
-        if(res.data.code == 0)
-        {
+        if (res.data.code == 0) {
           that.setData({
             //数据
-            groupBooks: res.data.data.groupBooks
+            bookVersion: res.data.data
           })
-
-          console.log(2)
-          console.log(that.data.groupBooks)
-
-        }else{
+          that.getBooks(res.data.data[0].id)
+        } else {
           //返回数据失败
           app.tanchuang('获取数据错误！')
         }
       }
     })
-
   },
-
+  
   //添加到个人教材中
   add:function (e)
   { 
@@ -191,40 +256,7 @@ Page({
     }
   },
 
-  //页面内跳转到指定教材处
-  selectdataindex: function (event) {
-    this.setData({
-      movefx: 2
-    })
-    var height = 0;
-    var index = parseInt(event.target.dataset.index);
-    var query = wx.createSelectorQuery()
-    for (var i = 0; i < index; i++) {
-      var thisid = '#dataindex' + i;
-      query.select(thisid).boundingClientRect(function (res) {
-        height = height + res.height;
-      });
-    }
-    if (index == 0) {
-      wx.pageScrollTo({
-        scrollTop: 0,
-        duration: 0
-      })
-    } else {
-      query.exec(function () {
-      
-        wx.pageScrollTo({
-          scrollTop: height,
-          duration: 0
-        })
-      })
-    }
-    this.setData({
-      tag_active: index
-    });
-
-
-  },
+  
   touchdataindex: function (e) {
     if (e.touches[0].clientY < this.data.tocheY) {
       this.setData({

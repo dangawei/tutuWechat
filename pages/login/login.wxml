@@ -27,7 +27,7 @@
       </view>
   </view>
   <view class="mg30">
-    <button class="next-btn" size='default' disabled="{{false}}"  bindtap="nextBtn">下一步</button>
+    <button class="next-btn" size='default' disabled="{{false}}"  bindtap="nextBtn">完成</button>
   </view>
   <view>
     <view class="weui-flex">
