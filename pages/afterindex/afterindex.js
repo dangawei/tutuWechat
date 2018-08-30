@@ -42,40 +42,44 @@ Page({
   
    //获取当前教材详细内容
    wx.request({
-     url: http_host + 'getcurrentbookdetail',
+    //  url: http_host + 'practice/book/detail/' + app.book.id,
+     url: http_host + 'practice/book/detail/' + 4,
      data: {
        //从app中取出用户数据
-       token: app.user.token,
-       uid: app.user.uid,
-
+      //  bookId: app.book.id
+       bookId: 4
      },
      header: {
+       // 'token': app.globalData.userInfo.token,
+       'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
        'Content-Type': 'application/json'
      },
      success: function (res) {
        //判断返回数据是否正确
        if(res.data.code == 0)
        {
-         console.log(2)
          console.log(res.data)
-
           that.setData({
             //所有数据 方便以后调用
-            all:res.data,
+            all:res.data.data,
             //给单元赋值
-            unitlist:res.data.data.units,
+            unitlist: res.data.data.unitsVOS,
             //给教材名称赋值
-            book_name: res.data.data.book_name,
+            book_name: res.data.data.name,
             //教材id  
-            book_id: res.data.data.book_id,
+            book_id: res.data.data.id,
             //教材图片
-            book_img: res.data.data.book_cover_url,
-            //继续闯关中的 part名称
-            curren_part_title_name: res.data.data.curren_part_title_name,
-            // 闯过关的id
-            curren_card_id: res.data.data.curren_card_id
+            book_img: res.data.data.icon,
+            
           })
-
+         if (res.data.data.latestPassRecordVO!=null){
+            that.setData({
+              //继续闯关中的 part名称
+              curren_part_title_name: res.data.data.latestPassRecordVO.title,
+              // 闯过关的关卡数
+              curren_card_id: res.data.data.latestPassRecordVO.passPass
+            })
+          }
           app.unit.name = res.data.data.curren_unit_name
           app.book.name = res.data.data.book_name
 
@@ -100,57 +104,57 @@ Page({
           app.part.lishi_id = that.data.part_id
 
           //获取该part下所有关卡
-          wx.request({
-            url: http_host + 'getcardlist',
-            data: {
-              //从app中取出用户数据
-              token: app.user.token,
-              uid: app.user.uid,
-              part_id: that.data.part_id
-            },
-            header: {
-              'Content-Type': 'application/json'
-            },
-            success: function (res) {
-              //判断返回数据是否正确
-              if (res.data.code == 0) {
+          // wx.request({
+          //   url: http_host + 'getcardlist',
+          //   data: {
+          //     //从app中取出用户数据
+          //     token: app.user.token,
+          //     uid: app.user.uid,
+          //     part_id: that.data.part_id
+          //   },
+          //   header: {
+          //     'Content-Type': 'application/json'
+          //   },
+          //   success: function (res) {
+          //     //判断返回数据是否正确
+          //     if (res.data.code == 0) {
 
-                console.log(3)
-                console.log(res.data)
-                var List = res.data.data.cards
+          //       console.log(3)
+          //       console.log(res.data)
+          //       var List = res.data.data.cards
 
-                var list = List.sort(that.compare('card_sequence'))
-                var partlist = []
-                var xia = 0
-                for (var i in list) {
+          //       var list = List.sort(that.compare('card_sequence'))
+          //       var partlist = []
+          //       var xia = 0
+          //       for (var i in list) {
            
-                  if (list[i].id == that.data.curren_card_id)
-                  {
-                    app.partList.lishi_xia = xia
-                  }
+          //         if (list[i].id == that.data.curren_card_id)
+          //         {
+          //           app.partList.lishi_xia = xia
+          //         }
 
-                  xia++;
-                }
-                // that.setData({
-                //   partList: partlist,
-                //   //共多少关卡
-                //   part_number: partlist.length,
-                //   address: app.partList.xia
+          //         xia++;
+          //       }
+          //       // that.setData({
+          //       //   partList: partlist,
+          //       //   //共多少关卡
+          //       //   part_number: partlist.length,
+          //       //   address: app.partList.xia
 
-                // })
+          //       // })
 
                
 
 
 
-              } else {
-                //返回数据失败
-                app.tanchuang('获取关卡详情错误！')
-              }
+          //     } else {
+          //       //返回数据失败
+          //       app.tanchuang('获取关卡详情错误！')
+          //     }
         
           
-            },
-          })
+          //   },
+          // })
 
 
        }else{
@@ -206,7 +210,7 @@ Page({
       wx.redirectTo({
         url: "/pages/afterindex/afterindex"
       })
-    }
+    }      
   },
 
   /**

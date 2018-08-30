@@ -27,9 +27,9 @@ Page({
     */
   onLoad: function (e) {
 
-    wx.setNavigationBarTitle({
-      title: app.book.name
-    })
+    // wx.setNavigationBarTitle({
+    //   title: app.book.name
+    // })
     
     //显示加载提示框
     // wx.showLoading({
@@ -37,33 +37,31 @@ Page({
     // })
 
     var that = this
-
-
     //获取所有单元数组详情
     wx.request({
-      url: http_host + 'getcurrentbookdetail',
+      // url: http_host + 'practice/units/list/' + app.book.id,
+      url: http_host + 'practice/units/list/' + 4,
       data: {
         //从app中取出用户数据
-        token: app.user.token,
-        uid: app.user.uid,
-
+        bookId: 4
+        // bookId: app.book.id
       },
       header: {
+        // 'token': app.globalData.userInfo.token,
+        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
         'Content-Type': 'application/json'
       },
       success: function (res) {
       
         if (res.data.code == 0) {
-       
+          console.log(res.data.data.unitsVOS)
           that.setData({
-            unit_list: res.data.data.units
+            unit_list: res.data.data.unitsVOS
           })
 
           if (e.id == '' || e.id == null) {
-            console.log('kong')
-          
-            var liang = res.data.data.units[0].id
-            var unitname = res.data.data.units[0].unit_name
+            var liang = res.data.data.unitsVOS[0].id
+            var unitname = res.data.data.unitsVOS[0].text
           } else {
             var liang = e.id
             var unitname = e.unitname
@@ -82,8 +80,14 @@ Page({
         })
 
         //查询单元下所有part
-
-        that.part_list(liang)
+        // res.data.data.unitsVOS.forEach(function(a){
+        //   if(a.id==liang){
+        //     that.setData({
+        //       part_list: a.partsVOS
+        //     })
+        //   }
+        // })
+        // that.part_list(liang)
       },
       error: function (res) {
         console.log('404');

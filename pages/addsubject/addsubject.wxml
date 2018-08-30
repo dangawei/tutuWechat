@@ -28,7 +28,7 @@
           <view class="right">
             <view class="book_name">{{books.name}}</view>
             <view wx:if="{{book_id == books.id}}" bindtap='add' data-id="{{books.id}}" class="addsubjectbtntype2" hover-class="none;">继续学习</view>
-            <view bindtap='add' wx:else data-id="{{books.id}}" class="addsubjectbtntype2" hover-class="none;">添加教材</view>
+            <view bindtap='add' wx:else data-id="{{books.id}}" data-name="{{books.name}}" class="addsubjectbtntype2" hover-class="none;">添加教材</view>
 
           </view>
 

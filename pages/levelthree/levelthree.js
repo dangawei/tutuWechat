@@ -68,10 +68,6 @@ Page({
     wx.setNavigationBarTitle({
       title: title//页面标题为路由参数
     })
-
-    console.log('ppp')
-    console.log(app)
-
     var that = this
 
 
@@ -165,24 +161,19 @@ Page({
   
 
 
-    //当前
+    //获取题目列表
     wx.request({
-      url: http_host + 'getquestion',
+      url: http_host + 'custom/pass/subject/list/' + that.data.card_id,
       data: {
-        //从app中取出用户数据
-        token: app.user.token,
-        uid: app.user.uid,
-        card_id: that.data.card_id,
-        //当前题的序号  
-        question_sequence: xuhao
+        passId: that.data.card_id
       },
       header: {
+        // 'token': app.globalData.userInfo.token,
+        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
         'Content-Type': 'application/json'
       },
       success: function (res) {
         // 判断是否正确传回数据
-        console.log(2)
-        console.log(res)
         if (res.data.code == 0) {
           var yes = "exercises.rightlist"
 

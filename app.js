@@ -90,8 +90,9 @@ App({
     xia:-1,
     lishi_xia:'',
   },
-
+  //教材信息
   book:{
+    id:'',
     name:''
   },
 })

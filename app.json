@@ -1,5 +1,7 @@
 {
   "pages": [
+
+    "pages/afterindex/afterindex",
     "pages/addsubject/addsubject",
     "pages/mind/mind",
     "pages/login/login",
@@ -14,7 +16,7 @@
     "pages/index/index",
     "pages/partlist/partlist",
     "pages/beforeindex/beforeindex",
-    "pages/afterindex/afterindex",
+    
     "pages/levelfive/levelfive",
     
     "pages/slidemenu/slidemenu",

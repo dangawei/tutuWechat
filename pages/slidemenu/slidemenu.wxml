@@ -1,24 +1,23 @@
 <view class='page'>
-
-
-  <view class='tab_l'>
-    <block wx:for="{{unit_list}}" wx:key="key">
-      <view class="nav_left_items text-center {{curNav == item.id ? 'active' : ''}}" bindtap="switchRightTab" data-name="{{item.unit_name}}" data-index="{{index}}" data-id="{{item.id}}">{{item.unit_name}}</view>
-    </block>
-  </view>
-  <view class='tab_r'>
-    <block wx:for="{{part_list}}" wx:key="key">
-      <view class="nav_right_items">
-        <navigator url="/pages/partlist/partlist?id={{item.id}}&name={{item.title_name}}&qing=1" hover-class='none'>
-          <image src="{{image}}">
-            <text class="sectionpartTitle">{{item.part_name}}</text>
-            <text class="sectionpart">{{item.completed_cards}}/{{item.contain_card_number}}</text>
-          </image>
-          <text>{{item.title_name}}</text>
-        </navigator>
+    <view wx:for="{{unit_list}}" wx:key="key" class='page'>
+      <view class=' tab_l'>
+        <view class="nav_left_items text-center {{curNav == item.id ? 'active' : ''}}" bindtap="switchRightTab" data-name="{{item.text}}" data-index="{{index}}" data-id="{{item.id}}">{{item.text}}</view>
       </view>
-    </block>
-  </view>
+      <view class='tab_r'>
+        <block wx:for="{{item.partsVOS}}" wx:key="key" wx:for-item="parts">
+          <view class="nav_right_items">
+            <navigator url="/pages/partlist/partlist?id={{parts.id}}&name={{parts.tips}}&qing=1" hover-class='none'>
+              <!-- <image src="{{parts.icon || '../images/spellcheck.png'}}"> -->
+              <image src="{{image}}">
+                <text class="sectionpartTitle">{{parts.title}}</text>
+                <text class="sectionpart">{{parts.passPass}}/{{parts.totalPass}}</text>
+              </image>
+              <text>{{parts.tips}}</text>
+            </navigator>
+          </view>
+        </block>
+      </view>
+    </view>
 </view>
 
 

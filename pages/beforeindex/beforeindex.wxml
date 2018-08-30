@@ -9,7 +9,7 @@
   <!-- 头部主内容 begin  -->
   <view class="topborder">
     <view class="text-center  topborder-tip"><text>添加你的第一本教材</text></view>
-    <navigator hover-class='none' url="/pages/addsubject/addsubject"><view class="addsubject_btn">添加教材</view></navigator>
+    <navigator hover-class='none' url="/pages/addsubject/addsubject?textbookIdPractice='{{null}}'"><view class="addsubject_btn">添加教材</view></navigator>
     
   </view>
   <!-- 头部主内容 end  -->

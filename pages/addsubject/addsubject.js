@@ -18,6 +18,7 @@ Page({
     tocheY: 0,
     grades: [1, 2, 3],
     bookVersion:'',//版本号
+    book_id:'',//练习教材id
   },
   getBooks: function (e) {
     console.log(e)
@@ -96,10 +97,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-    // console.log(e)
-    // this.setData({
-    //   book_id:e.book_id
-    // })
+    console.log(app.book.id)
+    this.setData({
+      book_id: app.book.id
+    })
     var that = this
     // for (var i = 0; i < this.data.allnum; i++) {
     //   wx.createIntersectionObserver().relativeToViewport().observe('#dataindex' + i, (res) => {
@@ -169,21 +170,23 @@ Page({
     // return;
     //发送后台添加
     wx.request({
-      url: http_host + 'addbook',
+      url: http_host + 'user/choose/practice/' + e.currentTarget.dataset.id,
       data: {
         //从app中取出用户数据
-        token: app.user.token,
-        uid: app.user.uid,
-        book_id: e.currentTarget.dataset.id
+        bookId: e.currentTarget.dataset.id
       },
       header: {
+        // 'token': app.globalData.userInfo.token,
+        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
         'Content-Type': 'application/json'
       },
       success: function (res) {
         
         // 判断是否正确传回数据
         if (res.data.code == 0) {
-          wx.navigateTo({
+          app.book.id = e.currentTarget.dataset.id
+          app.book.name = e.currentTarget.dataset.name
+          wx.redirectTo({
             url: '/pages/afterindex/afterindex?id=' + e.currentTarget.dataset.id
           })
 

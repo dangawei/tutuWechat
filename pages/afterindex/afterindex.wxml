@@ -48,9 +48,9 @@
    <view wx:for="{{unitlist}}" wx:key="key">
     <block>
       
-      <navigator url="/pages/slidemenu/slidemenu?id={{item.id}}&unitname={{item.unit_name}}&book_name={{book_name}}" class="unitlistborder" hover-class='none'> 
+      <navigator url="/pages/slidemenu/slidemenu?id={{item.id}}&unitname={{item.text}}&book_name={{book_name}}" class="unitlistborder" hover-class='none'> 
           <view class="unitlistborder_left"> 
-             {{item.unit_name}}
+             {{item.text}}
           </view>
           <view class="unitlistborder_right"> 
              <image src="https://www.chengxuyuantoutiao.com/a/indexright.png"></image>

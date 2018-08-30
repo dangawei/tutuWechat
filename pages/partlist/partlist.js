@@ -25,7 +25,6 @@ Page({
     var itemWidth = e.detail.scrollWidth / that.data.partList.length;//每个商品的宽度
     var scrollLeft = e.detail.scrollLeft;//滚动宽度
     var curIndex = Math.round(scrollLeft / itemWidth);//通过Math.round方法对滚动大于一半的位置进行进位
-    console.log(scrollLeft)
    
     for (var i = 0, len = that.data.partList.length; i < len; ++i) {
       that.data.partList[i].selected = false;
@@ -70,16 +69,12 @@ Page({
   handletouchend: function (event) {
     var that = this
     this.data.currentGesture = 0;
-    console.log('滑动结束')
 
     if (that.data.text == 'zuo') {
       //向左滑动
-      console.log('左滑动')
       // that.xiayiye()
     } else if (that.data.text == 'you') {
       // 向右滑动
-
-      console.log('右滑动')
 
     }
   },
@@ -98,24 +93,24 @@ Page({
 
     app.partList.arr = that.data.partList
     app.partList.xia = e.currentTarget.dataset.xia
-   
+   console.log(app.card.name)
       // 判断题型属于哪个页面
       switch (e.currentTarget.dataset.type) {
         case 1:
-          var url = 'levelone/levelone?card_id=' + e.currentTarget.dataset.id + '&number=' + e.currentTarget.dataset.number + '&xuhao=1'
+          var url = 'levelone/levelone?card_id=' + e.currentTarget.dataset.id + '&xuhao=1'
           
           break;
         case 2:
-          var url = 'leveltwo/leveltwo?card_id=' + e.currentTarget.dataset.id + '&number=' + e.currentTarget.dataset.number + '&xuhao=1'
+          var url = 'leveltwo/leveltwo?card_id=' + e.currentTarget.dataset.id + '&xuhao=1'
           break;
         case 3:
-          var url = 'levelthree/levelthree?card_id=' + e.currentTarget.dataset.id + '&number=' + e.currentTarget.dataset.number + '&xuhao=1'
+          var url = 'levelthree/levelthree?card_id=' + e.currentTarget.dataset.id + '&xuhao=1'
           break;
         case 4:
-          var url = 'levelfour/levelfour?card_id=' + e.currentTarget.dataset.id + '&number=' + e.currentTarget.dataset.number + '&xuhao=1'
+          var url = 'levelfour/levelfour?card_id=' + e.currentTarget.dataset.id + '&xuhao=1'
           break;
         case 5:
-          var url = 'levelfive/levelfive?card_id=' + e.currentTarget.dataset.id + '&number=' + e.currentTarget.dataset.number + '&xuhao=1'
+          var url = 'levelfive/levelfive?card_id=' + e.currentTarget.dataset.id + '&xuhao=1'
           break;
         default:
          // 所有不符合条件执行代码
@@ -155,25 +150,22 @@ Page({
     var that = this
     //获取该part下所有关卡
     wx.request({
-      url: http_host + 'getcardlist',
+      url: http_host + 'custom/pass/list/' + e.id,
       data: {
         //从app中取出用户数据
-        token: app.user.token,
-        uid: app.user.uid,
-        part_id:e.id
+        partId:e.id
       },
       header: {
+        // 'token': app.globalData.userInfo.token,
+        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
         'Content-Type': 'application/json'
       },
       success: function (res) {
         //判断返回数据是否正确
         if (res.data.code == 0) {
-         
-          console.log(2)
-          console.log(res.data)
-          var List = res.data.data.cards
+          var List = res.data.data
 
-          var list = List.sort(that.compare('card_sequence'))
+          var list = List.sort(that.compare('sort'))
           var partlist = []
           var xia = 0
           for(var i in list)
@@ -185,7 +177,19 @@ Page({
 
               partlist[i].xia = xia
 
-              partlist[i].card_cover_url = partlist[i].card_cover_url.replace(/'/, "%27")
+              // partlist[i].card_cover_url = partlist[i].card_cover_url.replace(/'/, "%27")
+              // is_block 1关卡解锁 0没解锁
+            if (partlist[i].score==null){
+              if(i==2){
+                partlist[i].is_block = 1
+              }else{
+                partlist[i].is_block = 0
+              }
+              
+            }else{
+              partlist[i].is_block = 1
+            }
+              
 
              xia++;
           }
@@ -193,7 +197,6 @@ Page({
             partList: partlist,
             //共多少关卡
             part_number: partlist.length,
-           
             
           })
       

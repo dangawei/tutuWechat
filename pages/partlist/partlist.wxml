@@ -20,41 +20,42 @@
 
       <view class="scroll_item {{item.selected ? 'selected' : ''}}" data-index='{{item.xia}}' id="indexed{{item.xia}}"  bindtap='selectProItem'>
 
-        <view bindtap='tiaozhuan' data-number="{{item.contain_question_number}}" data-name="{{item.card_name}}" data-type="{{item.card_type}}" data-is_block="{{item.is_block}}" data-xia = "{{item.xia}}" data-id="{{item.id}}" hover-class='none'>
+        <!-- <view bindtap='tiaozhuan' data-number="{{item.contain_question_number}}" data-name="{{item.title }}" data-type="{{item.card_type}}" data-is_block="{{item.is_block}}" data-xia = "{{item.xia}}" data-id="{{item.id}}" hover-class='none'> -->
+        <view bindtap='tiaozhuan' data-name="{{item.title }}" data-is_block="{{item.is_block}}" data-xia = "{{item.xia}}" data-id="{{item.id}}"  data-type="{{item.sort}}" hover-class='none'>
           <view class='proImg'>
             <!-- 序号图片 -->
             <!-- <image src="{{item.proUrl}}" /> -->
-            <text class="title">0{{item.card_sequence}}</text>
+            <text class="title">0{{item.sort}}</text>
           </view>
           <view class='detailBox'>
 
-            <view class='proTitle'>{{item.card_name}}</view>
+            <view class='proTitle'>{{item.title }}</view>
             <view class='proCenterImg'>
               <image src="{{item.card_cover_url}}" />
             </view>
 
-            <!-- 判断得分不等于-1 -->
-            <view wx:if="{{item.card_score != -1}}">
+            <!-- 判断得分不等于null -->
+            <view wx:if="{{item.score  != null}}">
               <view wx:if="{{item.is_block == 1}}">
                 <!--得分情况对应的颜色  -->
-                <view class="proDec {{item.card_score==100?'green':'hiddencontent'}} ">得分{{item.card_score}}</view>
-                <view class="proDec {{item.card_score>=60 && item.card_score<=99?'blue':'hiddencontent'}} ">得分{{item.card_score}}</view>
-                <view class="proDec {{item.card_score < 60 ?'red':'hiddencontent'}} ">得分{{item.card_score}}</view>
-                <view class="proDec {{item.is_block==0?'hiddencontent':'hiddencontent'}} ">得分{{item.card_score}}</view>
+                <view class="proDec {{item.score ==100?'green':'hiddencontent'}} ">得分{{item.score }}</view>
+                <view class="proDec {{item.score >=60 && item.score <=99?'blue':'hiddencontent'}} ">得分{{item.score }}</view>
+                <view class="proDec {{item.score  < 60 ?'red':'hiddencontent'}} ">得分{{item.score }}</view>
+                <view class="proDec {{item.is_block==0?'hiddencontent':'hiddencontent'}} ">得分{{item.score }}</view>
 
               </view>
             </view>
-            <view class='protryaginBtn' url="../detail/detail?id={{item.id}}">{{item.card_score == -1 ?"开始闯关":"再次闯关"}}</view>
+            <view class='protryaginBtn' url="../detail/detail?id={{item.id}}">{{item.score  == null ?"开始闯关":"再次闯关"}}</view>
           </view>
 
-          <!-- 判断得分不等于-1 -->
-          <view wx:if="{{item.card_score != -1}}">
+          <!-- 判断得分不等于null -->
+          <view wx:if="{{item.score  != null}}">
             <view wx:if="{{item.is_block == 1}}">
               <!-- 右边标识状态 -->
-              <view class="proscores_icon  {{item.card_score==100?'scores_icon_excelent':''}}"></view>
-              <view class="proscores_icon  {{item.card_score>=80 && item.card_score<=99 ? 'scores_icon_good':''}}"></view>
-              <view class="proscores_icon  {{item.card_score>=60 && item.card_score<=79 ?'scores_icon_notbad':''}}"></view>
-              <view class="proscores_icon  {{item.card_score<60?'scores_icon_bad':''}}"></view>
+              <view class="proscores_icon  {{item.score ==100?'scores_icon_excelent':''}}"></view>
+              <view class="proscores_icon  {{item.score >=80 && item.score <=99 ? 'scores_icon_good':''}}"></view>
+              <view class="proscores_icon  {{item.score >=60 && item.score <=79 ?'scores_icon_notbad':''}}"></view>
+              <view class="proscores_icon  {{item.score <60?'scores_icon_bad':''}}"></view>
             </view>
           </view>
           <!-- 锁住 -->
