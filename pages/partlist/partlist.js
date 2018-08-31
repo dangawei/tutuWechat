@@ -130,8 +130,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-    console.log('加载')
-   
     if(e.qing == 1)
     {
       
@@ -150,7 +148,8 @@ Page({
     var that = this
     //获取该part下所有关卡
     wx.request({
-      url: http_host + 'custom/pass/list/' + e.id,
+      // url: http_host + 'custom/pass/list/' + e.id,
+      url: http_host + 'custom/pass/list/213',
       data: {
         //从app中取出用户数据
         partId:e.id
@@ -164,7 +163,6 @@ Page({
         //判断返回数据是否正确
         if (res.data.code == 0) {
           var List = res.data.data
-
           var list = List.sort(that.compare('sort'))
           var partlist = []
           var xia = 0
@@ -263,9 +261,9 @@ Page({
   onShow: function () {
  
     if(this.data.shuaxin){
-    wx.redirectTo({     
-      url: "/pages/partlist/partlist?id=" + this.options.id + "&name=" + this.options.name
-    })
+      wx.redirectTo({     
+        url: "/pages/partlist/partlist?id=" + this.options.id + "&name=" + this.options.name
+      })
     }
   },
 

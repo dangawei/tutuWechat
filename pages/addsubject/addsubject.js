@@ -40,7 +40,7 @@ Page({
       },
       header: {
         // 'token': app.globalData.userInfo.token,
-        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
+        'token': wx.getStorageSync("userInfo").token,
         'Content-Type': 'application/json'
       },
       success: function (res) {
@@ -62,7 +62,6 @@ Page({
   //选择版本获得教材
   selectdataindex: function (event) {
     let e = event.currentTarget.dataset.index
-    console.log(e)
     let that = this
     this.setData({
       tag_active: e
@@ -75,7 +74,7 @@ Page({
       },
       header: {
         // 'token': app.globalData.userInfo.token,
-        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
+        'token': wx.getStorageSync("userInfo").token,
         'Content-Type': 'application/json'
       },
       success: function (res) {
@@ -97,9 +96,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-    console.log(app.book.id)
+    console.log(e.bookId)
     this.setData({
-      book_id: app.book.id
+      book_id: e.bookId
     })
     var that = this
     // for (var i = 0; i < this.data.allnum; i++) {
@@ -137,7 +136,7 @@ Page({
       },
       header: {
         // 'token': app.globalData.userInfo.token,
-        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
+        'token': wx.getStorageSync("userInfo").token,
         'Content-Type': 'application/json'
       },
       success: function (res) {
@@ -177,7 +176,7 @@ Page({
       },
       header: {
         // 'token': app.globalData.userInfo.token,
-        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
+        'token': wx.getStorageSync("userInfo").token,
         'Content-Type': 'application/json'
       },
       success: function (res) {
@@ -187,9 +186,8 @@ Page({
           app.book.id = e.currentTarget.dataset.id
           app.book.name = e.currentTarget.dataset.name
           wx.redirectTo({
-            url: '/pages/afterindex/afterindex?id=' + e.currentTarget.dataset.id
+            url: '/pages/afterindex/afterindex?bookId=' + e.currentTarget.dataset.id
           })
-
         } else {
           //返回数据失败
           app.tanchuang('添加数据错误！')

@@ -8,8 +8,8 @@
           {{book_name}}
         </view>
         <view class="title_right">
-          <navigator url="/pages/addsubject/addsubject?book_id={{book_id}}" hover-class='none'>
-            <image src="https://www.chengxuyuantoutiao.com/a/indexbook.png" class="indexbook" mode="widthFix"> </image>
+          <navigator url="/pages/addsubject/addsubject?bookId={{book_id}}" hover-class='none'>
+            <image src="https://www.chengxuyuantoutiao.com/a/indexbook.png" class="indexbook" mode="widthFix"></image>
           </navigator>
         </view>
       </view>

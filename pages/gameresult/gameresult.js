@@ -51,15 +51,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-
-
     var that = this
-
     this.setData({
       xuhao: app.partList.xia + 1,
-      username: app.globalData.userInfo.nickName,
-      user_img: app.globalData.userInfo.avatarUrl,
+      // username: app.globalData.userInfo.nickName,
+      // user_img: app.globalData.userInfo.avatarUrl,
+      username: "Well",
+      user_img: "../images/spellcheck.png",
       socre:options.fenshu,
       unit_name: app.unit.name,
       part_name:app.part.name,
@@ -94,12 +92,11 @@ Page({
     innerAudioContext.src = this.data.musicsrc[this.data.types]
     innerAudioContext.play();
     var that = this
-    console.log(3)
-    console.log(app.globalData.userInfo.avatarUrl)
     // app.globalData.userInfo.avatarUrl
     // 头像换成本地路径
     wx.getImageInfo({
-      src: app.globalData.userInfo.avatarUrl,
+      // src: app.globalData.userInfo.avatarUrl,
+      src: "https://www.chengxuyuantoutiao.com/a/yellowcircle.png",
       success: function (res) {
         //res.path是网络图片的本地地址
         let qrCodePath = res.path;
@@ -262,9 +259,6 @@ Page({
           stop = 1
         }
       }
-
-      console.log(next_pass)
-
       app.partList.xia = next_pass.xia
      
 
@@ -272,20 +266,20 @@ Page({
       // 判断题型属于哪个页面
       switch (next_pass.card_type) {
         case 1:
-          var next_url = 'levelone/levelone?card_id=' + next_pass.id + '&number=' + next_pass.contain_question_number + '&xuhao=1'
+          var next_url = 'levelone/levelone?card_id=' + next_pass.id + '&xuhao=1'
 
           break;
         case 2:
-          var next_url = 'leveltwo/leveltwo?card_id=' + next_pass.id + '&number=' + next_pass.contain_question_number + '&xuhao=1'
+          var next_url = 'leveltwo/leveltwo?card_id=' + next_pass.id  + '&xuhao=1'
           break;
         case 3:
-          var next_url = 'levelthree/levelthree?card_id=' + next_pass.id + '&number=' + next_pass.contain_question_number + '&xuhao=1'
+          var next_url = 'levelthree/levelthree?card_id=' + next_pass.id  + '&xuhao=1'
           break;
         case 4:
-          var next_url = 'levelfour/levelfour?card_id=' + next_pass.id + '&number=' + next_pass.contain_question_number + '&xuhao=1'
+          var next_url = 'levelfour/levelfour?card_id=' + next_pass.id  + '&xuhao=1'
           break;
         case 5:
-          var next_url = 'levelfive/levelfive?card_id=' + next_pass.id + '&number=' + next_pass.contain_question_number + '&xuhao=1'
+          var next_url = 'levelfive/levelfive?card_id=' + next_pass.id  + '&xuhao=1'
           break;
         default:
         // 所有不符合条件执行代码

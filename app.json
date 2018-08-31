@@ -1,11 +1,12 @@
 {
   "pages": [
-
-    "pages/afterindex/afterindex",
+    "pages/login/login",
+    
     "pages/addsubject/addsubject",
     "pages/mind/mind",
-    "pages/login/login",
+    
     "pages/quicklogin/login",
+    
     "pages/verification/verification",
     "pages/resetpassword/resetpassword",
     "pages/updatapassword/updatapassword",
@@ -14,9 +15,10 @@
     "pages/set/set",
     
     "pages/index/index",
-    "pages/partlist/partlist",
+    "pages/levelthree/levelthree",
     "pages/beforeindex/beforeindex",
-    
+    "pages/afterindex/afterindex",
+    "pages/partlist/partlist",
     "pages/levelfive/levelfive",
     
     "pages/slidemenu/slidemenu",
@@ -25,7 +27,7 @@
     "pages/aboutus/aboutus",
     "pages/levelone/levelone",
     "pages/leveltwo/leveltwo",
-    "pages/levelthree/levelthree",
+    
     "pages/levelfour/levelfour",
     "pages/logs/logs"
   ],

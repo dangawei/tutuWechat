@@ -47,7 +47,7 @@ Page({
     if (regPhone.test(this.data.phoneValue)) {
       let _this=this
       wx.request({
-        url: http_host + '/user/login/password',
+        url: http_host + "user/login/password",
         method:"POST",
         data: {
           username: this.data.phoneValue,
@@ -63,14 +63,24 @@ Page({
               phoneError: false
             })
             app.globalData.userInfo=res.data.data
-            console.log(app.globalData.userInfo)
-            // beforeindex
-            wx.navigateTo({
-              url: "/pages/beforeindex/beforeindex"
+            wx.setStorage({
+              key: 'userInfo',
+              data: res.data.data
             })
+            if (res.data.data.textbookIdPractice){
+              app.book.id = res.data.data.textbookIdPractice
+              wx.redirectTo({
+                url: '/pages/afterindex/afterindex?bookId=' + res.data.data.textbookIdPractice
+              })
+            }else{
+              // beforeindex
+              wx.redirectTo({
+                url: "/pages/beforeindex/beforeindex"
+              })
+            }
           } else {
             //返回数据失败
-            app.tanchuang(res.message)
+              app.tanchuang(res.data.message)
           }
         }
       })
@@ -80,6 +90,11 @@ Page({
       })
 
     }
+  },
+  quickLogin(){
+    wx.navigateTo({
+      url: '/pages/quicklogin/login',
+    })
   },
   /** 生命周期函数--监听页面加载 */
   onLoad: function (options) {

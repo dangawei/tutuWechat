@@ -89,7 +89,7 @@ Page({
   nextBtn(){
       let _this=this
       wx.request({
-        url: http_host + '/user/login/sms',
+        url: http_host + 'user/login/sms',
         method:"POST",
         data: {
           code:this.data.Value,
@@ -104,13 +104,13 @@ Page({
               _this.setData({
                 isError: false
               })
+              app.globalData.userInfo=res.data.data
               wx.setStorage({
-                key:"basicInfo",
+                key: 'userInfo',
                 data: res.data.data
               })
-             app.globalData.userInfo=res.data.data
-              // 进入verification页面
-              wx.navigateTo({
+              // beforeindex
+              wx.redirectTo({
                 url: "/pages/beforeindex/beforeindex"
               })
           } else {
