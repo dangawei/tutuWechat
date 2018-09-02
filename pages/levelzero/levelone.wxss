@@ -9,14 +9,9 @@ page,.page{
   height:100%;
   overflow: hidden;
 }
-.img{
-  width:100%;
-}
+
 .hiddencontent{
   display: none;
-}
-.level_stationone{
-  margin-top:80rpx;
 }
 /*单图时候的样式  */
 .level_mark{
@@ -299,18 +294,4 @@ top:50rpx;
   width:360rpx;
   height:360rpx;
   box-shadow:none;
-}
-
-.text-title-box{
-  text-align: center;
-}
-.text-title-box::after{
-  content: '.';
-  visibility: hidden;
-}
-.text-title{
-  float: left;
-}
-.img-box{
-  display:inline-block;
 }

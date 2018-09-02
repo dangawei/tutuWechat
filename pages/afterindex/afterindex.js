@@ -3,6 +3,10 @@ const util = require("../../utils/config.js");
 const app = getApp()
 const http_host = util.http_host;
 const img_url = util.img_url;
+var pages = getCurrentPages();
+var currPage = pages[pages.length - 1];   //当前页面
+var prevPage = pages[pages.length - 2];  //上一个页面
+
 //index.js
 Page({
 
@@ -37,13 +41,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
+    console.log(e);
+    console.log(app.book.id);
     var that = this
+    if(e){
+      app.book.id = e.bookId
+    }
    //获取当前教材详细内容
     wx.request({
-      url: http_host + 'practice/book/detail/' + e.bookId,
+      url: http_host + 'practice/book/detail/' + app.book.id,
       data: {
        //从app中取出用户数据
-       bookId: e.bookId
+        bookId: app.book.id
       },
       header: {
        'token': wx.getStorageSync("userInfo").token,
@@ -80,12 +89,11 @@ Page({
               existence_part: res.data.data.latestPassRecordVO.partName,
               part_id: res.data.data.latestPassRecordVO.partsId
             })
-          }
-          app.unit.name = res.data.data.latestPassRecordVO.unitName
-          app.book.name = res.data.data.book_name
+            app.unit.name = res.data.data.latestPassRecordVO.unitName
             //将partid存入app中
-          app.part.lishi_id = that.data.partsId
-
+            app.part.lishi_id = res.data.data.latestPassRecordVO.partsId
+          }
+          app.book.name = res.data.data.book_name
           //获取该part下所有关卡
           // wx.request({
           //   url: http_host + 'getcardlist',
@@ -143,11 +151,11 @@ Page({
   //点击关卡跳转页面
   jixu: function (e) {
     // 已修改
-    app.card.id = this.data.all.data.curren_part_id
-    app.card.name = this.data.all.data.curren_part_name
+    app.card.id = this.data.curren_card_id
+    app.card.name = this.data.curren_part_title_name
     //跳转至对应页面
-    wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）
-      url: "/pages/partlist/partlist?id=" + app.card.id + "&name=" + this.data.curren_part_title_name
+    wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开6个页面，之后按钮就没有响应的）
+      url: "/pages/partlist/partlist?customPassId=" + app.card.id + "&name=" + app.card.name
     })
     // }
   },
@@ -179,7 +187,8 @@ Page({
     //   wx.redirectTo({
     //     url: "/pages/afterindex/afterindex"
     //   })
-    // }      
+    // }   
+    // currPage.onLoad();
   },
 
   /**

@@ -13,7 +13,6 @@ Page({
     shuaxin: false,
     //part数组
     part_list: [],
-
     unit_list: [],
     image: "https://www.chengxuyuantoutiao.com/a/part@2X.png",
 
@@ -26,11 +25,14 @@ Page({
     * 生命周期函数--监听页面加载
     */
   onLoad: function (e) {
-
-    // wx.setNavigationBarTitle({
-    //   title: app.book.name
-    // })
-    
+    console.log(e);
+    wx.setNavigationBarTitle({
+      title: e.bookName
+    })
+    this.setData({
+      bookId:e.bookId,
+      bookName:e.bookName
+    })
     //显示加载提示框
     // wx.showLoading({
     //   title: '加载中',
@@ -39,26 +41,17 @@ Page({
     var that = this
     //获取所有单元数组详情
     wx.request({
-      // url: http_host + 'practice/units/list/' + app.book.id,
-      url: http_host + 'practice/units/list/' + 4,
+      url: http_host + 'practice/units/list/' + e.bookId,
       data: {
         //从app中取出用户数据
-        bookId: 4
-        // bookId: app.book.id
+        bookId: e.bookId
       },
       header: {
-        // 'token': app.globalData.userInfo.token,
-        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
+        'token': wx.getStorageSync("userInfo").token,
         'Content-Type': 'application/json'
       },
       success: function (res) {
-      
         if (res.data.code == 0) {
-          console.log(res.data.data.unitsVOS)
-          that.setData({
-            unit_list: res.data.data.unitsVOS
-          })
-
           if (e.id == '' || e.id == null) {
             var liang = res.data.data.unitsVOS[0].id
             var unitname = res.data.data.unitsVOS[0].text
@@ -66,7 +59,11 @@ Page({
             var liang = e.id
             var unitname = e.unitname
           }
-    
+          that.setData({
+            unit_list: res.data.data.unitsVOS,
+            unitId: liang,
+            unitName: unitname
+          })
           app.unit.id = liang
           app.unit.name = unitname
         } else {
@@ -96,56 +93,15 @@ Page({
 
 
   },
-
-  //根据unit_id 获取 part数组
-  part_list: function (unit_id)   // 
-  {
-
-
-
-    var that = this
-    //根据unit_id获取part数组
-    wx.request({
-      url: http_host + 'getpartlist',
-      data: {
-        //从app中取出用户数据
-        token: app.user.token,
-        uid: app.user.uid,
-        unit_id: unit_id,
-
-      },
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-         console.log(222)
-         console.log(res.data)
- 
-        if (res.data.code == 0) {
-          that.setData({
-            part_list: res.data.data.parts
-          })
-      
-          wx.hideLoading()
-        } else {
-          //返回数据失败
-          app.tanchuang('获取part错误！')
-        }
-      },
-      fail: function (res) {
-        console.log('404');
-      },
-    })
-  },
-
   //事件处理函数
   switchRightTab: function (e) {
     // 获取item项的id，和数组的下标值
     let id = e.target.dataset.id,
-      index = parseInt(e.target.dataset.index);
-
-    console.log(id)
-    console.log(index)
+    index = parseInt(e.target.dataset.index);
+    that.setData({
+      unitId: e.target.dataset.id,
+      unitName: e.target.dataset.name
+    })
     //给app中的 unit赋值
     app.unit.id = id
     app.unit.name = e.target.dataset.name
@@ -172,11 +128,11 @@ Page({
   * 生命周期函数--监听页面显示
   */
   onShow: function () {
-    if (this.data.shuaxin) {
-      wx.redirectTo({
-        url: "/pages/slidemenu/slidemenu?id=" + app.unit.id
-      })
-    }
+    // if (this.data.shuaxin) {
+    //   wx.navigateTo({
+    //     url: "/pages/slidemenu/slidemenu?id=" + app.unit.id
+    //   })
+    // }
   },
 
   /**

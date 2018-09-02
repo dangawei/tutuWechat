@@ -51,18 +51,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     var that = this
     this.setData({
       xuhao: app.partList.xia + 1,
-      // username: app.globalData.userInfo.nickName,
-      // user_img: app.globalData.userInfo.avatarUrl,
-      username: "Well",
-      user_img: "../images/spellcheck.png",
+      username: wx.getStorageSync("userInfo").realName,
+      user_img: wx.getStorageSync("userInfo").icon || "../images/spellcheck.png",
       socre:options.fenshu,
       unit_name: app.unit.name,
       part_name:app.part.name,
       card_name:app.card.name,
-      type:app.card.type
+      type:app.card.type,
+      pass:options.pass
     })
 
     var title = "0" + that.data.xuhao +" "+ app.card.name
@@ -226,7 +226,7 @@ Page({
 // 下一关
   xiayiguan:function ()
   {
-   
+   var that=this;
 
   if(this.data.stops == 1)
   {
@@ -245,62 +245,65 @@ Page({
       {
         app.card.type = 5
       }
-      // 找出当前点击题型的下一个题型
-      for (var i in app.partList.arr) {
+      // // 找出当前点击题型的下一个题型
+      // for (var i in app.partList.arr) {
  
-        if (stop == 1) {
-          app.card.id = app.partList.arr[i].id
+      //   if (stop == 1) {
+      //     app.card.id = app.partList.arr[i].id
 
-          var next_pass = app.partList.arr[i]
+      //     var next_pass = app.partList.arr[i]
          
-          break;
-        }
-        if (app.card.id == app.partList.arr[i].id) {
-          stop = 1
-        }
-      }
-      app.partList.xia = next_pass.xia
-     
-
+      //     break;
+      //   }
+      //   if (app.card.id == app.partList.arr[i].id) {
+      //     stop = 1
+      //   }
+      // }
+      // app.partList.xia = next_pass.xia
+      var url;
+      var index = parseInt(this.data.pass + 1)
+      var data = app.part.all
+      console.log(app.part);
       //循环出下一题的连接
       // 判断题型属于哪个页面
-      switch (next_pass.card_type) {
+      switch (index) {
+        case 0:
+          url = 'levelzero/levelzero?bookId=' + app.book.bookId + '&unitId=' + app.unit.unitId + '&partId=' + app.part.partId + '&customPassId=' + data[index].id + '&pass=0'
+          break;
         case 1:
-          var next_url = 'levelone/levelone?card_id=' + next_pass.id + '&xuhao=1'
-
+          url = 'levelone/levelone?bookId=' + app.book.bookId + '&unitId=' + app.unit.unitId + '&partId=' + app.part.partId + '&customPassId=' + data[index].id + '&pass=1'
           break;
         case 2:
-          var next_url = 'leveltwo/leveltwo?card_id=' + next_pass.id  + '&xuhao=1'
+          url = 'leveltwo/leveltwo?bookId=' + app.book.bookId + '&unitId=' + app.unit.unitId + '&partId=' + app.part.partId + '&customPassId=' + data[index].id + '&pass=2'
           break;
         case 3:
-          var next_url = 'levelthree/levelthree?card_id=' + next_pass.id  + '&xuhao=1'
+          url = 'levelthree/levelthree?bookId=' + app.book.bookId + '&unitId=' + app.unit.unitId + '&partId=' + app.part.partId + '&customPassId=' + data[index].id + '&pass=3'
           break;
         case 4:
-          var next_url = 'levelfour/levelfour?card_id=' + next_pass.id  + '&xuhao=1'
+          url = 'levelfour/levelfour?bookId=' + app.book.bookId + '&unitId=' + app.unit.unitId + '&partId=' + app.part.partId + '&customPassId=' + data[index].id + '&pass=4'
           break;
         case 5:
-          var next_url = 'levelfive/levelfive?card_id=' + next_pass.id  + '&xuhao=1'
+          url = 'levelfive/levelfive?bookId=' + app.book.bookId + '&unitId=' + app.unit.unitId + '&partId=' + app.part.partId + '&customPassId=' + data[index].id + '&pass=5'
           break;
         default:
-        // 所有不符合条件执行代码
-
+         // 所有不符合条件执行代码
+          app.tanchuang('哎呀，出错了！')
       }
-
+      console.log(url);
       //将下一题的连接存入app中  在用户通关后 点击下一关会取出
-      app.next_pass.url = next_url
-      app.again.url = next_url
+      app.next_pass.url = url
+      app.again.url = url
+      app.card.id = data[index].id
 
-      app.card.id = next_pass.id
+      app.card.name = data[index].id.title
 
-      app.card.name = next_pass.card_name
-
-      app.card.type = next_pass.card_type
+      app.card.type = data[index].id.sort
       wx.redirectTo({
-        url: "/pages/" + app.next_pass.url
+        url: "/pages/" + url
       })
     }else{
       wx.redirectTo({
-        url: "/pages/" + app.next_pass.url
+        url: "/pages/" +url
       })
     }
    

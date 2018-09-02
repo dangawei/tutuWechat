@@ -64,9 +64,11 @@ Page({
     }, 1000)
     console.log(app.globalData.phone)
     wx.request({
-      url: http_host + '/user/sms/' + app.globalData.phone,
+      url: http_host + 'sms/send',
+      method: "POST",
       data: {
-        mobile: app.globalData.phone
+        mobile: app.globalData.phone,
+        type:1
       },
       header: {
         'Content-Type': 'application/json'
@@ -89,11 +91,12 @@ Page({
   nextBtn(){
       let _this=this
       wx.request({
-        url: http_host + 'user/login/sms',
+        url: http_host + 'sms/check',
         method:"POST",
         data: {
-          code:this.data.Value,
-          mobile: app.globalData.phone
+          code:parseInt(this.data.Value),
+          mobile: app.globalData.phone,
+          type: 1
         },
         header: {
           'Content-Type': 'application/json'
@@ -101,18 +104,7 @@ Page({
         success: function (res) {
           // 判断是否正确传回数据
           if (res.data.code == 0) {
-              _this.setData({
-                isError: false
-              })
-              app.globalData.userInfo=res.data.data
-              wx.setStorage({
-                key: 'userInfo',
-                data: res.data.data
-              })
-              // beforeindex
-              wx.redirectTo({
-                url: "/pages/beforeindex/beforeindex"
-              })
+              _this.nextLogin();
           } else {
             //返回数据失败
             _this.setData({
@@ -122,6 +114,49 @@ Page({
           }
         }
       })
+  },
+  nextLogin(){
+    let _this = this
+    wx.request({
+      url: http_host + 'user/login/sms',
+      method: "POST",
+      data: {
+        mobile: app.globalData.phone
+      },
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // 判断是否正确传回数据
+        if (res.data.code == 0) {
+          _this.setData({
+            isError: false
+          })
+          app.globalData.userInfo = res.data.data
+          wx.setStorage({
+            key: 'userInfo',
+            data: res.data.data
+          })
+          if (res.data.data.textbookIdPractice) {
+            app.book.id = res.data.data.textbookIdPractice
+            wx.redirectTo({
+              url: '/pages/afterindex/afterindex?bookId=' + res.data.data.textbookIdPractice
+            })
+          } else {
+            // beforeindex
+            wx.redirectTo({
+              url: "/pages/beforeindex/beforeindex"
+            })
+          }
+        } else {
+          //返回数据失败
+          _this.setData({
+            errorInfo: res.data.message,
+            isError: true
+          })
+        }
+      }
+    })
   },
   /** 生命周期函数--监听页面加载 */
   onLoad: function (options) {

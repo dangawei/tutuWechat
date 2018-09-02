@@ -25,12 +25,12 @@ Page({
     //下一页按钮是否显示
     xiayiye: false,
     //完成按钮是否显示
-    wancheng: false,
+    wancheng:false,
     //上一页按钮是否显示
-    shangyiye: false,
-    clicksound: 1,
-    number: 1,
-
+    shangyiye:false,
+    clicksound:1,
+    number:1,
+   
 
     // 滑动需要的参数
     lastX: 0,          //滑动开始x轴位置
@@ -95,6 +95,12 @@ Page({
         currentData: this.data.all[xuhao - 1],
         //正确的图片
         [yes]: this.data.all[xuhao - 1].sourceVOS,
+        // 第二个正确答案
+        // [yes2]: currentData.sourceVOS,
+        // 结束
+        //录音文件
+        // video: encodeURI(res.data.data.question_title_voice).replace(/'/, "%27"),
+        // video: this.data.all[xuhao - 1].audio,
       })
       // 判断是否闯关完成
       if (parseInt(xuhao) == this.data.number) {
@@ -124,7 +130,7 @@ Page({
         all_img: all_img
       })
       // 默认进来放一次音乐
-      innerAudioContext.src = that.data.currentData.sentenceAudio;
+      innerAudioContext.src = that.data.all_img[0].audio;
 
       innerAudioContext.play();
     }
@@ -172,7 +178,7 @@ Page({
       partId: e.partId,
       unitId: e.unitId,
       bookId: e.bookId,
-      pass: e.pass
+      pass:e.pass
     })
     that.huoqu(1)
     //修改顶部背景颜色
@@ -188,29 +194,28 @@ Page({
       innerAudioContext.stop();
 
     });
-    console.log(app.part.all[parseInt(this.data.pass)])
-    var i=this.data.pass+1
-    var title = "0" + i + " " + app.part.all[parseInt(this.data.pass)].title
+    var title = "0" + (app.partList.xia + 1) + " " + app.card.name
     //修改标题为关卡名称
     wx.setNavigationBarTitle({
       title: title//页面标题为路由参数
     })
   },
-  // 页面数据加载
+// 页面数据加载
 
-  jiazai: function (xuhao) {
-    innerAudioContext.stop();
-    var that = this
-    that.getjiazai(xuhao)
+jiazai:function (xuhao)
+{
+  innerAudioContext.stop();
+  var that = this
+  that.getjiazai(xuhao)
 
-  },
+},
   //滑动移动事件
   handletouchmove: function (event) {
     var currentX = event.touches[0].pageX
     var currentY = event.touches[0].pageY
     var tx = currentX - this.data.lastX
     var ty = currentY - this.data.lastY
-
+ 
     var text = ""
     //左右方向滑动
     if (Math.abs(tx) > Math.abs(ty)) {
@@ -230,7 +235,7 @@ Page({
     this.data.lastX = currentX
     this.data.lastY = currentY
     this.setData({
-      text: text
+      text:text
     })
   },
 
@@ -238,12 +243,13 @@ Page({
   handletouchend: function (event) {
     var that = this
     this.data.currentGesture = 0;
-    if (that.data.text == 'zuo') {
-      //向左滑动
+    if(that.data.text == 'zuo')
+    {
+    //向左滑动
       that.xiayiye()
-    } else if (that.data.text == 'you') {
-      // 向右滑动
-
+    }else if(that.data.text == 'you'){
+    // 向右滑动
+     
       if (that.data.xuhao == 1) {
         return;
       } else {
@@ -253,7 +259,7 @@ Page({
     }
 
     this.setData({
-      text: ''
+      text:''
     })
   },
 
@@ -269,8 +275,8 @@ Page({
 
   // 点击单个图片播放音乐
   singelClick: function (e) {
-    innerAudioContext.src = '';
-
+    innerAudioContext.src='';
+  
     var that = this
     //停止播放之前的音乐     防止两重音
     innerAudioContext.stop();
@@ -293,7 +299,7 @@ Page({
     var that = this
     //字符串转换
     var xuhao = parseInt(this.data.xuhao) + 1
-    if (parseInt(that.data.xuhao) == parseInt(that.data.number)) {
+    if (parseInt(that.data.xuhao) == parseInt(that.data.number)){
       //发送后台增加分数
       wx.request({
         url: http_host + 'user/pass/record/add',
@@ -312,24 +318,25 @@ Page({
         success: function (res) {
           if (res.data.code == 0) {
             wx.redirectTo({
-              url: '/pages/gameresult/gameresult?bookId=' + that.data.bookId + '&unitId=' + that.data.unitId + '&partId=' + that.data.partId + '&customPassId=' + e.currentTarget.dataset.id + '&pass=' + that.data.pass + '&fenshu=100'
+              url: '/pages/gameresult/gameresult?bookId=' + that.data.bookId + '&unitId=' + that.data.unitId + '&partId=' + that.data.partId + '&customPassId=' + e.currentTarget.dataset.id + '&pass='+that.data.pass+'&fenshu=100'
             })
-          } else {
+          }else{
             app.tanchuang(res.data.message);
           }
         }
       })
-    } else {
+    }else{
       that.jiazai(xuhao)
-      // wx.redirectTo({
-      //   url: "/pages/levelone/levelone?customPassId=" + this.options.customPassId + "&number=" + this.options.number + "&xuhao=" + xuhao
-      // })
+    // wx.redirectTo({
+    //   url: "/pages/levelone/levelone?customPassId=" + this.options.customPassId + "&number=" + this.options.number + "&xuhao=" + xuhao
+    // })
     }
   },
 
   //上一页按钮跳转
-  shangyiye: function () {
-
+  shangyiye:function ()
+  {
+    
     this.jiazai(parseInt(this.data.xuhao) - 1)
   },
 
@@ -360,7 +367,7 @@ Page({
   onUnload: function () {
     //用户点击左上角返回 
     innerAudioContext.stop();
-
+    
     // wx.redirectTo({      //关闭当前页面，跳转到应用内的某个页面
     //   url: "/pages/partlist/partlist?id=" + app.part.id + '&name=' + app.part.name + '&cart_number=' + app.part.cart_number
     // })

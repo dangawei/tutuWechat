@@ -3,7 +3,7 @@
   <view class="partlistTitle">
     <navigator url="/pages/gameresult/gameresult" hover-class='none'>
       <view class="partlistTitle_first">
-        {{name}}
+        {{partName}}
       </view>
     </navigator>
     <!-- 加入点击事件  bindtap='haha'  可体验滑动效果 -->
@@ -45,7 +45,7 @@
 
               </view>
             </view>
-            <view class='protryaginBtn' url="../detail/detail?id={{item.id}}">{{item.score  == null ?"开始闯关":"再次闯关"}}</view>
+            <view class='protryaginBtn'>{{item.score  == null ?"开始闯关":"再次闯关"}}</view>
           </view>
 
           <!-- 判断得分不等于null -->

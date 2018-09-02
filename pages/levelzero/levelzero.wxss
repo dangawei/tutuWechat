@@ -300,17 +300,3 @@ top:50rpx;
   height:360rpx;
   box-shadow:none;
 }
-
-.text-title-box{
-  text-align: center;
-}
-.text-title-box::after{
-  content: '.';
-  visibility: hidden;
-}
-.text-title{
-  float: left;
-}
-.img-box{
-  display:inline-block;
-}

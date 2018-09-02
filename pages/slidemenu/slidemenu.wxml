@@ -6,7 +6,7 @@
       <view class='tab_r'>
         <block wx:for="{{item.partsVOS}}" wx:key="key" wx:for-item="parts">
           <view class="nav_right_items">
-            <navigator url="/pages/partlist/partlist?id={{parts.id}}&name={{parts.tips}}&qing=1" hover-class='none'>
+            <navigator url="/pages/partlist/partlist?bookId={{bookId}}&bookName={{bookName}}&unitId={{unitId}}&unitName={{unitName}}&partId={{parts.id}}&partName={{parts.title}}&passPass={{parts.passPass}}" hover-class='none'>
               <!-- <image src="{{parts.icon || '../images/spellcheck.png'}}"> -->
               <image src="{{image}}">
                 <text class="sectionpartTitle">{{parts.title}}</text>

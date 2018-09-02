@@ -29,13 +29,37 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
 					"name": "test",
 					"pathName": "pages/afterindex/afterindex",
 					"query": "bookId=4"
+				},
+				{
+					"id": 1,
+					"name": "slidemenu",
+					"pathName": "pages/slidemenu/slidemenu",
+					"query": "bookId=4&bookName=人教PEP&unitId=&unitName="
+				},
+				{
+					"id": 2,
+					"name": "levelzero",
+					"pathName": "pages/levelzero/levelzero",
+					"query": "bookId=4&unitId=76&partId=225&customPassId=505&xuhao=1"
+				},
+				{
+					"id": 3,
+					"name": "partlist",
+					"pathName": "pages/partlist/partlist",
+					"query": "bookId=4&bookName=人教PEP&partId=225&partName=Part A&partPass=0&unitId=76&unitName=Unit 1"
+				},
+				{
+					"id": -1,
+					"name": "levelone",
+					"pathName": "pages/levelone/levelone",
+					"query": "bookId=4&unitId=76&partId=225&customPassId=506&pass=1"
 				}
 			]
 		}

@@ -24,7 +24,7 @@
     <view class="right">
       <view class="{{type == 1 ? 'hidecontent':''}}">
         <view class="text-center Startbreaktext">开始闯关</view>
-        <navigator hover-class='none' url="/pages/slidemenu/slidemenu?book_name={{book_name}}">
+        <navigator hover-class='none' url="/pages/slidemenu/slidemenu?bookId={{book_id}}&bookName={{book_name}}&unitId=&unitName=">
           <view class="Startbreak_btn">开始闯关</view>
         </navigator>
       </view>
@@ -34,7 +34,7 @@
         <view bindtap='jixu' hover-class='none'>
           <view  class="Startbreak_btn">继续闯关</view>
         </view>
-        <navigator hover-class='none' url="/pages/slidemenu/slidemenu?book_name={{book_name}}">
+        <navigator hover-class='none' url="/pages/slidemenu/slidemenu?bookId={{book_id}}&bookName={{book_name}}&unitId=&unitName=">
           <view class="selectpart_btn">选择Part</view>
         </navigator>
       </view>
@@ -48,7 +48,7 @@
    <view wx:for="{{unitlist}}" wx:key="key">
     <block>
       
-      <navigator url="/pages/slidemenu/slidemenu?id={{item.id}}&unitname={{item.text}}&book_name={{book_name}}" class="unitlistborder" hover-class='none'> 
+      <navigator url="/pages/slidemenu/slidemenu?bookId={{book_id}}&bookName={{book_name}}&unitId={{item.id}}&unitName={{item.text}}" class="unitlistborder" hover-class='none'> 
           <view class="unitlistborder_left"> 
              {{item.text}}
           </view>

@@ -90,6 +90,8 @@ App({
   },
 
   partList:{
+    // 所有关卡
+    all:[],
     arr:[],
     xia:-1,
     lishi_xia:'',

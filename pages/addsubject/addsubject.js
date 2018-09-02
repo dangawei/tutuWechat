@@ -96,38 +96,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-    console.log(e.bookId)
-    this.setData({
-      book_id: e.bookId
-    })
-    var that = this
-    // for (var i = 0; i < this.data.allnum; i++) {
-    //   wx.createIntersectionObserver().relativeToViewport().observe('#dataindex' + i, (res) => {
-       
-    //     if (this.data.movefx == 0) {
-    //       if (this.data.tag_active < this.data.allnum) {
-    //         this.setData({
-    //           tag_active: this.data.tag_active + 1
-    //         })
-    //       }
-
-    //     } else if (this.data.movefx == 1) {
-    //       if (this.data.tag_active > 0) {
-    //         this.setData({
-    //           tag_active: this.data.tag_active - 1
-    //         })
-    //       }
-    //     }
-    //   })
-    // }
-    // var a = { "code": 0, "data": { "groupBooks": [{ "grade": 1, "books": [{ "id": "123", "book_cover_url": "http://www.tutukids.com/人教版/三年年级上_3/1_unit/1_part/1_听音看图学习/1_question_1/2_content_image_3.jpeg", "book_name": "人教版三年年级上", "book_publish_company": "人教版", "book_grade": 1, "contain_unit_number": 8 }, { "id": "456", "book_cover_url": "", "book_name": "人教版三年年级下", "book_publish_company": "人教版", "book_grade": 1, "contain_unit_number": 8 }] }, { "grade": 2, "books": [{ "id": "223", "book_cover_url": "http://www.tutukids.com/人教版/三年年级上_3/2_unit/2_part/2_听音看图学习/2_question_2/2_content_image_3.jpeg", "book_name": "人教版三年年级上", "book_publish_company": "人教版", "book_grade": 2, "contain_unit_number": 8 }, { "id": "456", "book_cover_url": "", "book_name": "人教版三年年级下", "book_publish_company": "人教版", "book_grade": 2, "contain_unit_number": 8 }] }], "grades": [1, 2, 3] }, "errMsg": "success" }
- 
-    // that.setData({
+    console.log(e);
+    if(e){
+      this.setData({
+        book_id: e.bookId
+      })
+    }
     
-
-    //   groupBooks: a.data.groupBooks
-    // })
-
+    var that = this
     // 获取所有的教材版本
     wx.request({
       url: http_host + 'practice/version/list',
@@ -158,15 +134,6 @@ Page({
   //添加到个人教材中
   add:function (e)
   { 
-
-    // console.log(e)
-    // return;
-
-    // wx.navigateTo({
-    //   url: '/pages/afterindex/afterindex?id=' + e.currentTarget.dataset.id
-    // })
-
-    // return;
     //发送后台添加
     wx.request({
       url: http_host + 'user/choose/practice/' + e.currentTarget.dataset.id,
@@ -180,7 +147,6 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        
         // 判断是否正确传回数据
         if (res.data.code == 0) {
           app.book.id = e.currentTarget.dataset.id
