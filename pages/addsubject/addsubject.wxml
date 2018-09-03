@@ -2,7 +2,7 @@
   <!--内容小导航  -->
   <view class="nav_tag">
 
-    <view wx:for="{{bookVersion}}" wx:key="key" class="tag_common {{tag_active==item.id?'tag_active':'tag_default'}}" data-index="{{item.id}}" bindtap='selectdataindex'>
+    <view wx:for="{{bookVersion}}" wx:key="key" class="tag_common {{tag_active==item.id?'tag_active':'tag_default'}}" data-bookVersionId="{{item.id}}" bindtap='selectdataindex'>
       {{item.name}}
     </view>
 

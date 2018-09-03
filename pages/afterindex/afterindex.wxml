@@ -8,9 +8,9 @@
           {{book_name}}
         </view>
         <view class="title_right">
-          <navigator url="/pages/addsubject/addsubject?bookId={{book_id}}" hover-class='none'>
+          <view hover-class='none'  bindtap='addsubject'>
             <image src="https://www.chengxuyuantoutiao.com/a/indexbook.png" class="indexbook" mode="widthFix"></image>
-          </navigator>
+          </view>
         </view>
       </view>
     </view>

@@ -20,7 +20,8 @@ Page({
     isDisabled:false,//获取验证码是否禁用
     isError:false,//验证码检验
     getData:{},//得到的数据
-    errorInfo:'验证码错误'
+    errorInfo:'验证码错误',
+    type:1 //判断是快捷登录还是修改密码 1是快捷登录2是修改密码
   },
   Focus(e) {
     var that = this;
@@ -46,7 +47,8 @@ Page({
     var currentTime = that.data.currentTime;
     that.setData({
       time: currentTime + '秒',
-      isDisabled:true
+      isDisabled:true,
+      titleText: "验证码已发送至+86 " + app.globalData.phone
     })
     var interval = setInterval(function () {
       that.setData({
@@ -68,7 +70,7 @@ Page({
       method: "POST",
       data: {
         mobile: app.globalData.phone,
-        type:1
+        type: 1
       },
       header: {
         'Content-Type': 'application/json'
@@ -104,7 +106,39 @@ Page({
         success: function (res) {
           // 判断是否正确传回数据
           if (res.data.code == 0) {
-              _this.nextLogin();
+            app.globalData.userInfo = res.data.data
+            wx.setStorage(
+              {
+                key: 'userInfo',
+                data: res.data.data
+              },
+              {
+                key:'bookId',
+                data: res.data.data.textbookIdPractice
+              }
+            )
+            app.book.id = res.data.data.textbookIdPractice
+            app.book.bookId = res.data.data.textbookIdPractice
+            if(_this.data.type==1){
+              _this.setData({
+                isError: false
+              })
+              if (res.data.data.textbookIdPractice && res.data.data.textbookIdPractice!=0) {
+                wx.redirectTo({
+                  url: '/pages/afterindex/afterindex'
+                })
+              } else {
+                // beforeindex
+                wx.redirectTo({
+                  url: "/pages/beforeindex/beforeindex"
+                })
+              }
+            } else if (_this.data.type == 2){
+              wx.navigateTo({
+                url: '/pages/password/password'
+              })
+            }
+              
           } else {
             //返回数据失败
             _this.setData({
@@ -115,7 +149,55 @@ Page({
         }
       })
   },
-  nextLogin(){
+  // nextLogin(){
+  //   let _this = this
+  //   app.globalData.userInfo = res.data.data
+  //   wx.setStorage({
+  //     key: 'userInfo',
+  //     data: res.data.data
+  //   })
+  //   wx.request({
+  //     url: http_host + 'user/login/sms',
+  //     method: "POST",
+  //     data: {
+  //       mobile: app.globalData.phone
+  //     },
+  //     header: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     success: function (res) {
+  //       // 判断是否正确传回数据
+  //       if (res.data.code == 0) {
+  //         _this.setData({
+  //           isError: false
+  //         })
+  //         app.globalData.userInfo = res.data.data
+  //         wx.setStorage({
+  //           key: 'userInfo',
+  //           data: res.data.data
+  //         })
+  //         if (res.data.data.textbookIdPractice) {
+  //           app.book.id = res.data.data.textbookIdPractice
+  //           wx.redirectTo({
+  //             url: '/pages/afterindex/afterindex?bookId=' + res.data.data.textbookIdPractice
+  //           })
+  //         } else {
+  //           // beforeindex
+  //           wx.redirectTo({
+  //             url: "/pages/beforeindex/beforeindex"
+  //           })
+  //         }
+  //       } else {
+  //         //返回数据失败
+  //         _this.setData({
+  //           errorInfo: res.data.message,
+  //           isError: true
+  //         })
+  //       }
+  //     }
+  //   })
+  // },
+  nextPassword(){
     let _this = this
     wx.request({
       url: http_host + 'user/login/sms',
@@ -160,8 +242,10 @@ Page({
   },
   /** 生命周期函数--监听页面加载 */
   onLoad: function (options) {
+    console.log(options);
     this.setData({
-      titleText:"验证码已发送至+86 "+app.globalData.phone
+      titleText:"点击获取验证码,发送至+86 "+app.globalData.phone,
+      type:options.type
     })
   },
   /**

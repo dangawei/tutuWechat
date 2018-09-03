@@ -22,12 +22,13 @@ Page({
   },
   nextBtn:function(){
     wx.request({
-      url: http_host + '/user/password/set',
+      url: http_host + 'user/password/set',
+      method: "POST",
       data: {
         password: this.data.passwordValue
       },
       header: {
-        'token':app.globalData.userInfo.token,
+        'token':wx.getStorageSync("userInfo").token,
         'Content-Type': 'application/json'
       },
       success: function (res) {
@@ -39,20 +40,27 @@ Page({
             duration: 1500,
             success:function(){
               // 返回上级页面
-              wx.navigateBack({
-                success: function () {
-                  beforePage.onLoad(); // 执行前一个页面的onLoad方法
-                }
+              // wx.navigateBack({
+              //   success: function () {
+              //     beforePage.onLoad(); // 执行前一个页面的onLoad方法
+              //   }
+              // })
+              wx.redirectTo({
+                url: '/pages/login/login'
               })
             }
           });
         } else {
           //返回数据失败
-          app.tanchuang(res.message)
+          app.tanchuang(res.data.message)
         }
       }
     })
   },
+  //修改成功之后推出登录,跳转到登录页面
+  // outLogin(){
+    
+  // },
   /** 生命周期函数--监听页面加载 */
   onLoad: function (options) {
 

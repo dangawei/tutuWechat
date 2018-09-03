@@ -22,7 +22,7 @@
       </form>
   </view>
   <view class="mg30">
-    <button class="next-btn" size='default' disabled="{{false}}"  bindtap="nextBtn">登录</button>
+    <button class="next-btn" size='default' disabled="{{false}}"  bindtap="nextBtn">完成</button>
   </view>
   <view wx:if="{{isError}}" class='tip-error'>
     <text class='tip-error-text'>{{errorInfo}}</text>

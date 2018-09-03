@@ -9,7 +9,6 @@ var prevPage = pages[pages.length - 2];  //上一个页面
 
 //index.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -36,16 +35,18 @@ Page({
       mind: 0,
     })
   },
-
+  addsubject(){
+    wx.navigateTo({
+      url: "/pages/addsubject/addsubject"
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-    console.log(e);
-    console.log(app.book.id);
     var that = this
-    if(e){
-      app.book.id = e.bookId
+    if (wx.getStorageSync("bookId")){
+      app.book.id = wx.getStorageSync("bookId")
     }
    //获取当前教材详细内容
     wx.request({
@@ -173,6 +174,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    console.log(1111)
     this.setData({
       shuaxin: true,
       showDialogshare:false,
@@ -189,6 +191,7 @@ Page({
     //   })
     // }   
     // currPage.onLoad();
+    this.onLoad();
   },
 
   /**

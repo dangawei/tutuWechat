@@ -35,7 +35,7 @@ Page({
       app.globalData.phone = this.data.phoneValue
       // 进入verification页面
       wx.navigateTo({
-        url: "/pages/verification/verification"
+        url: "/pages/verification/verification?type=1"
       })
     } else {
       this.setData({

@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
@@ -41,7 +41,7 @@
 					"id": 1,
 					"name": "slidemenu",
 					"pathName": "pages/slidemenu/slidemenu",
-					"query": "bookId=4&bookName=人教PEP&unitId=&unitName="
+					"query": "bookId=5&bookName=人教PEP四年级上&unitId=&unitName="
 				},
 				{
 					"id": 2,
@@ -60,6 +60,18 @@
 					"name": "levelone",
 					"pathName": "pages/levelone/levelone",
 					"query": "bookId=4&unitId=76&partId=225&customPassId=506&pass=1"
+				},
+				{
+					"id": 5,
+					"name": "beforeindex",
+					"pathName": "pages/beforeindex/beforeindex",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "afterindex",
+					"pathName": "pages/afterindex/afterindex",
+					"query": ""
 				}
 			]
 		}

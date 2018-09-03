@@ -190,3 +190,6 @@ margin:40rpx auto;
 swiper{
   height:180px;
 }
+.tab_l_text{
+  margin: 10px auto;
+}

@@ -21,7 +21,6 @@ Page({
     book_id:'',//练习教材id
   },
   getBooks: function (e) {
-    console.log(e)
     if (e.currentTarget){
       let e = e.currentTarget.dataset
     }else{
@@ -61,16 +60,25 @@ Page({
   },
   //选择版本获得教材
   selectdataindex: function (event) {
-    let e = event.currentTarget.dataset.index
+    let e = event.currentTarget.dataset.bookVersionId
     let that = this
     this.setData({
-      tag_active: e
+      bookVersionId: e
     });
     //获取所有教材版本
+    this.getBooks(e)
+  },
+
+  //添加到个人教材中
+  add: function (e) {
+    console.log(e)
+    var _this=this
+    //发送后台添加版本
     wx.request({
-      url: http_host + '/practice/book/' + e,
+      url: http_host + 'user/choose/bookVersion/' + _this.data.tag_active,
       data: {
-        bookVersionId: e
+        //从app中取出用户数据
+        bookVersionId: _this.data.tag_active
       },
       header: {
         // 'token': app.globalData.userInfo.token,
@@ -80,14 +88,41 @@ Page({
       success: function (res) {
         // 判断是否正确传回数据
         if (res.data.code == 0) {
-          that.setData({
-            //数据
-            groupBooks: res.data.data
-          })
-
+          _this.addBook(e.currentTarget.dataset.id, e.currentTarget.dataset.name)
         } else {
           //返回数据失败
-          app.tanchuang('获取数据错误！')
+          app.tanchuang('添加数据错误！')
+        }
+      }
+    })
+  },
+  addBook(bookId, bookName){
+    var _this=this
+    wx.request({
+      url: http_host + 'user/choose/practice/' + bookId,
+      data: {
+        //从app中取出用户数据
+        bookId: bookId
+      },
+      header: {
+        // 'token': app.globalData.userInfo.token,
+        'token': wx.getStorageSync("userInfo").token,
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // 判断是否正确传回数据
+        if (res.data.code == 0) {
+          wx.setStorageSync('bookId', bookId)
+          app.book.bookId = bookId
+          app.book.id = bookId
+          app.book.name = bookName
+          // wx.redirectTo({
+          //   url: '/pages/afterindex/afterindex'
+          // })
+          wx.navigateBack()
+        } else {
+          //返回数据失败
+          app.tanchuang('添加数据错误！')
         }
       }
     })
@@ -96,12 +131,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-    console.log(e);
-    if(e){
-      this.setData({
-        book_id: e.bookId
-      })
-    }
+    this.setData({
+      book_id: wx.getStorageSync("bookId")
+    })
     
     var that = this
     // 获取所有的教材版本
@@ -130,39 +162,6 @@ Page({
       }
     })
   },
-  
-  //添加到个人教材中
-  add:function (e)
-  { 
-    //发送后台添加
-    wx.request({
-      url: http_host + 'user/choose/practice/' + e.currentTarget.dataset.id,
-      data: {
-        //从app中取出用户数据
-        bookId: e.currentTarget.dataset.id
-      },
-      header: {
-        // 'token': app.globalData.userInfo.token,
-        'token': wx.getStorageSync("userInfo").token,
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        // 判断是否正确传回数据
-        if (res.data.code == 0) {
-          app.book.id = e.currentTarget.dataset.id
-          app.book.name = e.currentTarget.dataset.name
-          wx.redirectTo({
-            url: '/pages/afterindex/afterindex?bookId=' + e.currentTarget.dataset.id
-          })
-        } else {
-          //返回数据失败
-          app.tanchuang('添加数据错误！')
-        }
-      }
-    })
-
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

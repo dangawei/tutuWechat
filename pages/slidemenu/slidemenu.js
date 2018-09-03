@@ -26,6 +26,11 @@ Page({
     */
   onLoad: function (e) {
     console.log(e);
+    wx.setStorageSync("unitId", e.unitId)
+    wx.setStorageSync("partId", e.partId)
+    wx.setStorageSync("unitName", e.unitName)
+    wx.setStorageSync("partName", e.partName)
+    wx.setStorageSync("bookName", e.bookName)
     wx.setNavigationBarTitle({
       title: e.bookName
     })
@@ -52,17 +57,24 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 0) {
-          if (e.id == '' || e.id == null) {
+          if (e.unitId == '' || e.unitId == null) {
             var liang = res.data.data.unitsVOS[0].id
             var unitname = res.data.data.unitsVOS[0].text
           } else {
-            var liang = e.id
+            var liang = e.unitId
             var unitname = e.unitname
           }
           that.setData({
             unit_list: res.data.data.unitsVOS,
             unitId: liang,
             unitName: unitname
+          })
+          that.data.unit_list.forEach(function(obj){
+            if (obj.id == liang){
+              that.setData({
+                partsVOS: obj.partsVOS
+              })
+            }
           })
           app.unit.id = liang
           app.unit.name = unitname
@@ -97,10 +109,11 @@ Page({
   switchRightTab: function (e) {
     // 获取item项的id，和数组的下标值
     let id = e.target.dataset.id,
-    index = parseInt(e.target.dataset.index);
-    that.setData({
+    index = e.target.dataset.index;
+    this.setData({
       unitId: e.target.dataset.id,
-      unitName: e.target.dataset.name
+      unitName: e.target.dataset.name,
+      partsVOS: this.data.unit_list[index].partsVOS
     })
     //给app中的 unit赋值
     app.unit.id = id
@@ -109,10 +122,19 @@ Page({
     this.setData({
       curNav: id,
     })
-
-    this.part_list(id)
   },
-
+  // 点击进入partlist
+  enterPartlist(e){
+    console.log(e);
+    wx.setStorageSync("unitId", this.data.unitId)
+    wx.setStorageSync("partId", e.currentTarget.dataset.partid)
+    wx.setStorageSync("unitName", this.data.unitName)
+    wx.setStorageSync("partName", e.currentTarget.dataset.partname)
+    wx.setStorageSync("passPass", e.currentTarget.dataset.passpass)
+    wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开6个页面，之后按钮就没有响应的）
+      url: "/pages/partlist/partlist?bookId=" + this.data.bookId + "&bookName=" + this.data.bookName + "&unitId=" + this.data.unitId + "&unitName=" + this.data.unitName + "&partid=" + e.currentTarget.dataset.partId + "&partName=" + e.currentTarget.dataset.partname + "&passPass=" + e.currentTarget.dataset.passpass
+    })
+  },
 
   /**
   * 生命周期函数--监听页面初次渲染完成

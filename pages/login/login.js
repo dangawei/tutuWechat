@@ -59,20 +59,24 @@ Page({
         success: function (res) {
           // 判断是否正确传回数据
           if (res.data.code == 0) {
+            app.globalData.userInfo = res.data.data
+            wx.setStorage(
+              {
+                key: 'userInfo',
+                data: res.data.data
+              }
+            )
+            wx.setStorageSync('bookId',res.data.data.textbookIdPractice)
+            app.book.id = res.data.data.textbookIdPractice
+            app.book.bookId = res.data.data.textbookIdPractice
             _this.setData({
               phoneError: false
             })
-            app.globalData.userInfo=res.data.data
-            wx.setStorage({
-              key: 'userInfo',
-              data: res.data.data
-            })
-            if (res.data.data.textbookIdPractice){
-              app.book.id = res.data.data.textbookIdPractice
+            if (res.data.data.textbookIdPractice && res.data.data.textbookIdPractice != 0) {
               wx.redirectTo({
-                url: '/pages/afterindex/afterindex?bookId=' + res.data.data.textbookIdPractice
+                url: '/pages/afterindex/afterindex'
               })
-            }else{
+            } else {
               // beforeindex
               wx.redirectTo({
                 url: "/pages/beforeindex/beforeindex"
@@ -93,7 +97,12 @@ Page({
   },
   quickLogin(){
     wx.navigateTo({
-      url: '/pages/quicklogin/login',
+      url: '/pages/quicklogin/login?type=1',
+    })
+  },
+  resetPassword: function () {
+    wx.navigateTo({
+      url: '/pages/resetpassword/resetpassword?type=2',
     })
   },
   /** 生命周期函数--监听页面加载 */

@@ -152,7 +152,7 @@ Page({
     var that = this
     //获取该part下所有关卡
     wx.request({
-      url: http_host + 'custom/pass/list/' + app.part.partId,
+      url: http_host + 'custom/pass/list/' + wx.getStorageSync("partId"),
       data: {
         //从app中取出用户数据
         partId: app.part.partId
