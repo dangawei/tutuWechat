@@ -62,7 +62,7 @@ Page({
             var unitname = res.data.data.unitsVOS[0].text
           } else {
             var liang = e.unitId
-            var unitname = e.unitname
+            var unitname = e.unitName
           }
           that.setData({
             unit_list: res.data.data.unitsVOS,
@@ -130,9 +130,10 @@ Page({
     wx.setStorageSync("partId", e.currentTarget.dataset.partid)
     wx.setStorageSync("unitName", this.data.unitName)
     wx.setStorageSync("partName", e.currentTarget.dataset.partname)
-    wx.setStorageSync("passPass", e.currentTarget.dataset.passpass)
+    // wx.setStorageSync("passPass", e.currentTarget.dataset.passpass)
+    console.log("/pages/partlist/partlist?bookId=" + this.data.bookId + "&bookName=" + this.data.bookName + "&unitId=" + this.data.unitId + "&unitName=" + this.data.unitName + "&partId=" + e.currentTarget.dataset.partid + "&partName=" + e.currentTarget.dataset.partname)
     wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开6个页面，之后按钮就没有响应的）
-      url: "/pages/partlist/partlist?bookId=" + this.data.bookId + "&bookName=" + this.data.bookName + "&unitId=" + this.data.unitId + "&unitName=" + this.data.unitName + "&partid=" + e.currentTarget.dataset.partId + "&partName=" + e.currentTarget.dataset.partname + "&passPass=" + e.currentTarget.dataset.passpass
+      url: "/pages/partlist/partlist?bookId=" + this.data.bookId + "&bookName=" + this.data.bookName + "&unitId=" + this.data.unitId + "&unitName=" + this.data.unitName + "&partId=" + e.currentTarget.dataset.partid + "&partName=" + e.currentTarget.dataset.partname 
     })
   },
 

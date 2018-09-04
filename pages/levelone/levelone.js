@@ -30,23 +30,24 @@ Page({
     shangyiye: false,
     clicksound: 1,
     number: 1,
-
-
     // 滑动需要的参数
     lastX: 0,          //滑动开始x轴位置
     lastY: 0,          //滑动开始y轴位置
     text: "没有滑动",
     xuhao: 1,
     currentGesture: 0, //标识手势
+    textNumber:1,//判断是否是单个单词
+    indexImg:-1
   },
   // 加载数据
-  getjiazai: function (xuhao) {
+  getjiazai: function (reset) {
     var that = this;
+    
     that.setData({
       clicksound: 1
     })
     //判断上一页是否显示
-    if (parseInt(xuhao) !== 1) {
+    if (parseInt(reset) !== 1) {
       this.setData({
         shangyiye: true
       })
@@ -56,11 +57,11 @@ Page({
       })
     }
     //判断下一页是否显示
-    if (parseInt(xuhao) < parseInt(that.data.number)) {
+    if (parseInt(reset) < parseInt(that.data.number)) {
       this.setData({
         xiayiye: true,
         wancheng: false,
-        xuhao: xuhao,
+        xuhao: reset,
       })
     } else {
       this.setData({
@@ -90,21 +91,21 @@ Page({
       cuo_number: 0
     })
     //获取题目列表
-    if (xuhao <= this.data.all.length) {
+    if (reset <= this.data.all.length) {
       that.setData({
-        currentData: this.data.all[xuhao - 1],
+        currentData: this.data.all[reset - 1],
         //正确的图片
-        [yes]: this.data.all[xuhao - 1].sourceVOS,
+        [yes]: this.data.all[reset - 1].sourceVOS,
       })
       // 判断是否闯关完成
-      if (parseInt(xuhao) == this.data.number) {
+      if (parseInt(reset) == this.data.number) {
         this.setData({
           xiayiti: false
         })
       }
-      if (parseInt(xuhao) < this.data.number) {
+      if (parseInt(reset) < this.data.number) {
         this.setData({
-          xuhao: xuhao,
+          xuhao: reset,
         })
       } else {
         this.setData({
@@ -121,7 +122,8 @@ Page({
       }
       data = data.sort(app.randomsort)
       that.setData({
-        all_img: all_img
+        all_img: all_img,
+        textNumber: all_img.length
       })
       // 默认进来放一次音乐
       innerAudioContext.src = that.data.currentData.sentenceAudio;
@@ -130,7 +132,7 @@ Page({
     }
   },
   //获取数据
-  huoqu: function (xuhao) {
+  huoqu: function (reset) {
     var _this = this
     wx.request({
       url: http_host + 'custom/pass/subject/list/' + _this.data.customPassId,
@@ -160,6 +162,37 @@ Page({
         }
       }
     })
+  },
+  // 点击单个图片播放音乐
+  singelClick: function (e) {
+    innerAudioContext.src = '';
+
+    var that = this
+    //停止播放之前的音乐     防止两重音
+    innerAudioContext.stop();
+    //播放某个图片下的音频文件
+    innerAudioContext.src = e.currentTarget.dataset.audio
+    innerAudioContext.play();
+    that.setData({
+      clicksound: 1,
+      indexImg: e.currentTarget.dataset.index
+    })
+    setTimeout(function () {
+      that.setData({
+        clicksound: -1
+      })
+    }, 2000);
+
+  },
+  // 点击播放全部
+  singelClickAll() {
+    this.setData({
+      indexImg: -1
+    })
+    //停止播放之前的音乐     防止两重音
+    innerAudioContext.stop();
+    innerAudioContext.src = this.data.currentData.sentenceAudio
+    innerAudioContext.play();
   },
   /**
    * 生命周期函数--监听页面加载
@@ -198,10 +231,10 @@ Page({
   },
   // 页面数据加载
 
-  jiazai: function (xuhao) {
+  jiazai: function (params) {
     innerAudioContext.stop();
     var that = this
-    that.getjiazai(xuhao)
+    that.getjiazai(params)
 
   },
   //滑动移动事件
@@ -265,29 +298,6 @@ Page({
     }
     return arr;
   },
-
-
-  // 点击单个图片播放音乐
-  singelClick: function (e) {
-    innerAudioContext.src = '';
-
-    var that = this
-    //停止播放之前的音乐     防止两重音
-    innerAudioContext.stop();
-    //播放某个图片下的音频文件
-    innerAudioContext.src = e.currentTarget.dataset.audio
-    innerAudioContext.play();
-    that.setData({
-      clicksound: 1
-    })
-    setTimeout(function () {
-      that.setData({
-        clicksound: -1
-      })
-    }, 2000);
-
-  },
-
   //下一页按钮跳转
   xiayiye: function (e) {
     var that = this

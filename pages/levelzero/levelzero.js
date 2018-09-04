@@ -318,7 +318,7 @@ jiazai:function (xuhao)
         success: function (res) {
           if (res.data.code == 0) {
             wx.redirectTo({
-              url: '/pages/gameresult/gameresult?bookId=' + that.data.bookId + '&unitId=' + that.data.unitId + '&partId=' + that.data.partId + '&customPassId=' + e.currentTarget.dataset.id + '&pass='+that.data.pass+'&fenshu=100'
+              url: '/pages/gameresult/gameresult?bookId=' + that.data.bookId + '&unitId=' + that.data.unitId + '&partId=' + that.data.partId + '&customPassId=' + that.data.customPassId + '&pass='+that.data.pass+'&fenshu=100'
             })
           }else{
             app.tanchuang(res.data.message);

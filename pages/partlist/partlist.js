@@ -87,6 +87,7 @@ Page({
       return;
     }
     var that = this
+   wx.setStorageSync("customsPassId", e.currentTarget.dataset.id)
     app.card.id = e.currentTarget.dataset.id
     app.card.name = e.currentTarget.dataset.name
     app.card.type = e.currentTarget.dataset.type
@@ -146,7 +147,8 @@ Page({
         partId: e.partId,
         partName: e.partName
       })
-      app.partList.xia = e.passPass
+      // app.partList.xia = e.passPass
+      app.partList.xia = 0
     }
     //将part信息存入app中  方便在题中调用
     var that = this
@@ -165,6 +167,7 @@ Page({
         //判断返回数据是否正确
         if (res.data.code == 0) {
           app.part.all = res.data.data
+          wx.setStorageSync("part",res.data.data)
           var List = res.data.data
           var list = List.sort(that.compare('sort'))
           var partlist = []

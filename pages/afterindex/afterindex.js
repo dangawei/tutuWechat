@@ -79,6 +79,11 @@ Page({
           })
           //判断是否闯过关
           if (res.data.data.latestPassRecordVO!=null){
+            wx.setStorageSync("unitId", res.data.data.latestPassRecordVO.unitsId)
+            wx.setStorageSync("partId", res.data.data.latestPassRecordVO.partsId)
+            wx.setStorageSync("unitName", res.data.data.latestPassRecordVO.unitName)
+            wx.setStorageSync("partName", res.data.data.latestPassRecordVO.partName)
+            wx.setStorageSync("customPassId", res.data.data.latestPassRecordVO.customPassId)
             that.setData({
               //继续闯关中的 part名称
               curren_part_title_name: res.data.data.latestPassRecordVO.partName,
@@ -156,9 +161,8 @@ Page({
     app.card.name = this.data.curren_part_title_name
     //跳转至对应页面
     wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开6个页面，之后按钮就没有响应的）
-      url: "/pages/partlist/partlist?customPassId=" + app.card.id + "&name=" + app.card.name
+      url: "/pages/partlist/partlist?bookId=" + wx.getStorageSync("bookId") + "&bookName=" + wx.getStorageSync("bookName") + "&unitId=" + wx.getStorageSync("unitId") + "&unitName=" + wx.getStorageSync("unitName") + "&partId=" + wx.getStorageSync("partId") + "&partName=" + wx.getStorageSync("partName") 
     })
-    // }
   },
 
   //partList排序
@@ -174,7 +178,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log(1111)
     this.setData({
       shuaxin: true,
       showDialogshare:false,
@@ -185,13 +188,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // if (this.data.shuaxin) {
-    //   wx.redirectTo({
-    //     url: "/pages/afterindex/afterindex"
-    //   })
-    // }   
+    if (this.data.shuaxin) {
+      this.onLoad();
+    }   
     // currPage.onLoad();
-    this.onLoad();
+    
   },
 
   /**

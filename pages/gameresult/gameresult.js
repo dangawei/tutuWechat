@@ -58,8 +58,8 @@ Page({
       username: wx.getStorageSync("userInfo").realName,
       user_img: wx.getStorageSync("userInfo").icon || "../images/spellcheck.png",
       socre:options.fenshu,
-      unit_name: app.unit.name,
-      part_name:app.part.name,
+      unit_name: wx.getStorageSync("unitName"),
+      part_name: wx.getStorageSync("partName"),
       card_name:app.card.name,
       type:app.card.type,
       pass:options.pass
@@ -239,11 +239,11 @@ Page({
 
     var stop = 0
     // 判断类型是否等于5
-    if (app.card.type != 5) {
+    if (app.card.type != 6) {
 
-      if (app.card.type == 4)
+      if (app.card.type == 5)
       {
-        app.card.type = 5
+        app.card.type = 6
       }
       // // 找出当前点击题型的下一个题型
       // for (var i in app.partList.arr) {
@@ -262,28 +262,28 @@ Page({
       // app.partList.xia = next_pass.xia
       var url;
       var index = parseInt(this.data.pass + 1)
-      var data = app.part.all
-      console.log(app.part);
+      var data = wx.getStorageSync("part")
+      wx.setStorageSync("customPassId", data[index].id)
       //循环出下一题的连接
       // 判断题型属于哪个页面
       switch (index) {
         case 0:
-          url = 'levelzero/levelzero?bookId=' + app.book.bookId + '&unitId=' + app.unit.unitId + '&partId=' + app.part.partId + '&customPassId=' + data[index].id + '&pass=0'
+          url = 'levelzero/levelzero?bookId=' + wx.getStorageSync("bookId") + '&unitId=' + wx.getStorageSync("unitId") + '&partId=' + wx.getStorageSync("partId") + '&customPassId=' + data[index].id + '&pass=0'
           break;
         case 1:
-          url = 'levelone/levelone?bookId=' + app.book.bookId + '&unitId=' + app.unit.unitId + '&partId=' + app.part.partId + '&customPassId=' + data[index].id + '&pass=1'
+          url = 'levelone/levelone?bookId=' + wx.getStorageSync("bookId") + '&unitId=' + wx.getStorageSync("unitId") + '&partId=' + wx.getStorageSync("partId") + '&customPassId=' + data[index].id + '&pass=1'
           break;
         case 2:
-          url = 'leveltwo/leveltwo?bookId=' + app.book.bookId + '&unitId=' + app.unit.unitId + '&partId=' + app.part.partId + '&customPassId=' + data[index].id + '&pass=2'
+          url = 'leveltwo/leveltwo?bookId=' + wx.getStorageSync("bookId") + '&unitId=' + wx.getStorageSync("unitId") + '&partId=' + wx.getStorageSync("partId") + '&customPassId=' + data[index].id + '&pass=2'
           break;
         case 3:
-          url = 'levelthree/levelthree?bookId=' + app.book.bookId + '&unitId=' + app.unit.unitId + '&partId=' + app.part.partId + '&customPassId=' + data[index].id + '&pass=3'
+          url = 'levelthree/levelthree?bookId=' + wx.getStorageSync("bookId") + '&unitId=' + wx.getStorageSync("unitId") + '&partId=' + wx.getStorageSync("partId") + '&customPassId=' + data[index].id + '&pass=3'
           break;
         case 4:
-          url = 'levelfour/levelfour?bookId=' + app.book.bookId + '&unitId=' + app.unit.unitId + '&partId=' + app.part.partId + '&customPassId=' + data[index].id + '&pass=4'
+          url = 'levelfour/levelfour?bookId=' + wx.getStorageSync("bookId") + '&unitId=' + wx.getStorageSync("unitId") + '&partId=' + wx.getStorageSync("partId") + '&customPassId=' + data[index].id + '&pass=4'
           break;
         case 5:
-          url = 'levelfive/levelfive?bookId=' + app.book.bookId + '&unitId=' + app.unit.unitId + '&partId=' + app.part.partId + '&customPassId=' + data[index].id + '&pass=5'
+          url = 'levelfive/levelfive?bookId=' + wx.getStorageSync("bookId") + '&unitId=' + wx.getStorageSync("unitId") + '&partId=' + wx.getStorageSync("partId") + '&customPassId=' + data[index].id + '&pass=5'
           break;
         default:
          // 所有不符合条件执行代码
