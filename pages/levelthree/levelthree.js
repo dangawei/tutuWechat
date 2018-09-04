@@ -12,7 +12,6 @@ innerAudioContext.onError((res) => {
 })
 // pages/levelthree/levelthree.js
 Page({
-
   /**选择图为填空图的2倍
    *
    * 
@@ -60,21 +59,19 @@ Page({
 
   },
   //获取所有题目列表
-  getResult: function () {
+  huoqu: function () {
     var _this=this
     wx.request({
-      // url: http_host + 'custom/pass/subject/list/' + that.data.card_id,
-      url: http_host + 'custom/pass/subject/list/436',
+      url: http_host + 'custom/pass/subject/list/' + _this.data.customPassId,
       data: {
-        // passId: this.data.card_id
-        passId: 436
+        passId: _this.data.customPassId
       },
       header: {
-        // 'token': app.globalData.userInfo.token,
-        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
+        'token': wx.getStorageSync("userInfo").token,
         'Content-Type': 'application/json'
       },
       success: function (res) {
+
         // 判断是否正确传回数据
         if (res.data.code == 0) {
           _this.setData({
@@ -183,38 +180,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-    var title = "0" + (app.partList.xia + 1) + " " + app.card.name
+    var that = this
+    // 异步请求数据
+    //给当前关卡数 和 总关卡数  赋值
+    that.setData({
+      customPassId: e.customPassId,
+      partId: e.partId,
+      unitId: e.unitId,
+      bookId: e.bookId,
+      pass: e.pass
+    })
+    wx.setNavigationBarColor({
+      frontColor: '#000000',
+      backgroundColor: '#f5ede2'
+    })
+
+    var title = "0" + (parseInt(e.pass) + 1) + " " + wx.getStorageSync("part")[parseInt(e.pass)].title
     //修改标题为关卡名称
     wx.setNavigationBarTitle({
       title: title//页面标题为路由参数
     })
-    var that = this
-    //调用获取所有关卡数据的函数
-    that.getResult();
-
-    //给当前关卡数 和 总关卡数  赋值
-    // this.setData({
-    //   // 关卡ID
-    //   card_id: e.card_id,
-    //   // 题数
-    //   number: e.number,
-
-    // })
-    this.setData({
-      // 关卡ID
-      card_id: 238,
-      // 题数
-      number: 6,
-
-    })
-
-    wx.setNavigationBarColor({
-
-      frontColor: '#000000',
-
-      backgroundColor: '#f5ede2'
-
-    })
+    that.huoqu(e.customPassId)
 
   },
   selectClick: function (e) {
@@ -222,9 +208,6 @@ Page({
     if (e.currentTarget.dataset.eff == 1) {
       return;
     }
-    // console.log(that.data.stop)
-    // console.log(e.currentTarget.dataset.id)
-    console.log(this.data.exercises.rightlist[this.data.selectindex])
     // 判断第一个正确答案是否答对
     if (e.currentTarget.dataset.id == this.data.exercises.rightlist[this.data.selectindex].id) {
       that.dadui(e, 1)
@@ -319,24 +302,25 @@ Page({
     //发送后台增加分数
     wx.request({
       url: http_host + 'user/pass/record/add',
-      method:'POST',
+      method: 'POST',
       data: {
-        customPassId: this.data.currentData.customsPassId,
-        partsId: this.data.card_id,
+        customPassId: parseInt(that.data.customPassId),
+        partsId: parseInt(that.data.partId),
         score: that.data.score,
-        textbookId:4,
-        unitsId: 74
+        textbookId: parseInt(that.data.bookId),
+        unitsId: parseInt(that.data.unitId)
       },
       header: {
-        // 'token': app.globalData.userInfo.token,
-        'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
+        'token': wx.getStorageSync("userInfo").token,
         'Content-Type': 'application/json'
       },
       success: function (res) {
         if (res.data.code == 0) {
           wx.redirectTo({
-            url: "/pages/gameresult/gameresult?fenshu=" + parseInt(that.data.score)
+            url: '/pages/gameresult/gameresult?bookId=' + that.data.bookId + '&unitId=' + that.data.unitId + '&partId=' + that.data.partId + '&customPassId=' + that.data.customPassId + '&pass=' + that.data.pass + '&fenshu=' + that.data.score
           })
+        } else {
+          app.tanchuang(res.data.message);
         }
       }
     })

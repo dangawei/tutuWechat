@@ -1,4 +1,4 @@
-<view class="page">
+<view class="pages">
   <!--关卡2 begin -->
   <view class="leveltwo">
     <!--加分绿色  -->
@@ -7,19 +7,19 @@
   </view>
     <!--头部  -->
     <view class="level_mark_common">
-      <view class="left">{{xuhao}}/{{number}}</view>
+      <view class="left">{{currentIndex}}/{{number}}</view>
       <view class="right">{{score}}分</view>
     </view>
     <view class="soundBorder text-center">
-      <image class="sound" src="https://www.chengxuyuantoutiao.com/a/listen.png" bindtap='soundClick' />
+      <image class="sound" src="https://www.chengxuyuantoutiao.com/a/listen.png" bindtap='singelClickAll' />
       <view class="  {{clicksound==1?'pulse':'hiddencontent'}}" ></view>
+      <!-- <view>{{sourceIds}}</view> -->
     </view>
     <!--四图选择内容  -->
     <view class="level_stationone_twoimg_four text-center">
     
       <view wx:for="{{data}}" wx:key="key" class=" {{item.red == 1?'redborder':''}}  twoimg_commonborder_four {{item.green == 1?'greenborder':''}}  ">
- 
-        <image src="{{item.img}}"  data-xia="{{index}}" mode="widthFix" data-id="{{item.id}}" bindtap='singelClick'><image class="gouimg" wx:if="{{item.green == 1}}" src="../images/gou.png"></image></image>
+        <image src="{{item.icon}}"  data-xia="{{index}}" mode="widthFix" data-id="{{item.id}}" bindtap='singelClick'><image class="gouimg" wx:if="{{item.green == 1}}" src="../images/gou.png"></image></image>
           
        
       </view>

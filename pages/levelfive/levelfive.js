@@ -8,8 +8,6 @@ const innerAudioContext = wx.createInnerAudioContext();
 innerAudioContext.autoplay = true;
 innerAudioContext.obeyMuteSwitch = false;
 innerAudioContext.onError((res) => {
-  console.log(res.errMsg)
-  console.log(res.errCode)
 })
 
 Page({
@@ -62,178 +60,153 @@ Page({
  * 生命周期函数--监听页面加载
  */
   onLoad: function (e) {
-
+    console.log(e)
     var that = this
-
+    // 异步请求数据
     //给当前关卡数 和 总关卡数  赋值
-    this.setData({
-      // 关卡ID
-      card_id: e.card_id,
-      // 题数
-      number: e.number,
-
+    that.setData({
+      customPassId: e.customPassId,
+      partId: e.partId,
+      unitId: e.unitId,
+      bookId: e.bookId,
+      pass: e.pass
     })
-
-
-    // 加载数据
-    that.jiazai(1)
-
     wx.setNavigationBarColor({
-
       frontColor: '#000000',
-
       backgroundColor: '#f5ede2'
-
     })
 
-
-    var title = "0" + (app.partList.xia + 1) + " " + app.card.name
+    var title = "0" + (parseInt(e.pass) + 1) + " " + wx.getStorageSync("part")[parseInt(e.pass)].title
     //修改标题为关卡名称
     wx.setNavigationBarTitle({
       title: title//页面标题为路由参数
     })
-
+    that.huoqu(e.customPassId)
   },
-
-// 加载数据
-jiazai:function (xuhao)
-{
-  var that = this;
-  if (parseInt(xuhao) < parseInt(that.data.number)) {
-    this.setData({
-
-      xuhao: xuhao,
-    })
-
-
-  } else {
-
-
-    this.setData({
-
-      xuhao: parseInt(that.data.number)
-    })
-  }
-
-
-  if (parseInt(xuhao) == parseInt(that.data.number)) {
-    this.setData({
-      wancheng: false
-    })
-  }
-
-  var yes = "exercises.rightlist"
-
-  // 第二个正确答案
-  var yes2 = "exercises.rightlist2"
-
-  var selectlist = 'exercises.selectlist';
-
-  this.setData({
-    [yes]: [],
-    [yes2]: [],
-    [selectlist]: [],
-    // 当前达到第几部分
-    selectindex: 0,
-    // 当前第几个答错了
-    errorselectindex: -1,
-    // 是否正确点过
-    clicking: 0,
-    // 是否正确
-    istrue: 0,
-    // 错误次数
-    errornum: 0,
-    // 连续正确次数
-    rightnum: 0,
-    cuo_number:0
-  })
- 
-
-  //当前
-  wx.request({
-    url: http_host + 'getquestion',
-    data: {
-      //从app中取出用户数据
-      token: app.user.token,
-      uid: app.user.uid,
-      card_id: that.data.card_id,
-      //当前题的序号  
-      question_sequence: xuhao
-    },
-    header: {
-      'Content-Type': 'application/json'
-    },
-    success: function (res) {
-      // 判断是否正确传回数据
-      console.log(2)
-      console.log(res)
-      if (res.data.code == 0) {
-        var yes = "exercises.rightlist"
-        // 第二个正确答案
-        var yes2 = "exercises.rightlist2"
-        // 结束
-        that.setData({
-          //所有数据  方便以后调用
-          all: res.data.data,
-         
-          //正确的图片
-          [yes]: res.data.data.question_answer,
-          // 第二个正确答案
-          [yes2]: [2, 1, 3],
-          // 结束
-          //录音文件
-          video: encodeURI(res.data.data.question_title_voice).replace(/'/, "%27"),
-
-        })
-
-        
-        var all_img = res.data.data.question_content_images
-
-
-
-        if (res.data.data.question_answer1 == null || res.data.data.question_answer1 == '') {
-          that.setData({
-            // 第二个正确答案
-            [yes2]: [],
+  //获取数据
+  huoqu: function (reset) {
+    var _this = this
+    wx.request({
+      url: http_host + 'custom/pass/subject/list/' + _this.data.customPassId,
+      // url: http_host + 'custom/pass/subject/list/436',
+      data: {
+        // passId: this.data.customPassId
+        passId: _this.data.customPassId
+      },
+      header: {
+        'token': wx.getStorageSync("userInfo").token,
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // 判断是否正确传回数据
+        if (res.data.code == 0) {
+          _this.setData({
+            //所有数据
+            all: res.data.data,
+            number: res.data.data.length
           })
+          // 加载数据
+          _this.jiazai(1)
+        } else {
+          //返回数据失败
+          // app.tanchuang('获取题错误！')
+          console.log(res.data)
         }
-
-        var data = []
-        var xia = 0
-        for (var i in all_img) {
-
-
-          data[xia] = new Object();
-          data[xia].img_path = all_img[i].replace(/'/, "%27")
-
-          data[xia].id = i
-          data[xia].eff = 0
-          xia++;
-
-        }
-
-        that.setData({
-          arr: data
-        })
-        that.updatadataarr();//对答案列表进行分页
-   
-
-      } else {
-        //返回数据失败
-        // app.tanchuang('获取题错误！')
-        console.log(res.data)
       }
+    })
+  },
+  // 加载数据
+  jiazai: function (xuhao){
+    var that = this;
+    if (parseInt(xuhao) < parseInt(that.data.number)) {
+      this.setData({
+        xuhao: xuhao,
+      })
+    } else {
+      this.setData({
+        xuhao: parseInt(that.data.number)
+      })
     }
-  })
+    var yes = "exercises.rightlist"
 
-  wx.onBackgroundAudioStop(function () {
-    console.log('onBackgroundAudioStop')
+    // 第二个正确答案
+    // var yes2 = "exercises.rightlist2"
 
-  })
-},
+    var selectlist = 'exercises.selectlist';
+    that.setData({
+      [yes]: [],
+      // [yes2]: [],
+      [selectlist]: [],
 
+      // 当前达到第几部分
+      selectindex: 0,
+      // 当前第几个答错了
+      errorselectindex: -1,
+      // 是否正确点过
+      clicking: 0,
+      istrue: 0,
+      // 错误次数
+      errornum: 0,
+      // 连续正确次数
+      rightnum: 0,
+      cuo_number: 0,
+      sourceVOS: that.data.all[xuhao - 1].sourceVOS
+    })
+    var yes = "exercises.rightlist"
+    // 第二个正确答案
+    // var yes2 = "exercises.rightlist2"
+    // 结束
+    that.setData({
+      //正确的顺序
+      [yes]: that.data.sourceVOS,
+      // 第二个正确答案
+      // [yes2]: res.data.data.question_answer1,
+      //录音文件
+      video: that.data.sourceVOS[0].audio,
+      //正确后显示的图片
+      img: that.data.sourceVOS[0].icon
+    })
+    // if (res.data.data.question_answer1 == null || res.data.data.question_answer1 == '') {
+    //   that.setData({
+    //     // 第二个正确答案
+    //     [yes2]: [],
+    //   })
+    // }
 
+    //所有文字
+    var all_text = that.data.sourceVOS
+    var data = []
+    var xia = 0
+    for (var i in all_text) {
+        data[xia] = new Object();
+        data[xia].icon = all_text[i].icon
+        data[xia].id = i
+        data[xia].eff = 0
+        xia++;
+    }
+    console.log(data)
+    that.setData({
+      arr: data
+    })
 
+    // that.updatadataarr();//对答案列表进行分页
+
+    //给selectlist赋值  
+    for (var s = 0; s < that.data.exercises.rightlist.length; s++) {
+      var zhi = "exercises.selectlist[" + s + "]"
+      that.setData({
+        [zhi]: "__"
+      })
+    }
+    that.setData({
+      clicksound: 1
+    })
+    setTimeout(function () {
+      that.setData({
+        clicksound: -1
+      })
+    }, 2000);
+  },
   //对象转数组
   objToArray: function (array) {
     var arr = []

@@ -146,7 +146,7 @@ border:6rpx solid #e82327;
 display:inline-block;
 margin:0 auto;
 padding-left:4%;
-margin-top:68rpx;
+margin-top:15rpx;
 
 }
 
@@ -210,7 +210,7 @@ padding-bottom:20rpx;
    
 .levelthree_beselected{
 width:100%;
-margin-top:80rpx;
+margin-top:15rpx;
 
 }
 .manyImgborder_image_maxthree{
@@ -280,4 +280,8 @@ margin-top:80rpx;
   margin-left:25rpx;
   margin-right:25rpx;
 }
+.imgborder{
+  width:102rpx;
+  height:102rpx;
 
+}

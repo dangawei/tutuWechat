@@ -1,4 +1,4 @@
-<view class="page">
+<view class="pages">
   <!--加分绿色  -->
  <view class="{{errorselectindex!=-1?'redfont':'greenfont'}} {{clicking==1?'addscore_common':''}} " style='opacity:0;position: absolute;right:210rpx;top:0rpx;'>
 {{errorselectindex!=-1?'-5':'+20'}}分
@@ -40,7 +40,7 @@
     
     <!--10图以及10图一下的时候  -->
     <view  class="manytextborder_text  manytextborder_text{{exercises.rightlist.length}}type   {{len>7?'manytextborder_textfour':''}} manytextborder_textfour text-left">
-      <text wx:for="{{arr}}"  data-id='{{item.id}}' data-eff="{{item.eff}}" class='{{item.eff==1?"grayborder":""}}'  bindtap='selectClick'>{{item.text}}</text>
+      <text wx:for="{{arr}}" data-id='{{item.id}}' data-text='{{item.text}}' data-eff="{{item.eff}}" class='{{item.eff==1?"grayborder":""}}'  bindtap='selectClick'>{{item.text}}</text>
     
     </view>
 

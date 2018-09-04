@@ -47,7 +47,7 @@ Page({
       clicksound: 1
     })
     //判断上一页是否显示
-    if (parseInt(reset) !== 1) {
+    if (parseInt(reset) != 1) {
       this.setData({
         shangyiye: true
       })
@@ -221,9 +221,8 @@ Page({
       innerAudioContext.stop();
 
     });
-    console.log(app.part.all[parseInt(this.data.pass)])
     var i=this.data.pass+1
-    var title = "0" + i + " " + app.part.all[parseInt(this.data.pass)].title
+    var title = "0" + i + " " + wx.getStorageSync("part")[parseInt(e.pass)].title
     //修改标题为关卡名称
     wx.setNavigationBarTitle({
       title: title//页面标题为路由参数
@@ -322,7 +321,7 @@ Page({
         success: function (res) {
           if (res.data.code == 0) {
             wx.redirectTo({
-              url: '/pages/gameresult/gameresult?bookId=' + that.data.bookId + '&unitId=' + that.data.unitId + '&partId=' + that.data.partId + '&customPassId=' + e.currentTarget.dataset.id + '&pass=' + that.data.pass + '&fenshu=100'
+              url: '/pages/gameresult/gameresult?bookId=' + that.data.bookId + '&unitId=' + that.data.unitId + '&partId=' + that.data.partId + '&customPassId=' + that.data.customPassId + '&pass=' + that.data.pass + '&fenshu=100'
             })
           } else {
             app.tanchuang(res.data.message);

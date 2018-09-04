@@ -51,8 +51,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     var that = this
+    app.card.type = options.pass
     this.setData({
       xuhao: app.partList.xia + 1,
       username: wx.getStorageSync("userInfo").realName,
@@ -60,7 +60,7 @@ Page({
       socre:options.fenshu,
       unit_name: wx.getStorageSync("unitName"),
       part_name: wx.getStorageSync("partName"),
-      card_name:app.card.name,
+      card_name: wx.getStorageSync("title"),
       type:app.card.type,
       pass:options.pass
     })
@@ -224,46 +224,28 @@ Page({
 
 
 // 下一关
-  xiayiguan:function ()
-  {
-   var that=this;
-
-  if(this.data.stops == 1)
-  {
-    return;
-  }else{
-    this.setData({
-      stops:1,
-    })
-  }
-
+  xiayiguan:function (){
+    var that=this;
+    if(this.data.stops == 1){
+      return;
+    }else{
+      this.setData({
+        stops:1,
+      })
+    }
     var stop = 0
     // 判断类型是否等于5
-    if (app.card.type != 6) {
+    if (app.card.type != 5) {
 
-      if (app.card.type == 5)
+      if (app.card.type == 4)
       {
-        app.card.type = 6
+        app.card.type = 5
       }
-      // // 找出当前点击题型的下一个题型
-      // for (var i in app.partList.arr) {
- 
-      //   if (stop == 1) {
-      //     app.card.id = app.partList.arr[i].id
-
-      //     var next_pass = app.partList.arr[i]
-         
-      //     break;
-      //   }
-      //   if (app.card.id == app.partList.arr[i].id) {
-      //     stop = 1
-      //   }
-      // }
-      // app.partList.xia = next_pass.xia
       var url;
-      var index = parseInt(this.data.pass + 1)
+      var index = parseInt(this.data.pass) + 1
       var data = wx.getStorageSync("part")
       wx.setStorageSync("customPassId", data[index].id)
+      wx.setStorageSync("title", data[index].title)
       //循环出下一题的连接
       // 判断题型属于哪个页面
       switch (index) {

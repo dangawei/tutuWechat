@@ -7,8 +7,6 @@ const innerAudioContext = wx.createInnerAudioContext();
 innerAudioContext.autoplay = true;
 innerAudioContext.obeyMuteSwitch = false;
 innerAudioContext.onError((res) => {
-  console.log(res.errMsg)
-  console.log(res.errCode)
 })
 Page({
 
@@ -73,191 +71,162 @@ Page({
  * 生命周期函数--监听页面加载
  */
   onLoad: function (e) {
-
+    console.log(e);
     var that = this
-
+    // 异步请求数据
     //给当前关卡数 和 总关卡数  赋值
-    this.setData({
-      // 关卡ID
-      card_id: e.card_id,
-      // 题数
-      number: e.number,
-
+    that.setData({
+      customPassId: e.customPassId,
+      partId: e.partId,
+      unitId: e.unitId,
+      bookId: e.bookId,
+      pass: e.pass
     })
-
-
-    // 加载数据
-    that.jiazai(1)
-
     wx.setNavigationBarColor({
-
       frontColor: '#000000',
-
       backgroundColor: '#f5ede2'
-
     })
 
-    var title = "0" + (app.partList.xia + 1) + " " + app.card.name
+    var title = "0" + (parseInt(e.pass) + 1) + " " + wx.getStorageSync("part")[parseInt(e.pass)].title
     //修改标题为关卡名称
     wx.setNavigationBarTitle({
       title: title//页面标题为路由参数
     })
-
-},
-
+    that.huoqu(e.customPassId)
+  },
+  //获取数据
+  huoqu: function (reset) {
+    var _this = this
+    wx.request({
+      url: http_host + 'custom/pass/subject/list/' + _this.data.customPassId,
+      // url: http_host + 'custom/pass/subject/list/436',
+      data: {
+        // passId: this.data.customPassId
+        passId: _this.data.customPassId
+      },
+      header: {
+        'token': wx.getStorageSync("userInfo").token,
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // 判断是否正确传回数据
+        if (res.data.code == 0) {
+          _this.setData({
+            //所有数据
+            all: res.data.data,
+            number: res.data.data.length
+          })
+          // 加载数据
+          _this.jiazai(1)
+        } else {
+          //返回数据失败
+          // app.tanchuang('获取题错误！')
+          console.log(res.data)
+        }
+      }
+    })
+  },
   // 加载数据
 jiazai:function (xuhao)
 {
-
   var that = this;
-
   if (parseInt(xuhao) < parseInt(that.data.number)) {
     this.setData({
-
       xuhao: xuhao,
     })
-
-
   } else {
-
-
     this.setData({
-
       xuhao: parseInt(that.data.number)
     })
   }
-  
-
   var yes = "exercises.rightlist"
 
   // 第二个正确答案
-  var yes2 = "exercises.rightlist2"
+  // var yes2 = "exercises.rightlist2"
 
   var selectlist = 'exercises.selectlist';
+  that.setData({
+    [yes]: [],
+    // [yes2]: [],
+    [selectlist]: [],
 
- 
-  //当前
-  wx.request({
-    url: http_host + 'getquestion',
-    data: {
-      //从app中取出用户数据
-      token: app.user.token,
-      uid: app.user.uid,
-      card_id: that.data.card_id,
-      //当前题的序号  
-      question_sequence: xuhao
-    },
-    header: {
-      'Content-Type': 'application/json'
-    },
-    success: function (res) {
-      // 判断是否正确传回数据
-      console.log(2)
-      console.log(res)
-      if (res.data.code == 0) {
-
-        that.setData({
-          [yes]: [],
-          [yes2]: [],
-          [selectlist]: [],
-        
-          // 当前达到第几部分
-          selectindex: 0,
-          // 当前第几个答错了
-          errorselectindex: -1,
-          // 是否正确点过
-          clicking: 0,
-          istrue: 0,
-          // 错误次数
-          errornum: 0,
-          // 连续正确次数
-          rightnum: 0,
-          cuo_number: 0
-
-        })
-        var yes = "exercises.rightlist"
-        // 第二个正确答案
-        var yes2 = "exercises.rightlist2"
-       
-        // 结束
-        that.setData({
-          //所有数据  方便以后调用
-          all: res.data.data,
-         
-          //正确的顺序
-          [yes]: res.data.data.question_answer,
-
-
-          // 第二个正确答案
-          [yes2]: res.data.data.question_answer1,
-          // 结束
-
-
-          //录音文件
-          video: encodeURI(res.data.data.question_title_voice).replace(/'/, "%27"),
-          //正确后显示的图片
-          img: res.data.data.question_title_image.replace(/'/, "%27")
-
-        })
-
-        if (res.data.data.question_answer1 == null || res.data.data.question_answer1 == '') {
-            that.setData({
-              // 第二个正确答案
-              [yes2]: [],
-            })
-        }
-
-        //所有文字
-        var all_text = res.data.data.question_content_text
-
-        console.log(that.data)
-        var data = []
-        var xia = 0
-        for (var i in all_text) {
-
-
-          data[xia] = new Object();
-          data[xia].text = all_text[i]
-
-          data[xia].id = i
-          data[xia].eff = 0
-          xia++;
-
-        }
-
-        that.setData({
-          arr: data
-        })
-        that.updatadataarr();//对答案列表进行分页
-
-        //给selectlist赋值  
-        for (var s = 0; s < that.data.exercises.rightlist.length; s++) {
-
-         
-          var zhi = "exercises.selectlist[" + s + "]"
-
-          that.setData({
-            [zhi]: "__"
-          })
-        }
-
- 
-        
-        console.log(3)
-        console.log(that.data.video)
-        innerAudioContext.src = ''
-        // 默认进来放一次音乐
-        innerAudioContext.src = that.data.video;
-        innerAudioContext.play();
-
-      } else {
-        //返回数据失败
-        // app.tanchuang('获取题错误！')
-
-      }
+    // 当前达到第几部分
+    selectindex: 0,
+    // 当前第几个答错了
+    errorselectindex: -1,
+    // 是否正确点过
+    clicking: 0,
+    istrue: 0,
+    // 错误次数
+    errornum: 0,
+    // 连续正确次数
+    rightnum: 0,
+    cuo_number: 0,
+    sourceVOS: that.data.all[xuhao-1].sourceVOS
+  })
+  var yes = "exercises.rightlist"
+  // 第二个正确答案
+  // var yes2 = "exercises.rightlist2"
+  var array = (that.data.sourceVOS[1].text).split(",");
+  for(let i in array){
+    if (!array[i]){
+      array.splice(i,1)
     }
+  }
+  // 结束
+  that.setData({
+    //正确的顺序
+    [yes]: array,
+    // 第二个正确答案
+    // [yes2]: res.data.data.question_answer1,
+    //录音文件
+    video:that.data.sourceVOS[0].audio,
+    //正确后显示的图片
+    img:that.data.sourceVOS[0].icon
+  })
+  // if (res.data.data.question_answer1 == null || res.data.data.question_answer1 == '') {
+  //   that.setData({
+  //     // 第二个正确答案
+  //     [yes2]: [],
+  //   })
+  // }
+
+  //所有文字
+  var all_text = (that.data.sourceVOS[2].text).split(",")
+  var data = []
+  var xia = 0
+  for (var i in all_text) {
+    if (!all_text[i]) {
+      all_text.splice(i, 1)
+    }else{
+      data[xia] = new Object();
+      data[xia].text = all_text[i]
+      data[xia].id = i
+      data[xia].eff = 0
+      xia++;
+    }
+
+  }
+  console.log(all_text)
+  that.setData({
+    arr: data
   })
 
+  // that.updatadataarr();//对答案列表进行分页
+
+  //给selectlist赋值  
+  for (var s = 0; s < that.data.exercises.rightlist.length; s++) {
+    var zhi = "exercises.selectlist[" + s + "]"
+
+    that.setData({
+      [zhi]: "__"
+    })
+  }
+
+  innerAudioContext.src = ''
+  // 默认进来放一次音乐
+  innerAudioContext.src = that.data.video;
+  innerAudioContext.play();
   that.setData({
     clicksound: 1
   })
@@ -275,25 +244,13 @@ jiazai:function (xuhao)
       return;
     }
     var that = this
-   console.log(1)
-   console.log(e.currentTarget.dataset.id)
-   console.log(this.data.exercises.rightlist[this.data.selectindex])
-
     // 判断是否答对
-    if (e.currentTarget.dataset.id == this.data.exercises.rightlist[this.data.selectindex]) {
-      console.log(2)
-      that.dadui(e,1)
-      
-    } else if (e.currentTarget.dataset.id == this.data.exercises.rightlist2[this.data.selectindex]) {
-      console.log(3)
-      that.dadui(e, 2)
-   
-    } else{
-      console.log(4)
+    if (e.currentTarget.dataset.text == this.data.exercises.rightlist[this.data.selectindex]) {
+      this.dadui(e, this.data.exercises.rightlist.length);
+    }else{
       // 错误逻辑层
       //停止播放之前的音乐     防止两重音
       innerAudioContext.stop();
-      
       if (that.data.cuo_number == 0) {
         innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/careful.mp3';
 
@@ -307,9 +264,6 @@ jiazai:function (xuhao)
         innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/comeonyoucandoit.mp3';
       }
       innerAudioContext.play();
-
-
-
       this.setData({
         errornum: this.data.errornum + 1,
         errorselectindex: this.data.selectindex,
@@ -336,8 +290,6 @@ jiazai:function (xuhao)
   // 答对执行代码
 dadui:function (e,number)
 {
-
- 
   innerAudioContext.stop();
   var that = this;
   for (var i = 0; i < that.data.arr.length; i++) {
@@ -346,15 +298,11 @@ dadui:function (e,number)
       break;
     }
   }
-  console.log(5)
-  console.log(e)
   if (this.data.arr[arr_id].eff != 0) {
     return;
   }
 
   var selectlist = 'exercises.selectlist[' + this.data.selectindex + ']';
-  console.log(4)
-  console.log(arr_id)
   var effective = 'arr[' + arr_id + '].eff';
 
 
@@ -364,7 +312,7 @@ dadui:function (e,number)
     [effective]: 1,
     rightnum: that.data.rightnum + 1
   })
-  this.updatadataarr();
+  // this.updatadataarr();
   innerAudioContext.stop();
   innerAudioContext.src = 'https://www.chengxuyuantoutiao.com/a/sound/ding.mp3';
   innerAudioContext.play();
@@ -373,8 +321,6 @@ dadui:function (e,number)
   // 判断这题目是否答完
 
   if (this.data.exercises.selectlist[this.data.exercises.selectlist.length - 1] != '__') {
-    console.log('dawan')
-    console.log(that)
     that.setData({
       score: this.data.score + 20,
       clicking: 1,
@@ -382,6 +328,7 @@ dadui:function (e,number)
     })
     this.setData({
       errornum: 0,
+      
     })
 
     setTimeout(function () {
@@ -390,8 +337,7 @@ dadui:function (e,number)
 
 
   } else {
-    console.log('mei')
-    console.log(this.data.exercises.selectlist[this.data.exercises.selectlist.length - 1])
+
   }
 
 
@@ -420,28 +366,26 @@ dadui:function (e,number)
     if (parseInt(that.data.xuhao) == parseInt(that.data.number)) {
       //发送后台增加分数
       wx.request({
-        url: http_host + 'setcardscore',
+        url: http_host + 'user/pass/record/add',
+        method: 'POST',
         data: {
-          //从app中取出用户数据
-          token: app.user.token,
-          uid: app.user.uid,
-          card_id: that.data.card_id,
-          // 分数
-          card_score: that.data.score,
-          // 是否解锁下一关    1解锁  0不解锁
-          is_completed: 1
-
+          customPassId: parseInt(that.data.customPassId),
+          partsId: parseInt(that.data.partId),
+          score: that.data.score,
+          textbookId: parseInt(that.data.bookId),
+          unitsId: parseInt(that.data.unitId)
         },
         header: {
+          'token': wx.getStorageSync("userInfo").token,
           'Content-Type': 'application/json'
         },
         success: function (res) {
-
           if (res.data.code == 0) {
-
             wx.redirectTo({
-              url: "/pages/gameresult/gameresult?fenshu=" + parseInt(that.data.score)
+              url: '/pages/gameresult/gameresult?bookId=' + that.data.bookId + '&unitId=' + that.data.unitId + '&partId=' + that.data.partId + '&customPassId=' + that.data.customPassId + '&pass=' + that.data.pass + '&fenshu=' + that.data.score
             })
+          } else {
+            app.tanchuang(res.data.message);
           }
         }
       })
@@ -461,25 +405,24 @@ dadui:function (e,number)
     return arr;
   },
 
-  updatadataarr: function () {
-    var that = this;
-    var array = Object.keys(that.data.arr)
-    let subArrayNum = 8;
-    var dataArr = new Array(Math.ceil(array.length / subArrayNum));
-    //console.log('dataArr', dataArr);
-    for (let i = 0; i < dataArr.length; i++) {
-      dataArr[i] = new Array();
-    }
-    for (let i = 0; i < array.length; i++) {
-      dataArr[parseInt(i / subArrayNum)][i % subArrayNum] = that.data.arr[i];
-    }
-
-    console.log(';dataArr', dataArr)
-    that.setData({
-      dataArr: dataArr,
-      len: array.length
-    })
-  },
+  // updatadataarr: function () {
+  //   var that = this;
+  //   var array = Object.keys(that.data.arr)
+  //   let subArrayNum = 8;
+  //   var dataArr = new Array(Math.ceil(array.length / subArrayNum));
+  //   //console.log('dataArr', dataArr);
+  //   for (let i = 0; i < dataArr.length; i++) {
+  //     dataArr[i] = new Array();
+  //   }
+  //   for (let i = 0; i < array.length; i++) {
+  //     dataArr[parseInt(i / subArrayNum)][i % subArrayNum] = that.data.arr[i];
+  //   }
+  //   console.log( dataArr)
+  //   that.setData({
+  //     dataArr: dataArr,
+  //     len: array.length
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

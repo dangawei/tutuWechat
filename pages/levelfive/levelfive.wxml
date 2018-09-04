@@ -1,5 +1,5 @@
 <!--pages/levelfive/levelfive.wxml-->
-<view class="page">
+<view class="pages">
   <!--加分绿色  -->
 <view class="{{errorselectindex!=-1?'redfont':'greenfont'}} {{clicking==1?'addscore_common':''}} " style='opacity:0;position: absolute;right:210rpx;top:0rpx;'>
 {{errorselectindex!=-1?'-5':'+20'}}分
@@ -55,7 +55,7 @@
     <!-- manyImgborder_image_maxthree三图以下的时候  manyImgborder_imagefour四图以上的时候-->
     <view class='manyImgborder_image manyImgborder_image{{exercises.rightlist.length}}type   {{len>3?"manyImgborder_imagefour":""}} '>
       <view wx:for="{{arr}}" class="imgborder{{len<4?'_3':''}} {{item.eff==1?'grayborder':''}}"  data-id='{{item.id}}' data-eff="{{item.eff}}"  bindtap='selectClick'>
-      <image mode="aspectFill"  src="{{item.img_path}}"></image>
+      <image mode="aspectFill"  src="{{item.icon}}"></image>
       <text class="{{item.eff==1?'graymengban':''}}"></text>
 
       </view>
