@@ -10,29 +10,28 @@
     <view class="right">{{score}}分</view>
   </view>
   <view class="soundBorder text-center">
-    <image class="sound" src="https://www.chengxuyuantoutiao.com/a/listen.png" bindtap='soundClick' />
+    <image class="sound" src="https://www.chengxuyuantoutiao.com/a/listen.png" bindtap='soundClicks' />
      <view class="  {{clicksound==1?'pulse':'hiddencontent'}}" ></view>
   </view>
   <!--level3内容  -->
 
   <view class="levelthree_threepart_img">
     <!--六图levelthree_select_three以下 七个图以上levelthree_select_many的样式-->
-    <view class="{{exercises.rightlist.length>6? 'levelthree_select_many':'levelthree_select_three'}} ">
-      <view wx:for="{{exercises.rightlist}}" class='selectthree_border {{exercises.rightlist.length>6? "fl":""}} {{errorselectindex==index?"redbordersmall":""}} {{selectindex>index?"greenbordersmall":""}} {{selectindex==index?"greenbordersmallbili":""}}' >
-        <image src="{{exercises.selectlist[index].icon}}"></image>
+    <view class="{{correctyes.length>6? 'levelthree_select_many':'levelthree_select_three'}} ">
+      <view wx:for="{{correctyes}}" class='selectthree_border {{correctyes.length>6? "fl":""}} {{errorselectindex==index?"redbordersmall":""}} {{selectindex>index?"greenbordersmall":""}} {{selectindex==index?"greenbordersmallbili":""}}' >
+        <image src="{{item.icon}}" wx:if="{{item.show==1}}"></image>
+        <!-- <view>{{item.show}}</view> -->
       </view>
-
-
     </view>
 
 
     <!--2倍格式的选择  -->
     <view class="levelthree_beselected">
 
-     <view class="manyImgborder_image {{len < 9?'':'hiddencontent'}}  manyImgborder_image{{exercises.rightlist.length}}type   {{len>7 ?'manyImgborder_imagefour':''}} manyImgborder_imagefour text-left">
+     <view class="manyImgborder_image {{len < 9?'':'hiddencontent'}}  manyImgborder_image{{correctyes.length}}type   {{len>7 ?'manyImgborder_imagefour':''}} manyImgborder_imagefour text-left">
 
-     <view class="imgborder{{len<8?'_3':''}} {{len<8?'_3':''}}"  wx:for="{{arr}}"  data-id='{{item.id}}' data-eff="{{item.eff}}" bindtap='selectClick' >
-        <image src="{{item.img_path}}"></image>
+     <view class="imgborder{{len<8?'_3':''}} {{len<8?'_3':''}}"  wx:for="{{arr}}"  data-id='{{item.id}}' data-index="{{index}}" data-eff="{{item.eff}}" data-text="{{item.text}}" bindtap='selectClick' >
+        <image src="{{item.icon}}" class='ico'></image>
         <text class="{{item.eff==1?'graymengban':''}}"></text>
 </view>
       </view>
@@ -46,7 +45,7 @@
             <swiper-item class="banner">
               <view class="manytextborder_text  manyImgborder_image manytextborder_textfour text-left ">
                 <view  wx:for="{{ arr }}" wx:for-item="k" data-id="{{k.id}}" data-eff="{{k.eff}}" bindtap="selectClick"  class='imgborder {{k.eff==1?"grayborder":""}}'>
-                  <image src="{{k.img_path}}"  ></image>
+                  <image src="{{k.icon}}"  ></image>
                   <text class="{{k.eff==1?'graymengban':''}}"></text>
                 </view>
               </view>

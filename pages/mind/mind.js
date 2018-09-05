@@ -15,10 +15,16 @@ Page({
   },
   exercise: function () {
     var that = this;
-    that.setData({
-      exercise: 0,
-      mind: 1,
-    })
+    if (wx.getStorageSync("userInfo").textbookIdPractice && wx.getStorageSync("userInfo").textbookIdPractice != 0) {
+      wx.redirectTo({
+        url: '/pages/afterindex/afterindex'
+      })
+    } else {
+      // beforeindex
+      wx.redirectTo({
+        url: "/pages/beforeindex/beforeindex"
+      })
+    }
   },
   mind: function () {
     var that = this;
@@ -33,18 +39,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData.userInfo);
     var that = this;
     that.setData({
       // name: app.globalData.userInfo.realName,
       // img: app.globalData.userInfo.icon || '../images/spellcheck.png'
-      name: wx.getStorageSync('basicInfo').realName,
-      img: wx.getStorageSync('basicInfo').icon || '../images/spellcheck.png'
+      name: wx.getStorageSync('userInfo').realName,
+      img: wx.getStorageSync('userInfo').icon || '../images/spellcheck.png'
     })
     wx.setNavigationBarColor({
-
       frontColor: '#000000',
-
       backgroundColor: '#f7f7f7'
 
     })

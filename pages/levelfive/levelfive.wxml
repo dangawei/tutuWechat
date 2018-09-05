@@ -1,4 +1,4 @@
-<!--pages/levelfive/levelfive.wxml-->
+<!--pages/levelthree/levelthree.wxml-->
 <view class="pages">
   <!--加分绿色  -->
 <view class="{{errorselectindex!=-1?'redfont':'greenfont'}} {{clicking==1?'addscore_common':''}} " style='opacity:0;position: absolute;right:210rpx;top:0rpx;'>
@@ -9,65 +9,62 @@
     <view class="left">{{xuhao}}/{{number}}</view>
     <view class="right">{{score}}分</view>
   </view>
-
-  <!--level5内容 begin -->
-
-
-  <!--六图及六图以下的input框 最多6图 -->
-  <view class=" {{exercises.rightlist.length>6? 'levelthree_select_many':'levelthree_select_three'}}">
-    <view wx:for="{{exercises.rightlist}}" class='selectthree_border {{exercises.rightlist.length>6? "fl":""}} {{errorselectindex==index?"redbordersmall":""}} {{selectindex>index?"greenbordersmall":""}} {{selectindex==index?"greenbordersmallbili":""}}'>
-      <image src="{{exercises.selectlist[index]}}" mode="aspectFill"></image>
-    </view>
-
-
-  </view>
-  <!--七图及七图以上的input框  -->
-  <!-- <view class="levelthree_select_many {{toptype==1?'':'hiddencontent'}}">
-    <view class="selectthree_border fl greenbordersmall  ">
-      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
-    </view>
-    <view class="selectthree_border fl redbordersmall">
-      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
-    </view>
-    <view class="selectthree_border fl greenbordersmallbili">
-      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
-    </view>
-    <view class="selectthree_border fl">
-      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
-    </view>
-    <view class="selectthree_border fl">
-      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
-    </view>
-    <view class="selectthree_border fl">
-      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
-    </view>
-    <view class="selectthree_border fl">
-      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
-    </view>
-    <view class="selectthree_border fl">
-      <image src="https://www.chengxuyuantoutiao.com/a/MarkMan.png"></image>
-    </view>
-
+  <!-- <view class="soundBorder text-center">
+    <image class="sound" src="https://www.chengxuyuantoutiao.com/a/listen.png" bindtap='soundClicks' />
+     <view class="  {{clicksound==1?'pulse':'hiddencontent'}}" ></view>
   </view> -->
-  <!--相同的图片  -->
+  <!--level3内容  -->
 
-  <view class="levelthree_beselected">
-    <!-- manyImgborder_image_maxthree三图以下的时候  manyImgborder_imagefour四图以上的时候-->
-    <view class='manyImgborder_image manyImgborder_image{{exercises.rightlist.length}}type   {{len>3?"manyImgborder_imagefour":""}} '>
-      <view wx:for="{{arr}}" class="imgborder{{len<4?'_3':''}} {{item.eff==1?'grayborder':''}}"  data-id='{{item.id}}' data-eff="{{item.eff}}"  bindtap='selectClick'>
-      <image mode="aspectFill"  src="{{item.icon}}"></image>
-      <text class="{{item.eff==1?'graymengban':''}}"></text>
-
+  <view class="levelthree_threepart_img">
+    <!--六图levelthree_select_three以下 七个图以上levelthree_select_many的样式-->
+    <view class="{{correctyes.length>6? 'levelthree_select_many':'levelthree_select_three'}} ">
+      <view wx:for="{{correctyes}}" class='selectthree_border {{correctyes.length>6? "fl":""}} {{errorselectindex==index?"redbordersmall":""}} {{selectindex>index?"greenbordersmall":""}} {{selectindex==index?"greenbordersmallbili":""}}' >
+        <image src="{{item.icon}}" wx:if="{{item.show==1}}"></image>
+        <!-- <view>{{item.show}}</view> -->
       </view>
     </view>
 
+
+    <!--2倍格式的选择  -->
+    <view class="levelthree_beselected">
+
+     <view class="manyImgborder_image {{len < 9?'':'hiddencontent'}}  manyImgborder_image{{correctyes.length}}type   {{len>7 ?'manyImgborder_imagefour':''}} manyImgborder_imagefour text-left">
+
+     <view class="imgborder{{len<8?'_3':''}} {{len<8?'_3':''}}"  wx:for="{{arr}}"  data-id='{{item.id}}' data-index="{{index}}" data-eff="{{item.eff}}" data-text="{{item.text}}" bindtap='selectClick' >
+        <image src="{{item.icon}}" class='ico'></image>
+        <text class="{{item.eff==1?'graymengban':''}}"></text>
+</view>
+      </view>
+
+
+    <!--8个以上的时候  -->
+    <view class="ml25">
+      <view class="levelthree_beselected_more {{len > 8?'':'hiddencontent'}}">
+        <swiper class="swiper-box" current="{{currentid}}" indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorcolor}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+          <block>
+            <swiper-item class="banner">
+              <view class="manytextborder_text  manyImgborder_image manytextborder_textfour text-left ">
+                <view  wx:for="{{ arr }}" wx:for-item="k" data-id="{{k.id}}" data-eff="{{k.eff}}" bindtap="selectClick"  class='imgborder {{k.eff==1?"grayborder":""}}'>
+                  <image src="{{k.icon}}"  ></image>
+                  <text class="{{k.eff==1?'graymengban':''}}"></text>
+                </view>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+
+
+    </view>
+
   </view>
 
 
-  <!--level5内容 end -->
   <!--底部下一题  -->
   <view class="next_subject_border">
-    <view wx:if="{{wancheng}}" bindtap='xiayiti' class="pageBtn nex_subject_btn">跳过</view>
-    <view wx:else bindtap='xiayiti' class="pageBtn nex_subject_btn">跳过</view>
+ 
+      <view wx:if="{{xiayiti}}" bindtap='xiayiti' class="pageBtn nex_subject_btn">跳过</view>
+      <view wx:else bindtap='wancheng' class="pageBtn nex_subject_btn">跳过</view>
   </view>
 </view>

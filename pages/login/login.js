@@ -161,23 +161,36 @@ Page({
               'Content-Type': 'application/json'
             },
             success: function (reset) {
-              console.log(reset)
-              app.globalData.userInfo = res.data.data
-              wx.setStorage({
-                key: 'userInfo',
-                data: res.data.data
-              })
-              if (res.data.data.textbookIdPractice) {
-                app.book.id = res.data.data.textbookIdPractice
-                wx.redirectTo({
-                  url: '/pages/afterindex/afterindex?bookId=' + res.data.data.textbookIdPractice
+              console.log(reset.data)
+              if(reset.data.code==0){
+                app.globalData.userInfo = reset.data.data
+                wx.setStorage(
+                  {
+                    key: 'userInfo',
+                    data: reset.data.data
+                  }
+                )
+                wx.setStorageSync('bookId', reset.data.data.textbookIdPractice)
+                app.book.id = reset.data.data.textbookIdPractice
+                app.book.bookId = reset.data.data.textbookIdPractice
+                _this.setData({
+                  phoneError: false
                 })
+                if (reset.data.data.textbookIdPractice && reset.data.data.textbookIdPractice != 0) {
+                  wx.redirectTo({
+                    url: '/pages/afterindex/afterindex'
+                  })
+                } else {
+                  // beforeindex
+                  wx.redirectTo({
+                    url: "/pages/beforeindex/beforeindex"
+                  })
+                }
               } else {
-                // beforeindex
-                wx.redirectTo({
-                  url: "/pages/beforeindex/beforeindex"
-                })
+                //返回数据失败
+                app.tanchuang(reset.data.message)
               }
+              
             }
           })
         } else {

@@ -116,10 +116,10 @@ Page({
           app.book.bookId = bookId
           app.book.id = bookId
           app.book.name = bookName
-          // wx.redirectTo({
-          //   url: '/pages/afterindex/afterindex'
-          // })
-          wx.navigateBack()
+          wx.redirectTo({
+            url: '/pages/afterindex/afterindex'
+          })
+          // wx.navigateBack()
         } else {
           //返回数据失败
           app.tanchuang('添加数据错误！')

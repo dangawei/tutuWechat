@@ -42,3 +42,9 @@
   font-size: 14px;
   text-align: center;
 }
+.wx-login-box{
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  transform: translateX(-50%);
+}

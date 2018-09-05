@@ -36,4 +36,9 @@
         <view class="weui-flex__item"><view class='tip-text tip-size' bindtap='quickLogin'>快捷登录</view></view>
     </view>
   </view>
+  <view class='wx-login-box'>
+    <view class="wx-login-cell" bindtap='getUserInfo'>
+        微信登录
+    </view>
+  </view>
 </view>

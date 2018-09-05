@@ -103,15 +103,13 @@ Page({
         clicksound: -1
       })
     }, 2000);
-    var yes = "exercises.rightlist"
+    // var yes = "exercises.rightlist"
     // 第二个正确答案
-    // var yes2 = "exercises.rightlist2"
-    var selectlist = 'exercises.selectlist';
+    // var selectlist = 'correctyes';
     // 给将会用到的数据清空
     this.setData({
-      [yes]: [],
       // [yes2]: [],
-      [selectlist]: [],
+      // [selectlist]: [],
       // 当前达到第几部分
       selectindex: 0,
       // 当前第几个答错了
@@ -123,10 +121,14 @@ Page({
     })
     //获取题目列表
     if (xuhao <= this.data.all.length){
+      var correctDate = this.data.all[xuhao - 1].sourceIds
+      var correctDates = correctDate.replace(/[\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\,|\<|\.|\>|\?]/g,"")
+      var arrayYes = correctDates.split("/")
+      console.log(arrayYes)
       that.setData({
         currentData: this.data.all[xuhao - 1],
-        //正确的图片
-        [yes]: this.data.all[xuhao - 1].sourceVOS,
+        // //正确的图片
+        // correctyes: correctDates,
         // 第二个正确答案
         // [yes2]: currentData.sourceVOS,
         // 结束
@@ -136,7 +138,7 @@ Page({
         customPassId: this.data.all[xuhao - 1].customsPassId,
         
       })
-      console.log(this.data.currentData)
+      // console.log(this.data.currentData)
       // 判断是否闯关完成
       if (parseInt(xuhao) == this.data.number) {
         this.setData({
@@ -154,21 +156,33 @@ Page({
       }
       //所有图片
       var all_img = this.data.currentData.sourceVOS
-      var data = []
-      // var xia = 0
-      for (let i = 0; i < all_img.length; i++) {
-        data[i] = new Object();
-        data[i].img_path = all_img[i].icon
-        data[i].id = all_img[i].id
-        data[i].eff = 0
-        // xia++;
+      // var data = []
+      // // var xia = 0
+      for (let index in arrayYes){
+        var a = arrayYes[index].toLowerCase();
+        for (let i = 0; i < all_img.length; i++) {
+          if (a == all_img[i].text.toLowerCase()){
+            all_img[i].eff = 0
+            all_img[i].show=0
+            arrayYes[index] = all_img[i]
+            // return
+            // xia++;
+          }
+        }
       }
+      console.log(arrayYes)
+      var arrayCopy = arrayYes.concat();
       // console.log([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }].sort(app.randomsort))
-      data = data.sort(app.randomsort)
+      var data = arrayCopy.sort(app.randomsort)
+      console.log(data);
       that.setData({
+        dataArr: arrayYes,
+        correctyes: arrayYes,
+        len: arrayYes.length,
+        // correctyes: correctDates,
         arr: data
       })
-      that.updatadataarr();//对答案列表进行分页
+      // that.updatadataarr();//对答案列表进行分页
 
       // 默认进来放一次音乐
       innerAudioContext.src = that.data.video;
@@ -203,13 +217,20 @@ Page({
     that.huoqu(e.customPassId)
 
   },
+  soundClicks:function(){
+    innerAudioContext.stop();
+    innerAudioContext.src = this.data.video;
+
+    innerAudioContext.play();
+  },
   selectClick: function (e) {
+    console.log(e)
     var that = this
     if (e.currentTarget.dataset.eff == 1) {
       return;
     }
     // 判断第一个正确答案是否答对
-    if (e.currentTarget.dataset.id == this.data.exercises.rightlist[this.data.selectindex].id) {
+    if (e.currentTarget.dataset.id == this.data.correctyes[this.data.selectindex].id) {
       that.dadui(e, 1)
     } else {
       //停止播放之前的音乐     防止两重音
@@ -254,27 +275,27 @@ Page({
     var that = this;
     innerAudioContext.src = 'https://www.chengxuyuantoutiao.com/a/sound/ding.mp3';
     innerAudioContext.play();
-
-      for (var i = 0; i < that.data.arr.length; i++) {
-        if (e.currentTarget.dataset.id == that.data.arr[i].id) {
-          var arr_id = i
-          break;
-        }
-      }
-
+      // for (var i = 0; i < that.data.arr.length; i++) {
+      //   if (e.currentTarget.dataset.id == that.data.arr[i].id) {
+      //     var arr_id = i
+      //     break;
+      //   }
+      // }
+    var arr_id = e.currentTarget.dataset.index
       if (this.data.arr[arr_id].eff != 0) {
         return;
       }
-      var selectlist = 'exercises.selectlist[' + this.data.selectindex + ']';
+      var selectlist = 'correctyes[' + this.data.selectindex + '].show';
       var effective = 'arr[' + arr_id + '].eff';
       this.setData({
-        [selectlist]: this.data.arr[arr_id].img_path,
+        [selectlist]: 1,
         selectindex: this.data.selectindex + 1,
         [effective]: 1
       })
-      this.updatadataarr();
+      // console.log(this.data.correctyes);
+      // this.updatadataarr();
       // 判断这题目是否答完
-      if (this.data.exercises.selectlist.length == this.data.exercises.rightlist.length) {
+    if (this.data.selectindex == this.data.correctyes.length) {
         that.setData({
           score: this.data.score + 20,
           clicking: 1
@@ -351,20 +372,23 @@ Page({
   },
   //对答案列表进行分页
   updatadataarr: function () {
+    console.log(this.data.correctyes)
     var that = this;
-    var array = Object.keys(that.data.arr)
-    let subArrayNum = 8;
-    var dataArr = new Array(Math.ceil(array.length / subArrayNum));
-    //console.log('dataArr', dataArr);
-    for (let i = 0; i < dataArr.length; i++) {
-      dataArr[i] = new Array();
-    }
-    for (let i = 0; i < array.length; i++) {
-      dataArr[parseInt(i / subArrayNum)][i % subArrayNum] = that.data.arr[i];
-    }
+    var arrayYes = this.data.correctyes.split("/")
+    console.log(arrayYes)
+    // let subArrayNum = 8;
+    // var dataArr = new Array(Math.ceil(array.length / subArrayNum));
+    // //console.log('dataArr', dataArr);
+    // for (let i = 0; i < dataArr.length; i++) {
+    //   dataArr[i] = new Array();
+    // }
+    // for (let i = 0; i < array.length; i++) {
+    //   dataArr[parseInt(i / subArrayNum)][i % subArrayNum] = that.data.arr[i];
+    // }
     that.setData({
-      dataArr: dataArr,
-      len: array.length
+      dataArr: arrayYes,
+      correctyes: arrayYes,
+      len: arrayYes.length
     })
     console.log(this.data.dataArr);
   },

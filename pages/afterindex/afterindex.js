@@ -190,6 +190,9 @@ Page({
   onShow: function () {
     if (this.data.shuaxin) {
       this.onLoad();
+      // wx.redirectTo({
+      //   url: '/pages/afterindex/afterindex'
+      // })
     }   
     // currPage.onLoad();
     

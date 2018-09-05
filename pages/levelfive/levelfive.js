@@ -3,50 +3,53 @@ const util = require("../../utils/config.js");
 const app = getApp()
 const http_host = util.http_host;
 const img_url = util.img_url;
-// pages/levelfive/levelfive.js
 const innerAudioContext = wx.createInnerAudioContext();
 innerAudioContext.autoplay = true;
 innerAudioContext.obeyMuteSwitch = false;
 innerAudioContext.onError((res) => {
+  // console.log(res.errMsg)
+  // console.log(res.errCode)
 })
-
+// pages/levelthree/levelthree.js
 Page({
-
-  /**选择图为填空图的相同
-   * 
+  /**选择图为填空图的2倍
+   *
    * 
    */
   data: {
-  //  下面的数组传过来的数据
+    all: [],//所有关卡数据
+    // 下面的数组
     arr: [],
-    // 上面播放的练习题的音乐以及答案
+    // 当前关卡id
+    customPassId: 0,
+    clicksound: 1,
+    indicatorDots: true,
+    autoplay: false,
+    interval: 5000,
+    duration: 1000,
+    indicatorcolor: '#cacaca',
+    color: '#ffd742',
+    // 练习的音乐
     exercises: {
-      // 播放的音乐
       music: '',
-      // 正确答案
       rightlist: [],
       selectlist: [],
     },
-    //默认喇叭放大
-    clicksound: 1,
     // 当前达到第几部分
     selectindex: 0,
     // 当前第几个答错了
     errorselectindex: -1,
     // 是否正确点过
     clicking: 0,
-    // 是否正确
-    istrue: 0,
     // 错误次数
     errornum: 0,
     // 连续正确次数
     rightnum: 0,
     // 分数
     score: 0,
-    wancheng:true,
-    // 错误次数  用于播放失败音频
-    cuo_number:0,
-   
+    xiayiti: true,
+    //错误次数 用于播放错误音乐
+    cuo_number: 0,
     // 滑动需要的参数
     lastX: 0,          //滑动开始x轴位置
     lastY: 0,          //滑动开始y轴位置
@@ -55,12 +58,138 @@ Page({
     currentGesture: 0, //标识手势
 
   },
+  //获取所有题目列表
+  huoqu: function () {
+    var _this = this
+    wx.request({
+      url: http_host + 'custom/pass/subject/list/' + _this.data.customPassId,
+      data: {
+        passId: _this.data.customPassId
+      },
+      header: {
+        'token': wx.getStorageSync("userInfo").token,
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
 
+        // 判断是否正确传回数据
+        if (res.data.code == 0) {
+          _this.setData({
+            //所有数据
+            all: res.data.data,
+            number: res.data.data.length
+          })
+          // console.log(_this.data.all)
+          // 加载数据
+          _this.jiazai(1)
+        } else {
+          //返回数据失败
+          // app.tanchuang('获取题错误！')
+          console.log(res.data)
+        }
+      }
+    })
+  },
+  //随机打乱图片顺序
+
+  // 加载数据
+  jiazai: function (xuhao) {
+    var that = this;
+    that.setData({
+      clicksound: 1
+    })
+    setTimeout(function () {
+      that.setData({
+        clicksound: -1
+      })
+    }, 2000);
+    // var yes = "exercises.rightlist"
+    // 第二个正确答案
+    // var selectlist = 'correctyes';
+    // 给将会用到的数据清空
+    this.setData({
+      // [yes2]: [],
+      // [selectlist]: [],
+      // 当前达到第几部分
+      selectindex: 0,
+      // 当前第几个答错了
+      errorselectindex: -1,
+      // 是否正确点过
+      clicking: 0,
+      // 错误次数
+      cuo_number: 0
+    })
+    //获取题目列表
+    if (xuhao <= this.data.all.length) {
+      var correctDate = this.data.all[xuhao - 1].sourceIds
+      var correctDates = correctDate.replace(/[\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\,|\<|\.|\>|\?]/g, "")
+      var arrayYes = correctDates.split("/")
+      console.log(arrayYes)
+      that.setData({
+        currentData: this.data.all[xuhao - 1],
+        // //正确的图片
+        // correctyes: correctDates,
+        // 第二个正确答案
+        // [yes2]: currentData.sourceVOS,
+        // 结束
+        //录音文件
+        // video: encodeURI(res.data.data.question_title_voice).replace(/'/, "%27"),
+        video: this.data.all[xuhao - 1].sentenceAudio,
+        customPassId: this.data.all[xuhao - 1].customsPassId,
+
+      })
+      // console.log(this.data.currentData)
+      // 判断是否闯关完成
+      if (parseInt(xuhao) == this.data.number) {
+        this.setData({
+          xiayiti: false
+        })
+      }
+      if (parseInt(xuhao) < this.data.number) {
+        this.setData({
+          xuhao: xuhao,
+        })
+      } else {
+        this.setData({
+          xuhao: this.data.number
+        })
+      }
+      //所有图片
+      var all_img = this.data.currentData.sourceVOS
+      // var data = []
+      // // var xia = 0
+      for (let index in arrayYes) {
+        var a = arrayYes[index].toLowerCase();
+        for (let i = 0; i < all_img.length; i++) {
+          if (a == all_img[i].text.toLowerCase()) {
+            all_img[i].eff = 0
+            all_img[i].show = 0
+            arrayYes[index] = all_img[i]
+            // return
+            // xia++;
+          }
+        }
+      }
+      console.log(arrayYes)
+      var arrayCopy = arrayYes.concat();
+      // console.log([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }].sort(app.randomsort))
+      var data = arrayCopy.sort(app.randomsort)
+      console.log(data);
+      that.setData({
+        dataArr: arrayYes,
+        correctyes: arrayYes,
+        len: arrayYes.length,
+        // correctyes: correctDates,
+        arr: data
+      })
+      // that.updatadataarr();//对答案列表进行分页
+
+    }
+  },
   /**
- * 生命周期函数--监听页面加载
- */
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (e) {
-    console.log(e)
     var that = this
     // 异步请求数据
     //给当前关卡数 和 总关卡数  赋值
@@ -82,204 +211,26 @@ Page({
       title: title//页面标题为路由参数
     })
     that.huoqu(e.customPassId)
+
   },
-  //获取数据
-  huoqu: function (reset) {
-    var _this = this
-    wx.request({
-      url: http_host + 'custom/pass/subject/list/' + _this.data.customPassId,
-      // url: http_host + 'custom/pass/subject/list/436',
-      data: {
-        // passId: this.data.customPassId
-        passId: _this.data.customPassId
-      },
-      header: {
-        'token': wx.getStorageSync("userInfo").token,
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        // 判断是否正确传回数据
-        if (res.data.code == 0) {
-          _this.setData({
-            //所有数据
-            all: res.data.data,
-            number: res.data.data.length
-          })
-          // 加载数据
-          _this.jiazai(1)
-        } else {
-          //返回数据失败
-          // app.tanchuang('获取题错误！')
-          console.log(res.data)
-        }
-      }
-    })
+  soundClicks: function () {
+    innerAudioContext.stop();
+    innerAudioContext.src = this.data.video;
+
+    innerAudioContext.play();
   },
-  // 加载数据
-  jiazai: function (xuhao){
-    var that = this;
-    if (parseInt(xuhao) < parseInt(that.data.number)) {
-      this.setData({
-        xuhao: xuhao,
-      })
-    } else {
-      this.setData({
-        xuhao: parseInt(that.data.number)
-      })
-    }
-    var yes = "exercises.rightlist"
-
-    // 第二个正确答案
-    // var yes2 = "exercises.rightlist2"
-
-    var selectlist = 'exercises.selectlist';
-    that.setData({
-      [yes]: [],
-      // [yes2]: [],
-      [selectlist]: [],
-
-      // 当前达到第几部分
-      selectindex: 0,
-      // 当前第几个答错了
-      errorselectindex: -1,
-      // 是否正确点过
-      clicking: 0,
-      istrue: 0,
-      // 错误次数
-      errornum: 0,
-      // 连续正确次数
-      rightnum: 0,
-      cuo_number: 0,
-      sourceVOS: that.data.all[xuhao - 1].sourceVOS
-    })
-    var yes = "exercises.rightlist"
-    // 第二个正确答案
-    // var yes2 = "exercises.rightlist2"
-    // 结束
-    that.setData({
-      //正确的顺序
-      [yes]: that.data.sourceVOS,
-      // 第二个正确答案
-      // [yes2]: res.data.data.question_answer1,
-      //录音文件
-      video: that.data.sourceVOS[0].audio,
-      //正确后显示的图片
-      img: that.data.sourceVOS[0].icon
-    })
-    // if (res.data.data.question_answer1 == null || res.data.data.question_answer1 == '') {
-    //   that.setData({
-    //     // 第二个正确答案
-    //     [yes2]: [],
-    //   })
-    // }
-
-    //所有文字
-    var all_text = that.data.sourceVOS
-    var data = []
-    var xia = 0
-    for (var i in all_text) {
-        data[xia] = new Object();
-        data[xia].icon = all_text[i].icon
-        data[xia].id = i
-        data[xia].eff = 0
-        xia++;
-    }
-    console.log(data)
-    that.setData({
-      arr: data
-    })
-
-    // that.updatadataarr();//对答案列表进行分页
-
-    //给selectlist赋值  
-    for (var s = 0; s < that.data.exercises.rightlist.length; s++) {
-      var zhi = "exercises.selectlist[" + s + "]"
-      that.setData({
-        [zhi]: "__"
-      })
-    }
-    that.setData({
-      clicksound: 1
-    })
-    setTimeout(function () {
-      that.setData({
-        clicksound: -1
-      })
-    }, 2000);
-  },
-  //对象转数组
-  objToArray: function (array) {
-    var arr = []
-    for (var i in array) {
-      arr.push(array[i]);
-    }
-    console.log(arr);
-    return arr;
-  },
-
-  //下一题
-  xiayiti: function () {
-    var that = this
-    console.log(that.data)
-
-    if (parseInt(that.data.xuhao) == parseInt(that.data.number)) {
-      //发送后台增加分数
-      wx.request({
-        url: http_host + 'setcardscore',
-        data: {
-          //从app中取出用户数据
-          token: app.user.token,
-          uid: app.user.uid,
-          card_id: that.data.card_id,
-          // 分数
-          card_score: that.data.score,
-          // 是否解锁下一关    1解锁  0不解锁
-          is_completed: 1
-
-        },
-        header: {
-          'Content-Type': 'application/json'
-        },
-        success: function (res) {
-
-          if (res.data.code == 0) {
-
-            wx.redirectTo({
-              url: "/pages/gameresult/gameresult?fenshu=" + parseInt(that.data.score)
-            })
-          }
-        }
-      })
-
-    } else {
-
-   
-        that.jiazai(parseInt(that.data.xuhao) + 1)
-     
-    }
-    
-  },
-
   selectClick: function (e) {
+    console.log(e)
+    var that = this
     if (e.currentTarget.dataset.eff == 1) {
       return;
     }
-    innerAudioContext.stop();
-    var that = this
-
-    // 判断是否答对
-    if (e.currentTarget.dataset.id == this.data.exercises.rightlist[this.data.selectindex]) {
-      that.dadui(e)
-    } else if (e.currentTarget.dataset.id == this.data.exercises.rightlist2[this.data.selectindex]) {
-      that.dadui(e)
-     
+    // 判断第一个正确答案是否答对
+    if (e.currentTarget.dataset.id == this.data.correctyes[this.data.selectindex].id) {
+      that.dadui(e, 1)
     } else {
-
-      // 错误逻辑层
-
       //停止播放之前的音乐     防止两重音
       innerAudioContext.stop();
-      innerAudioContext.stop()
       if (that.data.cuo_number == 0) {
         innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/careful.mp3';
 
@@ -293,141 +244,186 @@ Page({
         innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/comeonyoucandoit.mp3';
       }
       innerAudioContext.play();
-
-
       this.setData({
         errornum: this.data.errornum + 1,
         errorselectindex: this.data.selectindex,
         score: this.data.score - 5,
         clicking: 1,
-        cuo_number: this.data.cuo_number + 1,
+        cuo_number: this.data.cuo_number + 1
       })
       setTimeout(function () {
         that.setData({
           errorselectindex: -1
         })
       }, 2000);
+
     }
- 
     setTimeout(function () {
       that.setData({
         clicking: 0
       })
     }, 2000);
-    
 
   },
-// 答对执行的操作
-
-dadui:function (e,number)
-{
-
-
-  innerAudioContext.src = 'https://www.chengxuyuantoutiao.com/a/sound/ding.mp3';
-  innerAudioContext.play();
-
-  var that = this;
-  for (var i = 0; i < that.data.arr.length; i++) {
-    if (e.currentTarget.dataset.id == that.data.arr[i].id) {
-      var arr_id = i
-      break;
-    }
-  }
-  if (this.data.arr[arr_id].eff != 0) {
-    return;
-  }
-
-  var selectlist = 'exercises.selectlist[' + this.data.selectindex + ']';
-  var effective = 'arr[' + arr_id + '].eff';
-
-
-
-  this.setData({
-    [selectlist]: this.data.arr[arr_id].img_path,
-    selectindex: this.data.selectindex + 1,
-    [effective]: 1
-  })
-  this.updatadataarr();
- 
-
-  // 判断这道题是否答完
-  if (this.data.exercises.selectlist.length == this.data.exercises.rightlist.length) {
-    that.setData({
-      wancheng: false
-    })
-    console.log('答完')
-    that.setData({
-      score: this.data.score + 20,
-      clicking: 1
-    })
+  // 答对后执行
+  dadui: function (e, number) {
+    innerAudioContext.stop();
+    var that = this;
     innerAudioContext.src = 'https://www.chengxuyuantoutiao.com/a/sound/ding.mp3';
     innerAudioContext.play();
-    innerAudioContext.onEnded((res) => {
-     
-    
-
-
-    innerAudioContext.src = this.data.video;
-    innerAudioContext.play();
-    innerAudioContext.onEnded((res) => {
-
-
-      console.log('触发')
-      // 判断这道题是否答完
-      if (this.data.exercises.selectlist.length == this.data.exercises.rightlist.length) {
-        that.xiayiti()
-        innerAudioContext.stop()
-      }
-      innerAudioContext.offEnded();
-    });
-    });
-
-  }
-
-},
-  updatadataarr: function () {
-    var that = this;
-    var array = Object.keys(that.data.arr)
-    let subArrayNum = 8;
-    var dataArr = new Array(Math.ceil(array.length / subArrayNum));
-    //console.log('dataArr', dataArr);
-    for (let i = 0; i < dataArr.length; i++) {
-      dataArr[i] = new Array();
+    // for (var i = 0; i < that.data.arr.length; i++) {
+    //   if (e.currentTarget.dataset.id == that.data.arr[i].id) {
+    //     var arr_id = i
+    //     break;
+    //   }
+    // }
+    var arr_id = e.currentTarget.dataset.index
+    if (this.data.arr[arr_id].eff != 0) {
+      return;
     }
-    for (let i = 0; i < array.length; i++) {
-      dataArr[parseInt(i / subArrayNum)][i % subArrayNum] = that.data.arr[i];
-    }
-
-    console.log(';dataArr', dataArr)
-    that.setData({
-      dataArr: dataArr,
-      len: array.length
+    var selectlist = 'correctyes[' + this.data.selectindex + '].show';
+    var effective = 'arr[' + arr_id + '].eff';
+    this.setData({
+      [selectlist]: 1,
+      selectindex: this.data.selectindex + 1,
+      [effective]: 1
     })
+    // console.log(this.data.correctyes);
+    // this.updatadataarr();
+    // 判断这题目是否答完
+    if (this.data.selectindex == this.data.correctyes.length) {
+      that.setData({
+        score: this.data.score + 20,
+        clicking: 1
+      })
+      this.setData({
+        errornum: 0,
+      })
+      // innerAudioContext.src = that.data.video;
+
+      // innerAudioContext.play();
+      if (parseInt(that.data.xuhao) == this.data.number) {
+        setTimeout(function () {
+          that.wancheng()
+        }, 1000)
+      } else {
+        setTimeout(function () {
+          //下一题
+          that.jiazai(parseInt(that.data.xuhao) + 1)
+        }, 1000)
+      }
+
+    }
 
   },
-  funended: function () {
-    console.log("audio end");
+  //点击完成按钮
+  wancheng: function () {
+    var that = this
+    //发送后台增加分数
+    wx.request({
+      url: http_host + 'user/pass/record/add',
+      method: 'POST',
+      data: {
+        customPassId: parseInt(that.data.customPassId),
+        partsId: parseInt(that.data.partId),
+        score: that.data.score,
+        textbookId: parseInt(that.data.bookId),
+        unitsId: parseInt(that.data.unitId)
+      },
+      header: {
+        'token': wx.getStorageSync("userInfo").token,
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        if (res.data.code == 0) {
+          wx.redirectTo({
+            url: '/pages/gameresult/gameresult?bookId=' + that.data.bookId + '&unitId=' + that.data.unitId + '&partId=' + that.data.partId + '&customPassId=' + that.data.customPassId + '&pass=' + that.data.pass + '&fenshu=' + that.data.score
+          })
+        } else {
+          app.tanchuang(res.data.message);
+        }
+      }
+    })
+  },
+
+  // 点击播放按钮的效果
+  soundClick: function () {
+    var that = this
+    innerAudioContext.src = this.data.video;
+    innerAudioContext.play();
+    that.setData({
+      clicksound: 1
+    })
+    setTimeout(function () {
+      that.setData({
+        clicksound: -1
+      })
+    }, 2000);
+
+  },
+  selectClick1: function (e) {
+    console.log('答案是：' + e.currentTarget.dataset.eff)
+    console.log('id是：' + e.currentTarget.dataset.id)
+  },
+  // 下一题
+  xiayiti() {
+    this.jiazai(parseInt(this.data.xuhao) + 1)
+  },
+  //对答案列表进行分页
+  updatadataarr: function () {
+    console.log(this.data.correctyes)
+    var that = this;
+    var arrayYes = this.data.correctyes.split("/")
+    console.log(arrayYes)
+    // let subArrayNum = 8;
+    // var dataArr = new Array(Math.ceil(array.length / subArrayNum));
+    // //console.log('dataArr', dataArr);
+    // for (let i = 0; i < dataArr.length; i++) {
+    //   dataArr[i] = new Array();
+    // }
+    // for (let i = 0; i < array.length; i++) {
+    //   dataArr[parseInt(i / subArrayNum)][i % subArrayNum] = that.data.arr[i];
+    // }
+    that.setData({
+      dataArr: arrayYes,
+      correctyes: arrayYes,
+      len: arrayYes.length
+    })
+    console.log(this.data.dataArr);
+  },
+
+  //对象转数组
+  objToArray: function (array) {
+    var arr = []
+    for (var i in array) {
+      arr.push(array[i]);
+    }
+    for (var i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].replace(/'/, "%27")
+    }
+    console.log(arr);
+    return arr;
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  
+    innerAudioContext.src = this.data.exercises.music;
+    innerAudioContext.play();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
@@ -441,14 +437,14 @@ dadui:function (e,number)
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**

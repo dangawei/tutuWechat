@@ -44,22 +44,22 @@
   <!-- 头部主内容 end  -->
   <view class="clearfix"></view>
   <!--单元列表 begin -->
-  <view class="unitlist"> 
-   <view wx:for="{{unitlist}}" wx:key="key">
-    <block>
+  <view class="unitlist">
+    <scroll-view scroll-y="true" class="scroll-height">
+      <view wx:for="{{unitlist}}" wx:key="key">
+        <block>
+          <navigator url="/pages/slidemenu/slidemenu?bookId={{book_id}}&bookName={{book_name}}&unitId={{item.id}}&unitName={{item.text}}" class="unitlistborder" hover-class='none'> 
+              <view class="unitlistborder_left"> 
+                  {{item.text}}
+              </view>
+              <view class="unitlistborder_right"> 
+                  <image src="https://www.chengxuyuantoutiao.com/a/indexright.png"></image>
+              </view>
+          </navigator>
+        </block>
+      </view>
+    </scroll-view>
       
-      <navigator url="/pages/slidemenu/slidemenu?bookId={{book_id}}&bookName={{book_name}}&unitId={{item.id}}&unitName={{item.text}}" class="unitlistborder" hover-class='none'> 
-          <view class="unitlistborder_left"> 
-             {{item.text}}
-          </view>
-          <view class="unitlistborder_right"> 
-             <image src="https://www.chengxuyuantoutiao.com/a/indexright.png"></image>
-          </view>
-      </navigator>
-     
-      
-    </block>
-    </view>
   </view>
   <!--单元列表 end -->
 
