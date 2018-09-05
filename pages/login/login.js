@@ -120,4 +120,70 @@ Page({
   onHide: function () {
 
   },
+  getUserInfo: function (res) {
+    let _this = this;
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: reset => {
+              // 可以将 res 发送给后台解码出 unionId
+              _this.login(reset.userInfo)
+              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+              // 所以此处加入 callback 以防止这种情况
+              if (this.userInfoReadyCallback) {
+                this.userInfoReadyCallback(reset)
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+  login(option) {
+    wx.login({
+      success: res => {
+        console.log(res);
+        if (res.code) {
+          wx.request({
+            url: http_host +'user/login/mini',
+            // url: "https://api.weixin.qq.com/sns/jscode2session?appid=" + appid + "&secret=" + secret + "&js_code=" + res.code + "&grant_type=authorization_code",
+            method: "POST",
+            data: {
+              avatar: option.avatarUrl,
+              code: res.code,
+              gender: option.gender,
+              nickName: option.nickName
+            },
+            header: {
+              'Content-Type': 'application/json'
+            },
+            success: function (reset) {
+              console.log(reset)
+              app.globalData.userInfo = res.data.data
+              wx.setStorage({
+                key: 'userInfo',
+                data: res.data.data
+              })
+              if (res.data.data.textbookIdPractice) {
+                app.book.id = res.data.data.textbookIdPractice
+                wx.redirectTo({
+                  url: '/pages/afterindex/afterindex?bookId=' + res.data.data.textbookIdPractice
+                })
+              } else {
+                // beforeindex
+                wx.redirectTo({
+                  url: "/pages/beforeindex/beforeindex"
+                })
+              }
+            }
+          })
+        } else {
+          app.tanchuang('登陆授权错误！')
+        }
+      }
+    })
+  },
 })

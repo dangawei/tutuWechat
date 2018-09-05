@@ -1,5 +1,5 @@
 <!--pages/login/login.wxml-->
-<view wx:if="{{xianshi}}">
+<view>
 <view class="logo">
   <image src="https://www.chengxuyuantoutiao.com/a/logoimg.png" />
 </view>
