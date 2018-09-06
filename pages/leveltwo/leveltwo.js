@@ -85,19 +85,18 @@ Page({
         wancheng: false
       })
     }
+    var data = this.data.all[index].sourceVOS.sort(app.randomsort)
     this.setData({
       stop: 0,
       clicking: 0,
       errorborder: -1,
       cuo_number: 0,
-      currentIndex: parseInt(reset)
-    })
-    this.setData({
-      data:this.data.all[index].sourceVOS,
+      currentIndex: parseInt(reset),
+      data: data,
       sourceIds: this.data.all[index].sourceIds
     })
     that.data.data.forEach(function(obj){
-      if (obj.text == that.data.sourceIds){
+      if (obj.text.toLowerCase() == (that.data.sourceIds).toLowerCase()){
         that.setData({
           audio: obj.audio,
           correctId:obj.id
@@ -162,7 +161,8 @@ Page({
     if (this.data.correctId == e.currentTarget.dataset.id) {
       //停止播放之前音乐文件   防止两重音
       innerAudioContext.stop();
-      innerAudioContext.src = 'https://www.chengxuyuantoutiao.com/a/sound/ding.mp3';
+      // innerAudioContext.src = 'https://www.chengxuyuantoutiao.com/a/sound/ding.mp3';
+      innerAudioContext.src = util.ok;
       var up = "data[" + xia + "].green";
       that.setData({
         //绿色  下标的值
@@ -189,16 +189,21 @@ Page({
       //停止播放之前的音乐     防止两重音
       innerAudioContext.stop();
       if (that.data.cuo_number == 0) {
-        innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/careful.mp3';
+        // innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/careful.mp3';
+        innerAudioContext.src = util.error1;
 
       } else if (that.data.cuo_number == 1) {
-        innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/notquite.mp3';
+        innerAudioContext.src = util.error2;
+        // innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/notquite.mp3';
       } else if (that.data.cuo_number == 2) {
-        innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/youalmostthere.mp3';
+        innerAudioContext.src = util.error3;
+        // innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/youalmostthere.mp3';
       } else if (that.data.cuo_number == 3) {
-        innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/entryagain.mp3';
+        innerAudioContext.src = util.error4;
+        // innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/entryagain.mp3';
       } else if (that.data.cuo_number >= 4) {
-        innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/comeonyoucandoit.mp3';
+        innerAudioContext.src = util.error5;
+        // innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/comeonyoucandoit.mp3';
       }
       innerAudioContext.play();
 

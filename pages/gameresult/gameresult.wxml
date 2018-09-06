@@ -51,7 +51,7 @@
           </view>
         </view>
         <view class="bottom_img text-center ">
-          <image src="https://www.chengxuyuantoutiao.com/a/GeneratPoster.png"></image>
+          <image src="http://img.tutukids.com/group1/M00/00/0A/GeneratPoster.png"></image>
         </view>
       </button>
     </view>
@@ -65,7 +65,7 @@
           </view>
         </view>
         <view class="bottom_img text-center">
-          <image src="https://www.chengxuyuantoutiao.com/a/sharebtn.png"></image>
+          <image src="http://img.tutukids.com/group1/M00/00/0A/sharebtn.png"></image>
         </view>
       </button>
     </view>

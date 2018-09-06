@@ -44,26 +44,6 @@ Page({
   },
   countDown: function (options) {
     var that = this;
-    var currentTime = that.data.currentTime;
-    that.setData({
-      time: currentTime + '秒',
-      isDisabled:true,
-      titleText: "验证码已发送至+86 " + app.globalData.phone
-    })
-    var interval = setInterval(function () {
-      that.setData({
-        time: (currentTime - 1) + '秒'
-      })
-      currentTime--;
-      if (currentTime <= 0) {
-        clearInterval(interval)
-        that.setData({
-          time: '重新获取',
-          currentTime: 60,
-          isDisabled:false
-        })
-      }
-    }, 1000)
     console.log(app.globalData.phone)
     wx.request({
       url: http_host + 'sms/send',
@@ -78,6 +58,26 @@ Page({
       success: function (res) {
         // 判断是否正确传回数据
         if (res.data.code == 0) {
+          var currentTime = that.data.currentTime;
+          that.setData({
+            time: currentTime + '秒',
+            isDisabled: true,
+            titleText: "验证码已发送至+86 " + app.globalData.phone
+          })
+          var interval = setInterval(function () {
+            that.setData({
+              time: (currentTime - 1) + '秒'
+            })
+            currentTime--;
+            if (currentTime <= 0) {
+              clearInterval(interval)
+              that.setData({
+                time: '重新获取',
+                currentTime: 60,
+                isDisabled: false
+              })
+            }
+          }, 1000)
           wx.showToast({
             title: '已发送',
             icon: 'success',
@@ -124,12 +124,12 @@ Page({
                 isError: false
               })
               if (res.data.data.textbookIdPractice && res.data.data.textbookIdPractice!=0) {
-                wx.redirectTo({
+                wx.reLaunch({
                   url: '/pages/afterindex/afterindex'
                 })
               } else {
                 // beforeindex
-                wx.redirectTo({
+                wx.reLaunch({
                   url: "/pages/beforeindex/beforeindex"
                 })
               }

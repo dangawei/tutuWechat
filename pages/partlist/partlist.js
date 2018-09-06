@@ -132,7 +132,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-    console.log(e);
     if(e){
       app.book.bookId=e.bookId
       app.book.bookName = e.bookName
@@ -250,11 +249,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // if(this.data.shuaxin){
-    //   wx.redirectTo({     
-    //     url: "/pages/partlist/partlist?id=" + this.options.id + "&name=" + this.options.name
-    //   })
-    // }
+    if(this.data.shuaxin){
+      this.onLoad();
+    }
   },
 
   /**

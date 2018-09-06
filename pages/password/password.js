@@ -45,7 +45,7 @@ Page({
               //     beforePage.onLoad(); // 执行前一个页面的onLoad方法
               //   }
               // })
-              wx.redirectTo({
+              wx.reLaunch({
                 url: '/pages/login/login'
               })
             }

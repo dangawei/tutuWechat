@@ -65,13 +65,13 @@
 
   <!--底部导航 begin  -->
   <view  class="nav_border">
-    <navigator open-type="redirect" class="nav_border_common" hover-class='none'>
+    <navigator open-type="navigate" class="nav_border_common" hover-class='none'>
         <view class="{{exercise==0?'active':'default'}}" bindtap="exercise">
          <view class="nav_border_common_img"></view>
          <view class="nav_border_common_text">练习</view>
         </view>
     </navigator>
-    <navigator open-type="redirect" url="/pages/mind/mind" class="nav_border_common" hover-class='none'>
+    <navigator open-type="navigate" url="/pages/mind/mind" class="nav_border_common" hover-class='none'>
         <view class="{{mind==0?'active':'default'}}" bindtap="mind">
          <view class="nav_border_common_img2"></view>
          <view class="nav_border_common_text">我的</view>

@@ -14,57 +14,57 @@
              关于我们
           </view>
           <view class="unitlistborder_right"> 
-             <image src="https://www.chengxuyuantoutiao.com/a/indexright.png"></image>
+             <image src="http://img.tutukids.com/group1/M00/00/0A/indexright.png"></image>
           </view>
       </navigator>
      
     </block> -->
       <view class="weui-cells weui-cells_after-title">
-            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <navigator url="/pages/aboutus/aboutus" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
-                    <image src="../images/关于我们@2x.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                    <image src="http://img.tutukids.com/group1/M00/00/0A/关于我们@2x.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
                 </view>
                 <view class="weui-cell__bd">关于我们</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
             <navigator url="/pages/set/set" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
-                    <image src="../images/设置@2x.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                    <image src="http://img.tutukids.com/group1/M00/00/0A/设置@2x.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
                 </view>
                 <view class="weui-cell__bd">设置</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
-            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <!-- <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
-                    <image src="../images/意见反馈@2x.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                    <image src="http://img.tutukids.com/group1/M00/00/0A/意见反馈@2x.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
                 </view>
                 <view class="weui-cell__bd">意见反馈</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </navigator>
+            </navigator> -->
         </view>
     </view>
   </view>
   <!--单元列表 end -->
   <!--二维码扫描begin  -->
-  <view class="ScanQR text-center">
+  <!-- <view class="ScanQR text-center">
       <view class="ScanQRborder text-center">
-      <image src="https://www.chengxuyuantoutiao.com/a/minderweima.png"></image>
-      <view class="ScanQR_text">扫描二维码关注微信公众号</view>
-      <view class="ScanQR_text">领取36G小学英语课外阅读海量资源包哟~</view>
+        <image src="http://img.tutukids.com/group1/M00/00/0A/minderweima.png"></image>
+        <view class="ScanQR_text">扫描二维码关注微信公众号</view>
+        <view class="ScanQR_text">领取36G小学英语课外阅读海量资源包哟~</view>
       </view>
-  </view>
+  </view> -->
    <!--二维码扫描end  -->
 
     <!--底部导航 begin  -->
   <view class="nav_border">
-    <view  open-type="redirect" class="nav_border_common" hover-class='none'>
+    <view  open-type="navigate" class="nav_border_common" hover-class='none'>
         <view class="{{exercise==0?'active':'default'}}" bindtap="exercise">
          <view class="nav_border_common_img"></view>
          <view class="nav_border_common_text">练习</view>
         </view>
     </view>
-    <navigator  open-type="redirect"  url="/pages/mind/mind" class="nav_border_common" hover-class='none'>
-        <view class="{{mind==0?'active':'default'}}" bindtap="mind">
+    <navigator  open-type="navigate"  url="/pages/mind/mind" class="nav_border_common" hover-class='none'>
+        <view class="{{mind==0?'active':'default'}}">
          <view class="nav_border_common_img2"></view>
          <view class="nav_border_common_text">我的</view>
         </view>

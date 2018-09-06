@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
-	"appid": "wx44845afd868ce52c",
-	"projectname": "tutu",
+	"appid": "wxf9bc4939f32e977f",
+	"projectname": "tutuyingyu",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 17,
 			"list": [
 				{
 					"id": 0,
@@ -74,10 +74,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 7,
 					"name": "leveltwo",
 					"pathName": "pages/leveltwo/leveltwo",
-					"query": "bookId=5&unitId=90&partId=307&customPassId=987&pass=2"
+					"query": "bookId=4&unitId=114&partId=425&customPassId=1691&pass=2"
 				},
 				{
 					"id": 8,
@@ -114,6 +114,30 @@
 					"name": "levelfive",
 					"pathName": "pages/levelfive/levelfive",
 					"query": "bookId=5&unitId=119&partId=455&customPassId=1872&pass=5"
+				},
+				{
+					"id": -1,
+					"name": "levelfour",
+					"pathName": "pages/levelfour/levelfour",
+					"query": "bookId=4&unitId=114&partId=425&customPassId=1693&pass=4"
+				},
+				{
+					"id": -1,
+					"name": "aboutus",
+					"pathName": "pages/aboutus/aboutus",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "mind",
+					"pathName": "pages/mind/mind",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "gameresult",
+					"pathName": "pages/gameresult/gameresult",
+					"query": "bookId=5&unitId=90&partId=307&customPassId=1867&pass=0&fenshu=100"
 				}
 			]
 		}

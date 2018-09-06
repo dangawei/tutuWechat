@@ -207,7 +207,7 @@ jiazai:function (xuhao)
     }
 
   }
-  console.log(all_text)
+  data = data.sort(app.randomsort)
   that.setData({
     arr: data
   })

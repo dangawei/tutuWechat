@@ -179,9 +179,10 @@ Page({
     })
     setTimeout(function () {
       that.setData({
-        clicksound: -1
+        clicksound: -1,
+        indexImg: -1
       })
-    }, 2000);
+    }, 1000);
 
   },
   // 点击播放全部
@@ -221,7 +222,7 @@ Page({
 
     });
     var i=this.data.pass+1
-    var title = "0" + i + " " + wx.getStorageSync("part")[parseInt(e.pass)].title
+    var title = "0" + (parseInt(e.pass) + 1) + " " + wx.getStorageSync("part")[parseInt(e.pass)].title
     //修改标题为关卡名称
     wx.setNavigationBarTitle({
       title: title//页面标题为路由参数
@@ -396,7 +397,7 @@ Page({
       title: app.globalData.userInfo.nickName + '  邀请你来闯关啦~图图小学英语课后趣味练习！',
       desc: '转发描述',
       path: '/pages/index/index',
-      imageUrl: "http://tutu-resource-base.test.upcdn.net/a/%E8%BD%AC%E5%8F%91%E6%B5%B7%E6%8A%A5.png",
+      imageUrl: "http://img.tutukids.com/group1/M00/00/0A/%E8%BD%AC%E5%8F%91%E6%B5%B7%E6%8A%A5.png",
       success: function (res) {
         // 转发成功
       },

@@ -5,24 +5,24 @@
   <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input weui-cell_vcode">
           <view class="weui-cell__hd">
-              <image src='../images/组 1@2x.png' style="width: 20px; height: 20px;"></image>
+              <image src='http://img.tutukids.com/group1/M00/00/0A/组 1@2x.png' style="width: 20px; height: 20px;"></image>
           </view>
           <view class="weui-cell__bd">
               <input type='number' class="weui-input pl15" placeholder="请输入手机号" bindinput="bindKeyInput" value='{{phoneValue}}'/>
           </view>
           <view class="weui-cell__ft mr15">
-            <image src='../images/组 21@2x.png' style="width: 20px; height: 20px;" bindtap='cancelPhone'></image>
+            <image src='http://img.tutukids.com/group1/M00/00/0A/组 21@2x.png' style="width: 20px; height: 20px;" bindtap='cancelPhone'></image>
           </view>
       </view>
       <view class="weui-cell weui-cell_input weui-cell_vcode">
           <view class="weui-cell__hd">
-              <image src='../images/组 9@2x.png' style="width: 20px; height: 20px;"></image>
+              <image src='http://img.tutukids.com/group1/M00/00/0A/组 9@2x.png' style="width: 20px; height: 20px;"></image>
           </view>
           <view class="weui-cell__bd">
               <input type='number' class="weui-input pl15" placeholder="请输入密码" bindinput="bindKeyPassword" value='{{passwordValue}}' password='{{true}}'/>
           </view>
           <view class="weui-cell__ft mr15">
-            <image src='../images/组 21@2x.png' style="width: 20px; height: 20px;" bindtap='cancelPassword'></image>
+            <image src='http://img.tutukids.com/group1/M00/00/0A/组 21@2x.png' style="width: 20px; height: 20px;" bindtap='cancelPassword'></image>
           </view>
       </view>
   </view>
@@ -38,7 +38,10 @@
   </view>
   <view class='wx-login-box'>
     <view class="wx-login-cell" bindtap='getUserInfo'>
-        微信登录
+        <text>微信登录</text>
+        <view style="text-align:center;">
+          <image src='http://img.tutukids.com/group1/M00/00/0A/微信@2x.png' style="width: 50px; height: 50px;"></image>
+        </view>
     </view>
   </view>
 </view>

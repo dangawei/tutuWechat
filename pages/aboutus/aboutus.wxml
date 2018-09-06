@@ -1,23 +1,54 @@
-<view class="page text-center">
+<view class="pages text-center">
  <view class="aboutus_border">
-   <image class="logo" src="https://www.chengxuyuantoutiao.com/a/aboutus.png"></image>
-   <view>
-
+   <image class="logo" src="http://img.tutukids.com/group1/M00/00/0A/aboutus.png"></image>
+   <view class='aboutus-top'>
       <view class="aboutus_title">
         图图英语
-   
       </view>
-       <view class="aboutus_content text-center">
-          <view>专注于小学生英语课后趣味练习，</view>
-           <view>最科学有效的图片记忆教学法</view>
-           <view>配合线上视频教学与游戏闯关练习的环节</view>
-           <view>让小朋友的听、说、读、写全面发展</view>
-           <view>小朋友看图就会说英语</view>
-            <view>从此告别枯燥乏味的背单词、记语法</view>
-            <view>快乐学英语，轻松提分数！</view>
-   
+       <view class="aboutus_content text-left">
+          专注于小学生英语课后趣味练习，最科学有效的图片记忆教学法配合线上视频教学与游戏闯关练习的环节让小朋友的听、说、读、写全面发展小朋友看图就会说英语从此告别枯燥乏味的背单词、记语法快乐学英语，轻松提分数！
       </view>
    </view>
-
+   <view class='border'></view>
+    <!--二维码扫描begin  -->
+    <view class="ScanQR text-center">
+        <view class="ScanQRborder text-center">
+          <view class="aboutus_title">
+            官方微信公众号
+          </view>
+          <view class='aboutus-center weui-flex'>
+            <view class='inline-block gzh-icon'>
+              <image src="http://img.tutukids.com/group1/M00/00/0A/minderweima.png"></image>
+            </view>
+            <view class='inline-block'>
+              <view class='text-left'>
+                <text class="aboutus_content text-left">tutuyingyu123</text>
+                <text class="aboutus_content btn" bindtap="copy" data-text="tutuyingyu123">复制</text>
+              </view>
+              <view>
+                <view class="aboutus_content text-left">每周二更新家长课堂,学习最权威的儿童教育知识!</view>
+                <view class="aboutus_content text-left">适合小学生的纯英文绘本、动画资源免费领!</view>
+                <view class="aboutus_content text-left">配合小学教材,每日一词,陪伴式学习!</view>
+              </view>
+            </view>
+          </view>
+        </view>
+    </view>
+    <view class='border'></view>
+    <view class='aboutus-top'>
+      <view class="aboutus_title">
+        在线商务合作
+      </view>
+        <view class='text-left'>
+          <text class="aboutus_text-title">官方客服微信号:</text>
+          <text class="aboutus_text text-left">tutukids</text>
+          <text class="aboutus_content btn" bindtap="copy" data-text="tutukids">复制</text>
+        </view>
+        <view class='text-left'>
+          <text class="aboutus_text-title">官方QQ号:</text>
+          <text class="aboutus_text text-left">1478631304</text>
+          <text class="aboutus_content btn" bindtap="copy" data-text="1478631304">复制</text>
+        </view>
+   </view>
 </view>
 </view>

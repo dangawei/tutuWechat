@@ -7,13 +7,13 @@
       <view class="weui-cell weui-cell_input weui-cell_vcode">
           <view class="weui-cell__hd">
               <!-- <view class="weui-label">手机号</view> -->
-              <image src='../images/组 1@2x.png' style="width: 20px; height: 20px;"></image>
+              <image src='http://img.tutukids.com/group1/M00/00/0A/组 1@2x.png' style="width: 20px; height: 20px;"></image>
           </view>
           <view class="weui-cell__bd">
               <input type='number' class="weui-input pl15" placeholder="请输入手机号" bindinput="bindKeyInput" value='{{phoneValue}}'/>
           </view>
           <view class="weui-cell__ft mr15">
-            <image src='../images/组 21@2x.png' style="width: 20px; height: 20px;" bindtap='cancelPhone'></image>
+            <image src='http://img.tutukids.com/group1/M00/00/0A/组 21@2x.png' style="width: 20px; height: 20px;" bindtap='cancelPhone'></image>
           </view>
       </view>
   </view>
@@ -22,7 +22,7 @@
   </view>
   <view>
     <view class='tip-text'>未注册手机验证后自动登录</view>
-    <view class='tip-text'>注册即代表你同意<text class='tip-text-span'>《图图英语用户协》</text></view>
+    <!-- <view class='tip-text'>注册即代表你同意<text class='tip-text-span'>《图图英语用户协》</text></view> -->
   </view>
   <view wx:if="{{phoneError}}" class='tip-error'>
     <text class='tip-error-text'>手机号错误</text>

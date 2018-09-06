@@ -1,7 +1,7 @@
 @import "../common/index.wxss";
 page,.page{
   background-color:#ffd744;
-  background-image: url("https://www.chengxuyuantoutiao.com/a/gameresultbg.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/gameresultbg.png");
   background-repeat: no-repeat;
   background-position: bottom center;
   background-size:100%;
@@ -35,16 +35,16 @@ page,.page{
   background-repeat: no-repeat;
 }
 .scores_icon_excelent{
-  background-image: url("https://www.chengxuyuantoutiao.com/a/exelent.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/exelent.png");
 }
 .scores_icon_good{
-  background-image: url("https://www.chengxuyuantoutiao.com/a/good.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/good.png");
 }
 .scores_icon_notbad{
-  background-image: url("https://www.chengxuyuantoutiao.com/a/notbad.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/notbad.png");
 }
 .scores_icon_bad{
-  background-image: url("https://www.chengxuyuantoutiao.com/a/bad.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/bad.png");
 }
 .gameresult_head .center{
   width:92%;
@@ -98,13 +98,13 @@ page,.page{
 
 }
 .goodstatus{
-   background-image: url("https://www.chengxuyuantoutiao.com/a/centerbgexcellent.png");
+   background-image: url("http://img.tutukids.com/group1/M00/00/0A/centerbgexcellent.png");
 }
 .notbadstatus{
-   background-image: url("https://www.chengxuyuantoutiao.com/a/centerbggood.png");
+   background-image: url("http://img.tutukids.com/group1/M00/00/0A/centerbggood.png");
 }
 .badstatus{
-   background-image: url("https://www.chengxuyuantoutiao.com/a/centerbgbad.png");
+   background-image: url("http://img.tutukids.com/group1/M00/00/0A/centerbgbad.png");
 }
 .hiddencontent{
   display: none;
@@ -141,7 +141,7 @@ page,.page{
   height:99rpx;
   margin:0 auto;
   line-height:95rpx;
-  background-image: url("https://www.chengxuyuantoutiao.com/a/gameresultnext.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/gameresultnext.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -201,7 +201,7 @@ page,.page{
   height:80rpx;
   margin:0 auto;
   line-height:76rpx;
-  background-image: url("https://www.chengxuyuantoutiao.com/a/gameresultTryagin.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/gameresultTryagin.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -247,7 +247,7 @@ page,.page{
   opacity:0.5;
 }
 .savebtn{
-  background: url("https://www.chengxuyuantoutiao.com/a/beginbtn.png") no-repeat center center ;
+  background: url("http://img.tutukids.com/group1/M00/00/0A/beginbtn.png") no-repeat center center ;
   background-size:100%;
   height:74rpx;
   line-height:70rpx;

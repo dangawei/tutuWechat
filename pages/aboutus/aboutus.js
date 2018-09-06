@@ -87,5 +87,20 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  copy: function (e) {
+    console.log(e);
+    var self = this;
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.text,
+      success: function (res) {
+        // self.setData({copyTip:true}),
+        wx.showToast({
+          title: '复制成功',
+          icon: 'success',
+          duration: 1500
+        });
+      }
+    });
   }
 })

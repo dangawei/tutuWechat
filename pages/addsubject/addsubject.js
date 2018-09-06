@@ -116,7 +116,7 @@ Page({
           app.book.bookId = bookId
           app.book.id = bookId
           app.book.name = bookName
-          wx.redirectTo({
+          wx.reLaunch({
             url: '/pages/afterindex/afterindex'
           })
           // wx.navigateBack()

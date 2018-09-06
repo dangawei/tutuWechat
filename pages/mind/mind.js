@@ -15,16 +15,17 @@ Page({
   },
   exercise: function () {
     var that = this;
-    if (wx.getStorageSync("userInfo").textbookIdPractice && wx.getStorageSync("userInfo").textbookIdPractice != 0) {
-      wx.redirectTo({
-        url: '/pages/afterindex/afterindex'
-      })
-    } else {
-      // beforeindex
-      wx.redirectTo({
-        url: "/pages/beforeindex/beforeindex"
-      })
-    }
+    // if (wx.getStorageSync("userInfo").textbookIdPractice && wx.getStorageSync("userInfo").textbookIdPractice != 0) {
+    //   wx.redirectTo({
+    //     url: '/pages/afterindex/afterindex'
+    //   })
+    // } else {
+    //   // beforeindex
+    //   wx.redirectTo({
+    //     url: "/pages/beforeindex/beforeindex"
+    //   })
+    // }
+    wx.navigateBack();
   },
   mind: function () {
     var that = this;

@@ -73,12 +73,12 @@ Page({
               phoneError: false
             })
             if (res.data.data.textbookIdPractice && res.data.data.textbookIdPractice != 0) {
-              wx.redirectTo({
+              wx.reLaunch({
                 url: '/pages/afterindex/afterindex'
               })
             } else {
               // beforeindex
-              wx.redirectTo({
+              wx.reLaunch({
                 url: "/pages/beforeindex/beforeindex"
               })
             }
