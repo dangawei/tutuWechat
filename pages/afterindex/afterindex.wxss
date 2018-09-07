@@ -11,23 +11,27 @@ page,.page{
 .indexbg{
   width:100%;
   position: relative;
+  /* background-image:"http://img.tutukids.com/group1/M00/00/0A/indexbg.png"; */
 }
 .present100{
   width:100%;
 }
 .indextitle{
-  position: absolute;
+  /* position: absolute;
   top:26%;
   height:44px;
   margin-top:-22px;
   width:100%;
-  float:left;
-  line-height:44px;
+  float:left; */
+  line-height:36px;
 }
 .indextitle_border{
   padding:0 4%;
   width:92%;
-  float:left;
+}
+.indextitle_border::after{
+  content: '.';
+  visibility: hidden;
 }
 .title_left{
   
@@ -53,7 +57,7 @@ page,.page{
    width:92%;
    position: relative;
    left:4%;
-   top:-210rpx;
+   /* top:-210rpx; */
    height:423rpx;
    box-shadow:1px 2px 10px rgba(0,0,0,.2)
    
@@ -89,7 +93,7 @@ page,.page{
   height:74rpx;
   margin:0 auto;
   line-height:70rpx;
-  background-image: url("https://www.chengxuyuantoutiao.com/a/indexbtnbg.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/indexbtnbg.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -131,12 +135,7 @@ page,.page{
   color:#fd9c22;
   border-radius:50px;
 }
-/*单元列表*/
-.unitlist{
-  position: relative;
-  top:-180rpx;
-  bottom:50px;
-}
+
 .unitlistborder{
   display: flex;
   justify-content: space-between;
@@ -214,10 +213,30 @@ margin:40rpx auto;
   font-size:30rpx;
   color:#333;
 }
+/*单元列表*/
+.unitlist{
+  /* position: relative; */
+  /* top:-180rpx; */
+  /* bottom:50px; */
+  position: absolute;
+  width: 100%;
+  top:330px;
+  bottom:50px;
+  /* margin-top: 20px; */
+}
 swiper{
   height:180px;
 }
 .scroll-height{
-  height: 300px;
-  margin-bottom:50px;
+  height: 100%;
+}
+.pages::after{
+  content: ".";
+  visibility: hidden;
+}
+.pages{
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/indexbg.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }

@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="pages">
   <!--头部背景及标题 begin -->
-  <image src="https://www.chengxuyuantoutiao.com/a/indexbg.png" class="present100 indexbg" mode="widthFix">
+  <view class="present100 indexbg" mode="widthFix">
     <view class="indextitle">
       <view class="indextitle_border">
         <view class="title_left">
@@ -14,7 +14,7 @@
         </view>
       </view>
     </view>
-  </image>
+  </view>
   <!--头部背景及标题 end -->
   <!-- 头部主内容 begin  -->
   <view class="topborder">

@@ -1,13 +1,16 @@
 @import "../common/index.wxss";
 page,.page{
   background-color:#f5ede2;
-  background-image: url("https://www.chengxuyuantoutiao.com/a/bj_gk.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/bj_gk.png");
   background-repeat: no-repeat;
   background-position: bottom center;
   background-size:100%;
   width:100%;
   height:100%;
   overflow: hidden;
+}
+.pages{
+  height:100%;
 }
 .img{
   width:100%;

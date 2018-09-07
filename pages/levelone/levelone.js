@@ -126,7 +126,6 @@ Page({
         textNumber: all_img.length
       })
       // 默认进来放一次音乐
-      console.log(that.data.currentData.sentenceAudio)
       innerAudioContext.src = that.data.currentData.sentenceAudio;
       innerAudioContext.play();
     }
@@ -199,6 +198,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
+    var index = e.pass
+    var data = wx.getStorageSync("part")
+    wx.setStorageSync("title", data[index].title)
     var that = this
     that.setData({
       customPassId: e.customPassId,

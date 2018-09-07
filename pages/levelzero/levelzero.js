@@ -171,7 +171,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-    console.log(e);
+    var index = e.pass
+    var data = wx.getStorageSync("part")
+    wx.setStorageSync("title", data[index].title)
     var that = this
     that.setData({
       customPassId: e.customPassId,
@@ -243,8 +245,7 @@ jiazai:function (xuhao)
   handletouchend: function (event) {
     var that = this
     this.data.currentGesture = 0;
-    if(that.data.text == 'zuo')
-    {
+    if(that.data.text == 'zuo'){
     //向左滑动
       that.xiayiye()
     }else if(that.data.text == 'you'){

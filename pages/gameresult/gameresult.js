@@ -64,8 +64,7 @@ Page({
       type:app.card.type,
       pass:options.pass
     })
-
-    var title = "0" + that.data.xuhao +" "+ app.card.name
+    var title = "0" + (parseInt(that.data.pass)+1) + " " + wx.getStorageSync("title")
 
     wx.setNavigationBarTitle({
       title: title
@@ -271,7 +270,6 @@ Page({
          // 所有不符合条件执行代码
           app.tanchuang('哎呀，出错了！')
       }
-      console.log(url);
       //将下一题的连接存入app中  在用户通关后 点击下一关会取出
       app.next_pass.url = url
       app.again.url = url

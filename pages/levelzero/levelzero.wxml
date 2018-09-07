@@ -25,7 +25,7 @@
             </view>
           </view>
       </view>
-      
+      <image src="http://img.tutukids.com/group1/M00/00/source/I'm.png" mode="widthFix" style="height: 180px;"></image>
       <!-- <view class='level_stationone_{{all_img.length}}img {{all_img.length >3 ?"manyImgborder_imagefour":""}} {{all_img.length >2 ?"manyImgborder_image":""}} '>
         <view class="{{all_img.length == 1 ?'imgborder_1':''}}{{all_img.length == 2 ?'imgborder_2':''}}{{all_img.length > 2 ?'imgborder_many':''}}" wx:for="{{all_img}}" wx:key="key" data-index='{{index}}' data-id="{{item.id}}" data-all='0' bindtap='singelClick'>
           <image src="{{item.img_path}}" mode="widthFix" ></image>
