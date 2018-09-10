@@ -220,7 +220,7 @@ margin:40rpx auto;
   /* bottom:50px; */
   position: absolute;
   width: 100%;
-  top:284px;
+  top:568rpx;
   bottom:42px;
   /* margin-top: 20px; */
 }

@@ -356,6 +356,7 @@ Page({
       title: wx.getStorageSync("userInfo"). realName+ '  在图图英语闯关获得了' + that.data.socre+'分！你敢和我挑战吗？',
       desc: '转发描述',
       path: '/pages/login/login',
+      imageUrl:'../images/海报.png',
       success: function (res) {
         // 转发成功
       },
