@@ -143,6 +143,7 @@ Page({
     })
   },
   login(option) {
+    var _this=this
     wx.login({
       success: res => {
         console.log(res);
