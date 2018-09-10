@@ -220,8 +220,8 @@ margin:40rpx auto;
   /* bottom:50px; */
   position: absolute;
   width: 100%;
-  top:330px;
-  bottom:50px;
+  top:284px;
+  bottom:42px;
   /* margin-top: 20px; */
 }
 swiper{
@@ -229,6 +229,7 @@ swiper{
 }
 .scroll-height{
   height: 100%;
+  padding-top: 5px;
 }
 .pages::after{
   content: ".";
