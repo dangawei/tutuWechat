@@ -69,7 +69,7 @@ Page({
     wx.setNavigationBarTitle({
       title: title
     })
-
+    console.log(options.fenshu);
     if (parseInt(options.fenshu) == 100)
     {
       var t = 0
@@ -87,7 +87,7 @@ Page({
     this.setData({
       types:t
     })
-
+    console.log(this.data.musicsrc[this.data.types])
     innerAudioContext.src = this.data.musicsrc[this.data.types]
     innerAudioContext.play();
     var that = this

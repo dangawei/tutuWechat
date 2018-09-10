@@ -178,6 +178,7 @@ padding-bottom:20rpx;
 .manyImgborder_imagefour{
   width:92%;
   margin:0 auto;
+  text-align:center;
 }
 .manyImgborder_imagefour image{
   margin-bottom:7rpx;

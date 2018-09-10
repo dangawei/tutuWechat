@@ -117,9 +117,11 @@ Page({
       var data = []
       // var xia = 0
       for (let i = 0; i < all_img.length; i++) {
+        all_img[i].text = all_img[i].text.replace(/[\u4e00-\u9fa5]/g,'')
         all_img[i].eff = 0
         // xia++;
       }
+      // console.log(all_img)
       data = data.sort(app.randomsort)
       that.setData({
         all_img: all_img,

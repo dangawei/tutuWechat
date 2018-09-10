@@ -301,13 +301,13 @@ Page({
       this.setData({
         errornum: 0,
       })
-      // innerAudioContext.src = that.data.video;
+      innerAudioContext.src = that.data.video;
 
-      // innerAudioContext.play();
+      innerAudioContext.play();
       if (parseInt(that.data.xuhao) == this.data.number) {
         setTimeout(function () {
           that.wancheng()
-        }, 1000)
+        }, 2000)
       } else {
         setTimeout(function () {
           //下一题
