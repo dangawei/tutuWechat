@@ -29,6 +29,7 @@
         <view class='level_stationone_{{all_img.length}}img {{all_img.length >3 ?"manyImgborder_imagefour":""}} {{all_img.length >2 ?"manyImgborder_image":""}} '>
             <view class="{{all_img.length == 1 ?'imgborder_1':''}}{{all_img.length == 2 ?'imgborder_2':''}}{{all_img.length > 2 ?'imgborder_many':''}}" wx:for="{{all_img}}" wx:key="key" data-index='{{index}}' data-id="{{item.id}}" data-all='0'>
                 <image src="{{item.icon}}" mode="widthFix" data-audio="{{item.audio}}" data-index="{{index}}" bindtap='singelClick'></image>
+
             </view>
         </view>
     </view>
@@ -38,13 +39,17 @@
                 <view wx:for="{{all_img}}" wx:key="key" data-index='{{index}}' class='text-title'>
                   <text  wx:if="{{textNumber != 1}}" class='{{index ==indexImg?"activegreen":""}}'>{{item.text}}<text wx:if="{{index < textNumber-1}}" decode="{{true}}">&nbsp;&nbsp;</text></text>
                   <text  wx:if="{{textNumber == 1}}" class='{{index ==indexImg?"activegreen":""}}'>{{item.text}}</text>
+                  <view class="soundimage_border img-box" wx:if="{{index==(all_img.length-1)}}">
+                    <image src="http://img.tutukids.com/group1/M00/00/0A/listen_03.png" data-all="1" bindtap='singelClickAll'>
+                    </image>
+                  </view>
                 </view>
+                <!-- <view class="soundimage_border img-box">
+                  <image src="http://img.tutukids.com/group1/M00/00/0A/listen_03.png" data-all="1" bindtap='singelClickAll'>
+                  </image>
+                </view> -->
             </view>
-            <view class="soundimage_border img-box">
-                <image src="http://img.tutukids.com/group1/M00/00/0A/listen_03.png" data-all="1" bindtap='singelClickAll'>
-                </image>
-                <view class="{{clicksound==1?'pulsesmall_single':'hiddencontent'}}"></view>
-            </view>
+            {{}}
       </view>
     </view>
   </view>

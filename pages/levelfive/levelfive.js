@@ -307,12 +307,12 @@ Page({
       if (parseInt(that.data.xuhao) == this.data.number) {
         setTimeout(function () {
           that.wancheng()
-        }, 2000)
+        }, 2800)
       } else {
         setTimeout(function () {
           //下一题
           that.jiazai(parseInt(that.data.xuhao) + 1)
-        }, 1000)
+        }, 2800)
       }
 
     }

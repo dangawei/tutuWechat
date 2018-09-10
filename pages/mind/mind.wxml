@@ -57,19 +57,19 @@
 
     <!--底部导航 begin  -->
   <view class="nav_border">
-    <view  open-type="navigate" class="nav_border_common" hover-class='none'>
+    <navigator  open-type="reLaunch" url="/pages/afterindex/afterindex" class="nav_border_common" hover-class='none'>
         <view class="{{exercise==0?'active':'default'}}" bindtap="exercise">
          <view class="nav_border_common_img"></view>
          <view class="nav_border_common_text">练习</view>
         </view>
-    </view>
-    <navigator  open-type="navigate"  url="/pages/mind/mind" class="nav_border_common" hover-class='none'>
+    </navigator>
+    <view  open-type="reLaunch" class="nav_border_common" hover-class='none'>
         <view class="{{mind==0?'active':'default'}}">
          <view class="nav_border_common_img2"></view>
          <view class="nav_border_common_text">我的</view>
         </view>
         
-    </navigator>
+    </view>
   </view>
   <!--底部导航 end  -->
 </view>

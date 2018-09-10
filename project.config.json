@@ -29,11 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-<<<<<<< HEAD
-			"current": 13,
-=======
-			"current": 0,
->>>>>>> 299ca9c6f4c26560e68cc8c7a2e3df56248717e8
+			"current": 17,
 			"list": [
 				{
 					"id": 0,
@@ -87,7 +83,7 @@
 					"id": 8,
 					"name": "levelthree",
 					"pathName": "pages/levelthree/levelthree",
-					"query": "bookId=4&unitId=138&partId=559&customPassId=2492&pass=3"
+					"query": "bookId=7&unitId=130&partId=512&customPassId=2212&pass=3"
 				},
 				{
 					"id": 9,
@@ -138,10 +134,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 17,
 					"name": "gameresult",
 					"pathName": "pages/gameresult/gameresult",
-					"query": "bookId=5&unitId=90&partId=307&customPassId=1867&pass=0&fenshu=100"
+					"query": "bookId=5&unitId=90&partId=307&customPassId=2209&pass=0&fenshu=100"
 				}
 			]
 		}

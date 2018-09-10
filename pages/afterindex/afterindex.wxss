@@ -220,13 +220,8 @@ margin:40rpx auto;
   /* bottom:50px; */
   position: absolute;
   width: 100%;
-<<<<<<< HEAD
   top:284px;
   bottom:42px;
-=======
-  top:576rpx;
-  bottom:50px;
->>>>>>> 299ca9c6f4c26560e68cc8c7a2e3df56248717e8
   /* margin-top: 20px; */
 }
 swiper{

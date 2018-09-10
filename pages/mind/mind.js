@@ -13,19 +13,26 @@ Page({
     mind: 0,
 
   },
+  // exercise: function () {
+  //   var that = this;
+  //   // if (wx.getStorageSync("userInfo").textbookIdPractice && wx.getStorageSync("userInfo").textbookIdPractice != 0) {
+  //   //   wx.redirectTo({
+  //   //     url: '/pages/afterindex/afterindex'
+  //   //   })
+  //   // } else {
+  //   //   // beforeindex
+  //   //   wx.redirectTo({
+  //   //     url: "/pages/beforeindex/beforeindex"
+  //   //   })
+  //   // }
+  //   wx.navigateBack();
+  // },
   exercise: function () {
     var that = this;
-    // if (wx.getStorageSync("userInfo").textbookIdPractice && wx.getStorageSync("userInfo").textbookIdPractice != 0) {
-    //   wx.redirectTo({
-    //     url: '/pages/afterindex/afterindex'
-    //   })
-    // } else {
-    //   // beforeindex
-    //   wx.redirectTo({
-    //     url: "/pages/beforeindex/beforeindex"
-    //   })
-    // }
-    wx.navigateBack();
+    that.setData({
+      exercise: 0,
+      mind: 1,
+    })
   },
   mind: function () {
     var that = this;

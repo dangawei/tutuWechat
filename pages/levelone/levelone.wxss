@@ -61,14 +61,9 @@ page,.page{
   line-height:80rpx;
 }
 .level_stationone_onecontain image{
-  width:60rpx;
-  height:60rpx;
-  position: relative;
- 
+  width:48rpx;
+  height:48rpx;
   margin-left:20rpx;
-  z-index:99;
-  margin-top:10rpx;
-
 }
 .level_stationone_onecontain{
   margin:0 30rpx;

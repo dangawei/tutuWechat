@@ -159,11 +159,11 @@ margin-top:15rpx;
    right:4%;
 
 }
-.manyImgborder_image{
+/* .manyImgborder_image{
   margin-top:0rpx;
   padding-top:20rpx;
 padding-bottom:20rpx;
-}
+} */
 .manyImgborder_image image{
   width:125rpx;
   height:125rpx;
@@ -285,4 +285,7 @@ margin-top:80rpx;
   width:102rpx;
   height:102rpx;
 
+}
+.scroll-height{
+  height: 479rpx;
 }

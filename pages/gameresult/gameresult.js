@@ -287,10 +287,6 @@ Page({
       })
     }
    
-
-
-   
-   
   },
   //跳转页面
   tiaozhuan:function()
@@ -302,7 +298,6 @@ Page({
 // 完成
   wancheng:function()
   {
-    
     wx.redirectTo({    
       url: "/pages/partlist/partlist?id="+app.part.id+"&name="+app.part.name
     })
@@ -350,7 +345,7 @@ Page({
 
   },
   ttt: function () {
- 
+    console.log(111);
   },
   /**
    * 用户点击右上角分享
@@ -360,7 +355,7 @@ Page({
     return {
       title: wx.getStorageSync("userInfo"). realName+ '  在图图英语闯关获得了' + that.data.socre+'分！你敢和我挑战吗？',
       desc: '转发描述',
-      path: '/pages/index/index',
+      path: '/pages/login/login',
       success: function (res) {
         // 转发成功
       },
@@ -379,7 +374,6 @@ Page({
   },
   //点击保存到相册
   saveImgToPhotosAlbumTap: function () {
-    console.log(222);
     console.log(this.data.imagesrc)
     var that = this;
     wx.saveImageToPhotosAlbum({
