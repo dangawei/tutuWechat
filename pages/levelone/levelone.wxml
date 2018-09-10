@@ -36,7 +36,7 @@
         <view class="left">
             <view class='text-title-box'>
                 <view wx:for="{{all_img}}" wx:key="key" data-index='{{index}}' class='text-title'>
-                  <text  wx:if="{{textNumber != 1}}" class='{{index ==indexImg?"activegreen":""}}'>{{item.text}}<text wx:if="{{index < textNumber-1}}">/</text></text>
+                  <text  wx:if="{{textNumber != 1}}" class='{{index ==indexImg?"activegreen":""}}'>{{item.text}}<text wx:if="{{index < textNumber-1}}" decode="{{true}}">&nbsp;&nbsp;</text></text>
                   <text  wx:if="{{textNumber == 1}}" class='{{index ==indexImg?"activegreen":""}}'>{{item.text}}</text>
                 </view>
             </view>

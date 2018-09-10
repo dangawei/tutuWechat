@@ -30,10 +30,12 @@
           <view class='detailBox'>
 
             <view class='proTitle'>{{item.title }}</view>
-            <view class='proCenterImg'>
-              <image src="{{item.card_cover_url}}" />
+            <view class='proCenterImg' wx:if="{{item.sort==6}}">
+              <image src="http://img.tutukids.com/group1/M00/00/0A/图.png"/>
             </view>
-
+            <view class='proCenterImg' wx:else>
+              <image src="http://img.tutukids.com/group1/M00/00/0A/音.png"/>
+            </view>
             <!-- 判断得分不等于null -->
             <view wx:if="{{item.score  != null}}">
               <view wx:if="{{item.is_block == 1}}">

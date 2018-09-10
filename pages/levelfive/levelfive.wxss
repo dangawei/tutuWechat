@@ -159,9 +159,7 @@ margin-top:68rpx;
   margin-right:0px;
 }
 .manyImgborder_imagefour{
-  text-align: left;
-  
-
+  text-align: center;
 }
 .manyImgborder_imagefour image{
   margin-bottom:7rpx;
