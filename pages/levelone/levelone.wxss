@@ -9,6 +9,9 @@ page,.page{
   height:100%;
   overflow: hidden;
 }
+.pages{
+  height:100%;
+}
 .img{
   width:100%;
 }
@@ -303,6 +306,7 @@ top:50rpx;
 
 .text-title-box{
   text-align: center;
+  display:inline-block;
 }
 .text-title-box::after{
   content: '.';

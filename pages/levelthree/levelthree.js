@@ -124,7 +124,6 @@ Page({
       var correctDate = this.data.all[xuhao - 1].sourceIds
       var correctDates = correctDate.replace(/[\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\,|\<|\.|\>|\?]/g,"")
       var arrayYes = correctDates.split("/")
-      console.log(arrayYes)
       that.setData({
         currentData: this.data.all[xuhao - 1],
         // //正确的图片
@@ -170,11 +169,10 @@ Page({
           }
         }
       }
-      console.log(arrayYes)
-      var arrayCopy = arrayYes.concat();
+      var arrayCopy = all_img;
+      // var arrayCopy = arrayYes.concat();
       // console.log([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }].sort(app.randomsort))
       var data = arrayCopy.sort(app.randomsort)
-      console.log(data);
       that.setData({
         dataArr: arrayYes,
         correctyes: arrayYes,
@@ -194,6 +192,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
+    var index = e.pass
+    var data = wx.getStorageSync("part")
+    wx.setStorageSync("title", data[index].title)
     var that = this
     // 异步请求数据
     //给当前关卡数 和 总关卡数  赋值
@@ -224,7 +225,6 @@ Page({
     innerAudioContext.play();
   },
   selectClick: function (e) {
-    console.log(e)
     var that = this
     if (e.currentTarget.dataset.eff == 1) {
       return;

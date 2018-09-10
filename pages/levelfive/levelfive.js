@@ -170,7 +170,6 @@ Page({
           }
         }
       }
-      console.log(arrayYes)
       var arrayCopy = arrayYes.concat();
       // console.log([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }].sort(app.randomsort))
       var data = arrayCopy.sort(app.randomsort)
@@ -190,6 +189,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
+    var index = e.pass
+    var data = wx.getStorageSync("part")
+    wx.setStorageSync("title", data[index].title)
     var that = this
     // 异步请求数据
     //给当前关卡数 和 总关卡数  赋值

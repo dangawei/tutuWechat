@@ -179,7 +179,7 @@ Page({
 
               partlist[i].xia = xia
 
-              // partlist[i].card_cover_url = partlist[i].card_cover_url.replace(/'/, "%27")
+              partlist[i].card_cover_url = partlist[i].icon
               // is_block 1关卡解锁 0没解锁
             if (partlist[i].score==null){
               if(i==0){

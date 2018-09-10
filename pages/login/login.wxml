@@ -10,6 +10,7 @@
           <view class="weui-cell__bd">
               <input type='number' class="weui-input pl15" placeholder="请输入手机号" bindinput="bindKeyInput" value='{{phoneValue}}'/>
           </view>
+          
           <view class="weui-cell__ft mr15">
             <image src='http://img.tutukids.com/group1/M00/00/0A/组 21@2x.png' style="width: 20px; height: 20px;" bindtap='cancelPhone'></image>
           </view>

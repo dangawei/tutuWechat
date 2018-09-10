@@ -26,7 +26,7 @@
   <!--输入部分（注：选择是输入的两倍）  -->
   <view  class="text-center levefour_top ">
     <text class="Unfilled" style="opacity:0"></text>
-    <text wx:for="{{exercises.rightlist}}" class='Unfilled  {{selectindex==index?"greenfont_linebili":""}} {{errorselectindex==index?"redfont_line":""}} {{exercises.selectlist[index]=="__"?"":"normaltext"}} ' >{{exercises.selectlist[index]}}</text>
+    <text wx:for="{{exercises.rightlist}}" wx:key="key" class='Unfilled  {{selectindex==index?"greenfont_linebili":""}} {{errorselectindex==index?"redfont_line":""}} {{exercises.selectlist[index]=="__"?"":"normaltext"}} ' >{{exercises.selectlist[index]}}</text>
 
     <!-- <text class="word_circle ">.</text>
     <text class="Unfilled ">___</text> -->
@@ -40,7 +40,7 @@
     
     <!--10图以及10图一下的时候  -->
     <view  class="manytextborder_text  manytextborder_text{{exercises.rightlist.length}}type   {{len>7?'manytextborder_textfour':''}} manytextborder_textfour text-left">
-      <text wx:for="{{arr}}" data-id='{{item.id}}' data-text='{{item.text}}' data-eff="{{item.eff}}" class='{{item.eff==1?"grayborder":""}}'  bindtap='selectClick'>{{item.text}}</text>
+      <text wx:for="{{arr}}" wx:key="key" data-id='{{item.id}}' data-text='{{item.text}}' data-eff="{{item.eff}}" class='{{item.eff==1?"grayborder":""}}'  bindtap='selectClick'>{{item.text}}</text>
     
     </view>
 

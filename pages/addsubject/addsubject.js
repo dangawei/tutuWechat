@@ -21,9 +21,10 @@ Page({
     book_id:'',//练习教材id
   },
   getBooks: function (e) {
-    if (e.currentTarget){
+    if (e.currentTarget && e.currentTarget != undefined){
       let e = e.currentTarget.dataset
     }else{
+      
       let e=e;
     }
      

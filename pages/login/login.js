@@ -146,7 +146,6 @@ Page({
     var _this=this
     wx.login({
       success: res => {
-        console.log(res);
         if (res.code) {
           wx.request({
             url: http_host +'user/login/mini',
