@@ -307,7 +307,7 @@ top:50rpx;
 .text-title-box{
   /* text-align: center; */
   display:inline-block;
-  float: left;
+  /* float: left; */
   max-width:86%;
 }
 .text-title-box::after{
@@ -319,7 +319,7 @@ top:50rpx;
 }
 .img-box{
   display:inline-block;
-  float: left;
+  /* float: left; */
 }
 img{
   display: inline-block;

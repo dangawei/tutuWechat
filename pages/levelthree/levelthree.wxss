@@ -16,6 +16,7 @@ page,.page{
 .levelthree_select_three{
   display: flex;
   justify-content: center;
+  margin-bottom: 8px;
   margin-top:68rpx;
 }
 .selectthree_border{
@@ -168,9 +169,6 @@ padding-bottom:20rpx;
   width:125rpx;
   height:125rpx;
   padding-top:10rpx;
-
-  
-
 }
 .manyImgborder_image image:last-child{
   margin-right:0px;
