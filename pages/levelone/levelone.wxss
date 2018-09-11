@@ -74,7 +74,9 @@ page,.page{
   
 }
 .level_stationone_onecontain .left{
-  text-align:left;
+  text-align:center;
+  width:100%;
+
 }
 .level_stationone_onecontain .left::after{
   content:".";
@@ -305,7 +307,8 @@ top:50rpx;
 .text-title-box{
   /* text-align: center; */
   display:inline-block;
-
+  float: left;
+  max-width:86%;
 }
 .text-title-box::after{
   content: '.';
@@ -316,6 +319,7 @@ top:50rpx;
 }
 .img-box{
   display:inline-block;
+  float: left;
 }
 img{
   display: inline-block;
