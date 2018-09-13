@@ -18,12 +18,12 @@ Component({
     // 弹窗取消按钮文字
     btn_no: {
       type: String,
-      value: '取消'
+      value: 'NO'
     },
     // 弹窗确认按钮文字
     btn_ok: {
       type: String,
-      value: '确定'
+      value: 'YES'
     }
   },
 
@@ -31,7 +31,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    flag: false,
+    flag: true,
   },
 
   /**
@@ -41,13 +41,13 @@ Component({
     //隐藏弹框
     hidePopup: function () {
       this.setData({
-        flag: !this.data.flag
+        flag: true
       })
     },
     //展示弹框
     showPopup() {
       this.setData({
-        flag: !this.data.flag
+        flag: false
       })
     },
     /*
@@ -61,6 +61,9 @@ Component({
     _success() {
       //触发成功回调
       this.triggerEvent("success");
+      wx.reLaunch({
+        url: "/pages/login/login"
+      })
     }
   }
 })

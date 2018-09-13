@@ -123,8 +123,8 @@ Page({
   },
   // 点击进入partlist
   enterPartlist(e){
-    if (e.currentTarget.dataset.canUnLock==2){
-      console.log(33333);
+    console.log()
+    if (e.currentTarget.dataset.canunlock==2){
       this.popup.showPopup();
     }else{
       wx.setStorageSync("unitId", this.data.unitId)
@@ -141,13 +141,11 @@ Page({
   },
   //取消事件
   _error() {
-    console.log('你点击了取消');
     this.popup.hidePopup();
   },
   //确认事件
   _success() {
-    console.log('你点击了确定');
-    this.popup.hidePopup();
+    this.popup.showPopup();
   },
   /**
   * 生命周期函数--监听页面初次渲染完成

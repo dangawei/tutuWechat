@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "三年级上册",
   "usingComponents": {
-    "popup": "../components/modal/modal"
+    "modal": "../components/modal/modal"
   }
 }
