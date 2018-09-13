@@ -1,4 +1,9 @@
 
+const util = require("../../utils/config.js");
+
+const app = getApp()
+const http_host = util.http_host;
+const img_url = util.img_url;
 Page({
 
   /**
@@ -86,7 +91,19 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    var that = this
+    return {
+      title: wx.getStorageSync("userInfo").realName + '  邀请你来闯关啦~图图小学英语课后趣味练习！',
+      desc: '转发描述',
+      path: '/pages/login/login',
+      imageUrl: 'http://img.tutukids.com/group1/M00/00/0A/转发海报.png',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   },
   copy: function (e) {
     console.log(e);

@@ -29,31 +29,31 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "gameresult",
 					"pathName": "pages/gameresult/gameresult",
-					"query": "bookId=7&unitId=130&partId=512&customPassId=2211&pass=2&fenshu=20"
+					"query": "bookId=7&unitId=130&partId=512&customPassId=2209&pass=0&fenshu=100"
 				},
 				{
 					"id": 1,
 					"name": "slidemenu",
 					"pathName": "pages/slidemenu/slidemenu",
-					"query": "bookId=5&bookName=人教PEP四年级上&unitId=&unitName="
+					"query": "bookId=7&bookName=人教版PEP六年级上&unitId=&unitName="
 				},
 				{
 					"id": 2,
 					"name": "levelzero",
 					"pathName": "pages/levelzero/levelzero",
-					"query": "bookId=5&unitId=90&partId=307&customPassId=2489&pass=0"
+					"query": "bookId=7&unitId=130&partId=512&customPassId=2209&pass=0"
 				},
 				{
 					"id": 3,
 					"name": "partlist",
 					"pathName": "pages/partlist/partlist",
-					"query": "bookId=5&bookName=人教版PEP四年级上&unitId=90&unitName=Unit 1&partId=307&partName=Part A"
+					"query": "bookId=7&bookName=人教版PEP六年级上&unitId=130&unitName=Unit 1&partId=513&partName=Part A"
 				},
 				{
 					"id": 4,

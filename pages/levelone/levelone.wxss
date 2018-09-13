@@ -63,7 +63,6 @@ page,.page{
 .level_stationone_onecontain image{
   width:48rpx;
   height:48rpx;
-  margin-left:20rpx;
 }
 .level_stationone_onecontain{
   margin:0 30rpx;
@@ -75,8 +74,9 @@ page,.page{
 }
 .level_stationone_onecontain .left{
   text-align:center;
-  width:100%;
-
+  /* width:100%;
+  position: relative; */
+  flex: 8;
 }
 .level_stationone_onecontain .left::after{
   content:".";
@@ -117,9 +117,6 @@ page,.page{
  
   width:105rpx;
   height:105rpx;
- 
-  
- 
 }
 .level_stationone_2img image:nth-child(1){
   /* margin-right:6%; */
@@ -305,22 +302,27 @@ top:50rpx;
 }
 
 .text-title-box{
-  /* text-align: center; */
+  text-align: center;
   display:inline-block;
-  float: left;
-  max-width:86%;
+  /* float: left; */
+  max-width:100%;
 }
 .text-title-box::after{
   content: '.';
   visibility: hidden;
 }
 .text-title{
-  float: left;
+  /* float: left; */
+  display: inline-block;
 }
 .img-box{
   display:inline-block;
-  float: left;
+  /* height: 100%; */
+  /* float: left; */
+  /* flex: 1; */
+  margin-left: 10px;
+  text-align: left;
 }
 img{
-  display: inline-block;
+  vertical-align: middle;
 }

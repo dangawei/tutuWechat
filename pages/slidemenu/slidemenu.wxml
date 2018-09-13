@@ -7,11 +7,15 @@
       <view class='tab_r'>
         <block wx:for="{{partsVOS}}" wx:key="key" wx:for-item="parts">
           <view class="nav_right_items">
-            <view hover-class='none' bindtap='enterPartlist' data-partid="{{parts.id}}" data-partname="{{parts.title}}" data-passpass="{{parts.passPass}}">
+            <view hover-class='none' bindtap='enterPartlist' data-partid="{{parts.id}}" data-partname="{{parts.title}}" data-passpass="{{parts.passPass}}" data-canUnLock="{{parts.canUnLock}}">
               <!-- <image src="{{parts.icon || '../images/spellcheck.png'}}"> -->
-              <image src="{{image}}">
+              <image src="{{image}}" wx-if="{{parts.canUnLock==1}}">
                 <text class="sectionpartTitle">{{parts.title}}</text>
-                <text class="sectionpart">{{parts.passPass}}/{{parts.totalPass}}</text>
+                <text class="sectionpart ml-text">{{parts.passPass}}/{{parts.totalPass}}</text>
+              </image>
+              <image src="../images/0@2x.png" wx-if="{{parts.canUnLock==2}}">
+                <text class="sectionpartTitle">{{parts.title}}</text>
+                <text class="sectionpart shadow-text">{{parts.passPass}}/{{parts.totalPass}}</text>
               </image>
               <text>{{parts.tips}}</text>
             </view>
@@ -30,7 +34,7 @@
       <!--内容开始 -->
       <view class="text-center allerweima">
         <view>
-          <image class="gouxuanicon" src="https://www.chengxuyuantoutiao.com/a/loading.gif"></image>
+          <image class="gouxuanicon" src="http://img.tutukids.com/group1/M00/00/0A/loading.gif"></image>
         </view>
        
 
@@ -38,4 +42,12 @@
       </view>
     </view>
   </view>
+  <!-- modal弹窗 -->
+  <modal id='popup' 
+      title='小组件' 
+      content='学会了吗' 
+      btn_no='没有' 
+      btn_ok='学会了'
+      bind:error="_error"  
+      bind:success="_success"></modal>
 </view>

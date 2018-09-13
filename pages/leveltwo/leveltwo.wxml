@@ -11,7 +11,7 @@
       <view class="right">{{score}}分</view>
     </view>
     <view class="soundBorder text-center">
-      <image class="sound" src="https://www.chengxuyuantoutiao.com/a/listen.png" bindtap='singelClickAll' />
+      <image class="sound" src="http://img.tutukids.com/group1/M00/00/0A/listen.png" bindtap='singelClickAll' />
       <view class="  {{clicksound==1?'pulse':'hiddencontent'}}" ></view>
       <!-- <view>{{sourceIds}}</view> -->
     </view>
@@ -19,9 +19,7 @@
     <view class="level_stationone_twoimg_four text-center">
     
       <view wx:for="{{data}}" wx:key="key" class=" {{item.red == 1?'redborder':''}}  twoimg_commonborder_four {{item.green == 1?'greenborder':''}}  ">
-        <image src="{{item.icon}}"  data-xia="{{index}}" mode="widthFix" data-id="{{item.id}}" bindtap='singelClick'><image class="gouimg" wx:if="{{item.green == 1}}" src="../images/gou.png"></image></image>
-          
-       
+        <image src="{{item.icon}}"  data-xia="{{index}}" mode="widthFix" data-id="{{item.id}}" bindtap='singelClick'><image class="gouimg" wx:if="{{item.green == 1}}" src="http://img.tutukids.com/group1/M00/00/0A/gou.png"></image></image>
       </view>
     </view>
     <!--底部下一题  -->

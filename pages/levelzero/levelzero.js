@@ -392,11 +392,12 @@ jiazai:function (xuhao)
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    var that = this
     return {
-      title: app.globalData.userInfo.nickName + '  邀请你来闯关啦~图图小学英语课后趣味练习！',
+      title: wx.getStorageSync("userInfo").realName + '  邀请你来闯关啦~图图小学英语课后趣味练习！',
       desc: '转发描述',
-      path: '/pages/index/index',
-      imageUrl: "http://tutu-resource-base.test.upcdn.net/a/%E8%BD%AC%E5%8F%91%E6%B5%B7%E6%8A%A5.png",
+      path: '/pages/login/login',
+      imageUrl: 'http://img.tutukids.com/group1/M00/00/0A/转发海报.png',
       success: function (res) {
         // 转发成功
       },

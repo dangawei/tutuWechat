@@ -17,6 +17,7 @@ page,.page{
   display: flex;
   justify-content: center;
   margin-top:68rpx;
+  margin-bottom: 15rpx;
 }
 .selectthree_border{
 width:102rpx;
@@ -283,6 +284,6 @@ margin-top:80rpx;
 .scroll-height{
   height: 479rpx;
 }
-.levelthree_select_three,.levelthree_select_many{
+/* .levelthree_select_three,.levelthree_select_many{
   box-shadow:3px 2px 3px #a08f8f;
-}
+} */

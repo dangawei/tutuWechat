@@ -14,9 +14,7 @@ Page({
     //part数组
     part_list: [],
     unit_list: [],
-    image: "https://www.chengxuyuantoutiao.com/a/part@2X.png",
-
-
+    image: "http://img.tutukids.com/group1/M00/00/0A/part@2X.png",
     curNav: 1,
     curIndex: 0
   },
@@ -125,18 +123,32 @@ Page({
   },
   // 点击进入partlist
   enterPartlist(e){
-    console.log(e);
-    wx.setStorageSync("unitId", this.data.unitId)
-    wx.setStorageSync("partId", e.currentTarget.dataset.partid)
-    wx.setStorageSync("unitName", this.data.unitName)
-    wx.setStorageSync("partName", e.currentTarget.dataset.partname)
-    // wx.setStorageSync("passPass", e.currentTarget.dataset.passpass)
-    console.log("/pages/partlist/partlist?bookId=" + this.data.bookId + "&bookName=" + this.data.bookName + "&unitId=" + this.data.unitId + "&unitName=" + this.data.unitName + "&partId=" + e.currentTarget.dataset.partid + "&partName=" + e.currentTarget.dataset.partname)
-    wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开6个页面，之后按钮就没有响应的）
-      url: "/pages/partlist/partlist?bookId=" + this.data.bookId + "&bookName=" + this.data.bookName + "&unitId=" + this.data.unitId + "&unitName=" + this.data.unitName + "&partId=" + e.currentTarget.dataset.partid + "&partName=" + e.currentTarget.dataset.partname 
-    })
+    if (e.currentTarget.dataset.canUnLock==2){
+      console.log(33333);
+      this.popup.showPopup();
+    }else{
+      wx.setStorageSync("unitId", this.data.unitId)
+      wx.setStorageSync("partId", e.currentTarget.dataset.partid)
+      wx.setStorageSync("unitName", this.data.unitName)
+      wx.setStorageSync("partName", e.currentTarget.dataset.partname)
+      // wx.setStorageSync("passPass", e.currentTarget.dataset.passpass)
+      console.log("/pages/partlist/partlist?bookId=" + this.data.bookId + "&bookName=" + this.data.bookName + "&unitId=" + this.data.unitId + "&unitName=" + this.data.unitName + "&partId=" + e.currentTarget.dataset.partid + "&partName=" + e.currentTarget.dataset.partname)
+      wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开6个页面，之后按钮就没有响应的）
+        url: "/pages/partlist/partlist?bookId=" + this.data.bookId + "&bookName=" + this.data.bookName + "&unitId=" + this.data.unitId + "&unitName=" + this.data.unitName + "&partId=" + e.currentTarget.dataset.partid + "&partName=" + e.currentTarget.dataset.partname
+      })
+    }
+    
   },
-
+  //取消事件
+  _error() {
+    console.log('你点击了取消');
+    this.popup.hidePopup();
+  },
+  //确认事件
+  _success() {
+    console.log('你点击了确定');
+    this.popup.hidePopup();
+  },
   /**
   * 生命周期函数--监听页面初次渲染完成
   */
@@ -145,6 +157,7 @@ Page({
       shuaxin: true,
       showDialogshare: false,
     })
+    this.popup = this.selectComponent("#popup");
   },
 
   /**
@@ -186,11 +199,12 @@ Page({
   * 用户点击右上角分享
   */
   onShareAppMessage: function () {
+    var that = this
     return {
-      title: app.globalData.userInfo.nickName + '  邀请你来闯关啦~图图小学英语课后趣味练习！',
+      title: wx.getStorageSync("userInfo").realName + '  邀请你来闯关啦~图图小学英语课后趣味练习！',
       desc: '转发描述',
-      path: '/pages/index/index',
-      imageUrl: "http://tutu-resource-base.test.upcdn.net/a/%E8%BD%AC%E5%8F%91%E6%B5%B7%E6%8A%A5.png",
+      path: '/pages/login/login',
+      imageUrl: 'http://img.tutukids.com/group1/M00/00/0A/转发海报.png',
       success: function (res) {
         // 转发成功
       },
@@ -198,5 +212,5 @@ Page({
         // 转发失败
       }
     }
-  }
+  },
 })

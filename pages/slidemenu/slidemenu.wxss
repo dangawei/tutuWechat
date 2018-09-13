@@ -99,14 +99,15 @@ margin-top: 8px;position: relative;
 background-color:transparent ;
 }
 .nav_right_items image text.sectionpart{
-
   position: absolute;
   bottom:20rpx;
   left:50%;
   color:#fff;
-  font-size:28rpx;
+  font-size:24rpx;
+  margin-left:-24px;
+}
+.nav_right_items image text.sectionpart.ml-text{
   margin-left:-9px;
-
 }
 .tab_r text.sectionpartTitle{
   position: absolute;
@@ -192,4 +193,9 @@ swiper{
 }
 .tab_l_text{
   margin: 10px auto;
+}
+.shadow-text{
+  padding: 0rpx 38rpx;
+  background-color: #D9B63A;
+  border-radius: 24rpx;
 }
