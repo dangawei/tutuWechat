@@ -164,7 +164,7 @@ Page({
           if (a == all_img[i].text.toLowerCase()) {
             all_img[i].eff = 0
             all_img[i].show = 0
-            arrayYes[index] = all_img[i]
+            arrayYes[index] = {...all_img[i]};
             // return
             // xia++;
           }
@@ -268,6 +268,7 @@ Page({
   },
   // 答对后执行
   dadui: function (e, number) {
+    console.log(e)
     innerAudioContext.stop();
     var that = this;
     innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/ding.mp3';
@@ -282,6 +283,7 @@ Page({
     if (this.data.arr[arr_id].eff != 0) {
       return;
     }
+    console.log(this.data.correctyes);
     var selectlist = 'correctyes[' + this.data.selectindex + '].show';
     var effective = 'arr[' + arr_id + '].eff';
     this.setData({

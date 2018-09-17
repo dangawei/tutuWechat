@@ -1,9 +1,12 @@
 <!--pages/levelthree/levelthree.wxml-->
 <view class="pages">
   <!--加分绿色  -->
-<view class="{{errorselectindex!=-1?'redfont':'greenfont'}} {{clicking==1?'addscore_common':''}} " style='opacity:0;position: absolute;right:210rpx;top:0rpx;'>
-{{errorselectindex!=-1?'-5':'+20'}}分
-</view>
+  <view class="{{errorselectindex!=-1?'redfont':'greenfont'}} {{clicking==1?'addscore_common':''}} " style='opacity:0;position: absolute;right:210rpx;top:0rpx;'>
+  {{errorselectindex!=-1?'-5':'+20'}}分
+  </view>
+  <view>
+    <!-- <image src="http://img.tutukids.com/group1/M00/00/source/it's.png"></image> -->
+  </view>
   <!--头部  -->
   <view class="level_mark_common">
     <view class="left">{{xuhao}}/{{number}}</view>
