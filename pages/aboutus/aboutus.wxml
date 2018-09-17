@@ -1,6 +1,6 @@
 <view class="pages text-center">
  <view class="aboutus_border">
-   <image class="logo" src="http://img.tutukids.com/group1/M00/00/0A/aboutus.png"></image>
+   <image class="logo" src="{{img_url+'aboutus.png'}}"></image>
    <view class='aboutus-top'>
       <view class="aboutus_title">
         图图英语
@@ -18,7 +18,7 @@
           </view>
           <view class='aboutus-center weui-flex'>
             <view class='inline-block gzh-icon'>
-              <image src="http://img.tutukids.com/group1/M00/00/0A/minderweima.png"></image>
+              <image src="{{img_url+'minderweima.png'}}"></image>
             </view>
             <view class='inline-block'>
               <view class='text-left'>

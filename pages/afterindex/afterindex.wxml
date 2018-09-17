@@ -9,7 +9,7 @@
         </view>
         <view class="title_right">
           <view hover-class='none'  bindtap='addsubject'>
-            <image src="https://www.chengxuyuantoutiao.com/a/indexbook.png" class="indexbook" mode="widthFix"></image>
+            <image src="{{img_url+'indexbook.png'}}" class="indexbook" mode="widthFix"></image>
           </view>
         </view>
       </view>
@@ -53,7 +53,7 @@
                   {{item.text}}
               </view>
               <view class="unitlistborder_right"> 
-                  <image src="https://www.chengxuyuantoutiao.com/a/indexright.png"></image>
+                  <image src="{{img_url+'indexright.png'}}"></image>
               </view>
           </navigator>
         </block>
@@ -90,7 +90,7 @@
       <!--内容开始 -->
       <view class="text-center allerweima">
         <view>
-          <image class="gouxuanicon" src="https://www.chengxuyuantoutiao.com/a/loading.gif"></image>
+          <image class="gouxuanicon" src="{{img_url+'loading.gif'}}"></image>
         </view>
        
 

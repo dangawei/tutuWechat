@@ -1,21 +1,22 @@
 <view class="wx-popup" hidden="{{flag}}">
   <view class='popup-container'>
     <view class="wx-popup-top-img">
-      <image src='../../images/背景@2x.png'></image>
+      <image src='http://img.tutukids.com/group1/M00/00/0A/背景@2x.png'></image>
     </view>
     <view class="wx-popup-title">
       <text>{{title}}</text>
       <view class='wx-popup-title-error' bindtap='_error'>
-        <image src='../../images/关闭@2x.png'></image>
+        <image src='http://img.tutukids.com/group1/M00/00/0A/关闭@2x.png'></image>
       </view>
     </view>
     <view class='wx-popup-img'>
-      <image src='http://img.tutukids.com/group1/M00/00/0A/会员标志@2x.png'></image>
+      <image src='../../images/vip_03.png'></image>
+      <!-- <image src='http://img.tutukids.com/group1/M00/00/0A/会员标志@3x.png'></image> -->
     </view>
     <view class="wx-popup-con">{{content}}</view>
     <view class="wx-popup-btn">
       <view class="wx-popup-btn-img">
-        <image src='../../images/开通@2x.png'></image>
+        <image src='http://img.tutukids.com/group1/M00/00/0A/开通@2x.png'></image>
       </view>
       <view class="wx-popup-btn-text" bindtap='_success'>
         <text class="btn-ok">{{btn_ok}}</text>

@@ -12,7 +12,7 @@ Page({
   data: {
     exercise: 1,
     mind: 0,
-
+    img_url: img_url
   },
   exercise: function () {
     var that = this;
@@ -96,7 +96,7 @@ Page({
       title: wx.getStorageSync("userInfo").realName + '  邀请你来闯关啦~图图小学英语课后趣味练习！',
       desc: '转发描述',
       path: '/pages/login/login',
-      imageUrl: 'http://img.tutukids.com/group1/M00/00/0A/转发海报.png',
+      imageUrl: img_url+'/转发海报.png',
       success: function (res) {
         // 转发成功
       },
@@ -106,7 +106,6 @@ Page({
     }
   },
   copy: function (e) {
-    console.log(e);
     var self = this;
     wx.setClipboardData({
       data: e.currentTarget.dataset.text,

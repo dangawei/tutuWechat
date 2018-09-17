@@ -22,7 +22,7 @@
 
         <view class="tag_list_contain">
           <view class="left">
-             <image src="{{books.icon || '../images/会员标志@3x.png'}}"></image> 
+             <image src="{{books.icon || img_url+'会员标志@3x.png'}}"></image> 
             <!-- <image src="https://www.chengxuyuantoutiao.com/a/book3s.png"></image> -->
           </view>
           <view class="right">
@@ -37,8 +37,6 @@
       </view>
       
       <!--列表循环end -->
-   
-
     </view>
   </view>
   <!--内容结束-->

@@ -43,15 +43,11 @@
             </view>
       <!-- </view> -->
       <view class="soundimage_border img-box">
-        <image src="http://img.tutukids.com/group1/M00/00/0A/listen_03.png" data-all="1" bindtap='singelClickAll'>
+        <image src="{{img_url+'listen_03.png'}}" data-all="1" bindtap='singelClickAll'>
         </image>
       </view>
     </view>
   </view>
-  <!-- <view style='width:100px;height:100px;'>
-    <image src="http://img.tutukids.com/group1/M00/00/source/I'm.png" mode="widthFix" style="height: 180px;"></image>
-    <image src="http://img.tutukids.com/group1/M00/00/source/Miss女士.png" alt=""></image>
-  </view> -->
   <!--底部内容大多数情况的时候  -->
   <view class="next_before_border">
     <view wx:if="{{shangyiye}}" bindtap='shangyiye' class="before_pageBtn  pageBtn">上一页</view>

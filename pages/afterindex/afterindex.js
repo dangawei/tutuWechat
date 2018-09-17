@@ -20,6 +20,7 @@ Page({
     unitlist: [],
     exercise:0,
     mind:1,
+    img_url: img_url
   },
   exercise: function () {
     var that = this;
@@ -78,7 +79,7 @@ Page({
             
           })
           //判断是否闯过关
-          if (res.data.data.latestPassRecordVO!=null){
+         if (res.data.data.latestPassRecordVO != null){
             wx.setStorageSync("unitId", res.data.data.latestPassRecordVO.unitsId)
             wx.setStorageSync("partId", res.data.data.latestPassRecordVO.partsId)
             wx.setStorageSync("unitName", res.data.data.latestPassRecordVO.unitName)
@@ -145,7 +146,14 @@ Page({
           //     }
           //   },
           // })
-       }else{
+       } else if (res.data.code == 46) {
+         app.tanchuang('登录账号有误,点击确定重新登录！')
+        //  setTimeout(function () {
+        //    wx.reLaunch({
+        //      url: '/pages/login/login'
+        //    })
+        //  }, 1500)
+       } else{
          //返回数据不正确
          app.tanchuang('获取教材详情错误！')
        }
@@ -235,7 +243,7 @@ Page({
       title: wx.getStorageSync("userInfo").realName + '  邀请你来闯关啦~图图小学英语课后趣味练习！',
       desc: '转发描述',
       path: '/pages/login/login',
-      imageUrl: 'http://img.tutukids.com/group1/M00/00/0A/转发海报.png',
+      imageUrl: img_url+'转发海报.png',
       success: function (res) {
         // 转发成功
       },

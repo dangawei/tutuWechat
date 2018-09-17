@@ -26,6 +26,7 @@ Page({
     codebtnimgurl_path:'',
     honor_path:'',
     score_path:'',
+    img_url: img_url,
     typecenterbgimg: [
       'http://img.tutukids.com/group1/M00/00/0A/centerbgexcellent.png',
       "http://img.tutukids.com/group1/M00/00/0A/centerbggood.png",
@@ -56,7 +57,7 @@ Page({
     this.setData({
       xuhao: app.partList.xia + 1,
       username: wx.getStorageSync("userInfo").realName,
-      user_img: wx.getStorageSync("userInfo").icon || "http://img.tutukids.com/group1/M00/00/0A/spellcheck.png",
+      user_img: wx.getStorageSync("userInfo").icon || img_url+"spellcheck.png",
       socre:options.fenshu,
       unit_name: wx.getStorageSync("unitName"),
       part_name: wx.getStorageSync("partName"),
@@ -345,7 +346,6 @@ Page({
 
   },
   ttt: function () {
-    console.log(111);
   },
   /**
    * 用户点击右上角分享

@@ -13,7 +13,7 @@
                 <text class="sectionpartTitle">{{parts.title}}</text>
                 <text class="sectionpart ml-text">{{parts.passPass}}/{{parts.totalPass}}</text>
               </image>
-              <image src="../images/0@2x.png" wx-if="{{parts.canUnLock==2}}">
+              <image src="http://img.tutukids.com/group1/M00/00/0A/0@2x.png" wx-if="{{parts.canUnLock==2}}">
                 <text class="sectionpartTitle">{{parts.title}}</text>
                 <text class="sectionpart shadow-text">{{parts.passPass}}/{{parts.totalPass}}</text>
               </image>

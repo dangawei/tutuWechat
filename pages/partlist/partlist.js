@@ -165,58 +165,66 @@ Page({
       success: function (res) {
         //判断返回数据是否正确
         if (res.data.code == 0) {
-          app.part.all = res.data.data
-          wx.setStorageSync("part",res.data.data)
-          var List = res.data.data
-          var list = List.sort(that.compare('sort'))
-          var partlist = []
-          var xia = 0
-          for(var i in list)
-          {
+          console.log(res.data.data)
+          if (res.data.data.length==0){
+            console.log(11111);
+            wx.showModal({
+              title: '提示',
+              content: "历史数据查询不到,请点击确定返回上一页,重新选择part",
+              success: function (res) {
+                wx.navigateBack({ changed: true });//返回上一页
+              }
+            })
+          }else{
+            app.part.all = res.data.data
+            wx.setStorageSync("part", res.data.data)
+            var List = res.data.data
+            var list = List.sort(that.compare('sort'))
+            var partlist = []
+            var xia = 0
+            for (var i in list) {
               partlist[i] = new Object();
-              
+
               partlist[i] = list[i]
 
               partlist[i].xia = xia
 
               partlist[i].card_cover_url = partlist[i].icon
               // is_block 1关卡解锁 0没解锁
-            if (partlist[i].score==null){
-              if(i==0){
+              if (partlist[i].score == null) {
+                if (i == 0) {
+                  partlist[i].is_block = 1
+                } else if (i > 0 && partlist[i - 1].score != null) {
+                  partlist[i].is_block = 1
+                } else {
+                  partlist[i].is_block = 0
+                }
+              } else {
                 partlist[i].is_block = 1
-              } else if (i > 0 && partlist[i-1].score != null){
-                partlist[i].is_block = 1
-              }else{
-                partlist[i].is_block = 0
               }
-            }else{
-              partlist[i].is_block = 1
+              xia++;
             }
-             xia++;
-          }
-          that.setData({
-            partList: partlist,
-            //共多少关卡
-            part_number: partlist.length,
-            
-          })
-          //判断当前part是否和 历史partid一致
-          if (app.part.partId == app.part.lishi_id && app.partList.xia == -1)
-          {
-            if (app.partList.lishi_xia != 0) {
-              that.setData({
-                address: app.partList.lishi_xia
-              })
-            }
-          }else{
-            if(app.partList.xia != 0)
-            {
-              that.setData({
-                address: app.partList.xia
-              })
-            }
-          }
+            that.setData({
+              partList: partlist,
+              //共多少关卡
+              part_number: partlist.length,
 
+            })
+            //判断当前part是否和 历史partid一致
+            if (app.part.partId == app.part.lishi_id && app.partList.xia == -1) {
+              if (app.partList.lishi_xia != 0) {
+                that.setData({
+                  address: app.partList.lishi_xia
+                })
+              }
+            } else {
+              if (app.partList.xia != 0) {
+                that.setData({
+                  address: app.partList.xia
+                })
+              }
+            }
+          }
         }else{
           //返回数据失败
           app.tanchuang('获取关卡详情错误！')

@@ -15,7 +15,7 @@
   top: 50%;
   width: 80%;
   max-width: 600rpx;
-  border: 2rpx solid #ccc;
+  /* border: 2rpx solid #ccc; */
   box-sizing: border-box;
   transform: translate(-50%, -50%); 
   overflow: hidden;
@@ -58,9 +58,11 @@
   vertical-align: middle;
 }
 .wx-popup-img{
-  margin: 0 auto;
+  margin: 30rpx auto;
   width: 200rpx;
-  height: 200rpx;
+  height: 186rpx;
+  position: relative;
+  z-index: 999;
 }
 .wx-popup-img image{
   width: 100%;

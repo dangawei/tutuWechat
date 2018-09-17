@@ -403,5 +403,7 @@ margin: 0 auto -15rpx;
 text-align:center;
 }
 
-
+.scroll-height{
+  height: 479rpx;
+}
 

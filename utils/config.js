@@ -3,7 +3,7 @@ module.exports = {
   
   // http_host: "https://www.chengxuyuantoutiao.com/tutukidsServer/tutuenglish/",
   // http_host: "http://api.app.chengxuyuantoutiao.com/",
-  http_host: "http://api.app.tutukids.com/",
+  http_host: "https://api.app.tutukids.com/",
   //图片地址
   // img_url: "https://www.chengxuyuantoutiao.com/tutukidsServer/tutuenglish/",
   img_url: "http://img.tutukids.com/group1/M00/00/0A/",
@@ -32,6 +32,5 @@ module.exports = {
   //小程序appid
   appId: 'wxf9bc4939f32e977f',
   secret: '88ae16867cbd817c333e064725f80cdc'
-  // appId: 'wx44845afd868ce52c',
-  // secret: '6e020c5297c3f19b7f8deb208cd0537e'
-};
+// 
+}

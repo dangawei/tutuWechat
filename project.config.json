@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
-	"appid": "wxf9bc4939f32e977f",
-	"projectname": "tutuyingyu",
+	"appid": "wx44845afd868ce52c",
+	"projectname": "tutuWell",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 10,
 			"list": [
 				{
 					"id": 0,
@@ -83,7 +83,7 @@
 					"id": 8,
 					"name": "levelthree",
 					"pathName": "pages/levelthree/levelthree",
-					"query": "bookId=5&unitId=90&partId=307&customPassId=2212&pass=3"
+					"query": "bookId=7&unitId=131&partId=518&customPassId=2248&pass=3"
 				},
 				{
 					"id": 9,
@@ -92,10 +92,10 @@
 					"query": "bookId=4&unitId=138&partId=559&customPassId=2492&pass=3"
 				},
 				{
-					"id": -1,
+					"id": 10,
 					"name": "levelfive",
 					"pathName": "pages/levelfive/levelfive",
-					"query": "bookId=5&unitId=90&partId=307&customPassId=990&pass=5"
+					"query": "bookId=7&unitId=141&partId=579&customPassId=2613&pass=5"
 				},
 				{
 					"id": -1,
@@ -138,6 +138,12 @@
 					"name": "gameresult",
 					"pathName": "pages/gameresult/gameresult",
 					"query": "bookId=5&unitId=90&partId=307&customPassId=2209&pass=0&fenshu=100"
+				},
+				{
+					"id": -1,
+					"name": "aboutus",
+					"pathName": "pages/aboutus/aboutus",
+					"query": ""
 				}
 			]
 		}

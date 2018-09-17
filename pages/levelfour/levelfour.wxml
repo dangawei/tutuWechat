@@ -9,14 +9,14 @@
     <view class="right">{{score}}分</view>
   </view>
   <view class="soundBorder text-center">
-    <image class="sound" src="https://www.chengxuyuantoutiao.com/a/listen.png" bindtap='soundClick' />
+    <image class="sound" src="{{img_url+'listen.png'}}" bindtap='soundClick' />
     <view class="  {{clicksound==1?'pulse':'hiddencontent'}}"></view>
   </view>
   <!--关卡4内容 begin -->
   <!--拼写会出现的图片  -->
   <view class="levelfour_border">
     <view class="levelfour_border_img  {{istrue==0?'':'hiddencontent'}}">
-      <image src="../images/spellcheck.png"></image>
+      <image src="{{img_url+'spellcheck.png'}}"></image>
       <view class="{{istrue==0?'':'hiddencontent'}}">拼写正确后会出现图片</view>
     </view>
     <view class="levelfour_border_img levelfour_border_img2  {{istrue==1?'':'hiddencontent'}}">
@@ -40,6 +40,7 @@
     
     <!--10图以及10图一下的时候  -->
     <view  class="manytextborder_text  manytextborder_text{{exercises.rightlist.length}}type   {{len>7?'manytextborder_textfour':''}} manytextborder_textfour text-left">
+    
       <text wx:for="{{arr}}" wx:key="key" data-id='{{item.id}}' data-text='{{item.text}}' data-eff="{{item.eff}}" class='{{item.eff==1?"grayborder":""}}'  bindtap='selectClick'>{{item.text}}</text>
     
     </view>
@@ -48,10 +49,10 @@
 
     </view>
     <!--10个以上的时候  -->
-    <!-- <view class="levelthree_beselected_more_text {{len > 8?'':'hiddencontent'}}">
+    <view class="levelthree_beselected_more_text {{len > 8?'':'hiddencontent'}}">
       <swiper indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorcolor}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
         <block>
-          <swiper-item class="banner" wx:for="{{ dataArr }}">
+          <swiper-item class="banner" wx:for="{{ arr }}">
             <view class="manytextborder_text manytextborder_textfour text-left">
               <text src="{{k.img_path}}" wx:for="{{item}}" data-id="{{k.id}}" data-eff="{{k.eff}}" wx:for-item="k" class='{{k.eff==1?"grayborder":""}}' bindtap='selectClick' >{{k.text}}</text>
             </view>
@@ -59,7 +60,7 @@
         </block>
       </swiper>
 
-    </view> -->
+    </view>
 
     
 

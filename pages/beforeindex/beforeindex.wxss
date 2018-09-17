@@ -41,7 +41,7 @@ page,.page{
   height:74rpx;
   margin:0 auto;
   line-height:70rpx;
-  background-image: url("https://www.chengxuyuantoutiao.com/a/indexaddsubject.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/indexaddsubject.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100%;

@@ -101,7 +101,9 @@ Page({
                 wx.reLaunch({
                   url: '/pages/login/login'
                 })
-              } else {
+              } else if (res.data.code == 46){
+                app.tanchuang('登录账号有误,点击确定重新登录！')
+              } else{
                 //返回数据失败
                 app.tanchuang(res.data.message)
               }

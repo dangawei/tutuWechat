@@ -276,8 +276,6 @@ jiazai:function (xuhao)
 
   // 点击单个图片播放音乐
   singelClick: function (e) {
-    innerAudioContext.src='';
-  
     var that = this
     //停止播放之前的音乐     防止两重音
     innerAudioContext.stop();

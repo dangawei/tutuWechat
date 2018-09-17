@@ -3,14 +3,25 @@ App({
 
   tanchuang: function (content)
   { 
-    wx.showModal({
-      title: '提示',
-      content: content,
-      success: function (res) {
-       
-      }
-    })
-    return;
+    if (content =="登录账号有误,点击确定重新登录！"){
+      wx.showModal({
+        title: '提示',
+        content: content,
+        success: function (res) {
+          wx.reLaunch({
+            url: '/pages/login/login'
+          })
+        }
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: content,
+        success: function (res) {
+          
+        }
+      })
+    }
   },
   onLaunch: function () {
     // 展示本地存储能力

@@ -65,7 +65,7 @@
           <!--锁住状态显示 -->
           <view class="Lockblackcurtain {{item.is_block==0?'':'hiddencontent'}}">
             <view class="Lockblackcurtain_main">
-              <image src="https://www.chengxuyuantoutiao.com/a/key.png" />
+              <image src="http://img.tutukids.com/group1/M00/00/0A/key.png" />
               <view class="Lockblackcurtain_main_text">
                 <view class="text-center">
                   暂时还没有达到这一关卡噢~

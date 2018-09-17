@@ -51,7 +51,7 @@
           </view>
         </view>
         <view class="bottom_img text-center ">
-          <image src="http://img.tutukids.com/group1/M00/00/0A/GeneratPoster.png"></image>
+          <image src="{{img_url+'GeneratPoster.png'}}"></image>
         </view>
       </button>
     </view>
@@ -65,7 +65,7 @@
           </view>
         </view>
         <view class="bottom_img text-center">
-          <image src="http://img.tutukids.com/group1/M00/00/0A/sharebtn.png"></image>
+          <image src="{{img_url+'sharebtn.png'}}"></image>
         </view>
       </button>
     </view>

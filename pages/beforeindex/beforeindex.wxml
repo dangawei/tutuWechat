@@ -2,7 +2,7 @@
 <!--index.wxml-->
 <view class="pages">
   <!--头部背景及标题 begin -->
-  <image src="https://www.chengxuyuantoutiao.com/a/indexbg.png" class="present100 indexbg" mode="widthFix">
+  <image src="{{img_url + 'indexbg.png'}}" class="present100 indexbg" mode="widthFix">
    
   </image>
   <!--头部背景及标题 end -->
@@ -18,7 +18,7 @@
   <view class="no-unit-empty"> 
    <view class="text-center no-unit-empty-tip">嗨~小朋友~快去添加你的第一本教材吧</view>
    <view class="text-center no-unit-empty-img">
-     <image src="https://www.chengxuyuantoutiao.com/a/indexrabit.png"></image>
+     <image src="{{img_url + 'indexrabit.png'}}"></image>
    </view>
   </view>
   <!-- end -->
