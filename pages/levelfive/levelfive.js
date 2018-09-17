@@ -173,7 +173,6 @@ Page({
       var arrayCopy = arrayYes.concat();
       // console.log([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }].sort(app.randomsort))
       var data = arrayCopy.sort(app.randomsort)
-      console.log(data);
       that.setData({
         dataArr: arrayYes,
         correctyes: arrayYes,

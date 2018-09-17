@@ -36,20 +36,21 @@
   <!--选择部分  -->
   <!--2倍格式的选择  -->
   <view class="levelthree_beselected">
-
+    <!-- {{len}} -->
+    <!-- {{arr.length}} -->
     
     <!--10图以及10图一下的时候  -->
-    <view  class="manytextborder_text  manytextborder_text{{exercises.rightlist.length}}type   {{len>7?'manytextborder_textfour':''}} manytextborder_textfour text-left">
-    
-      <text wx:for="{{arr}}" wx:key="key" data-id='{{item.id}}' data-text='{{item.text}}' data-eff="{{item.eff}}" class='{{item.eff==1?"grayborder":""}}'  bindtap='selectClick'>{{item.text}}</text>
-    
-    </view>
+    <scroll-view scroll-y="true" class="scroll-height">
+      <view  class="manytextborder_text manytextborder_text{{exercises.rightlist.length}}type   {{len>7?'manytextborder_textfour':''}} manytextborder_textfour text-center">
+        <text wx:for="{{arr}}" wx:key="key" data-id='{{item.id}}' data-text='{{item.text}}' data-eff="{{item.eff}}" class='{{item.eff==1?"grayborder":""}}'  bindtap='selectClick'>{{item.text}}</text>
+      
+      </view>
+    </scroll-view>
+      <view class="levelthree_beselected_eight">
 
-    <view class="levelthree_beselected_eight">
-
-    </view>
+      </view>
     <!--10个以上的时候  -->
-    <view class="levelthree_beselected_more_text {{len > 8?'':'hiddencontent'}}">
+    <!-- <view class="levelthree_beselected_more_text {{arr.length > 8?'':'hiddencontent'}}">
       <swiper indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorcolor}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
         <block>
           <swiper-item class="banner" wx:for="{{ arr }}">
@@ -60,7 +61,7 @@
         </block>
       </swiper>
 
-    </view>
+    </view> -->
 
     
 

@@ -27,9 +27,10 @@
 
     <!--2倍格式的选择  -->
     <view class="levelthree_beselected">
+    
     <scroll-view scroll-y="true" class="scroll-height">
-        <view class="manyImgborder_image  manyImgborder_image{{correctyes.length}}type   {{len>7 ?'manyImgborder_imagefour':''}} manyImgborder_imagefour text-left">
-            <view class="imgborder{{len<8?'_3':''}} {{len<8?'_3':''}}"  wx:for="{{arr}}"  data-id='{{item.id}}' data-index="{{index}}" data-eff="{{item.eff}}" data-text="{{item.text}}" bindtap='selectClick' >
+        <view class="manyImgborder_image  manyImgborder_image{{correctyes.length}}type   {{arr.length>7 ?'manyImgborder_imagefour':''}} manyImgborder_imagefour text-left">
+            <view class="imgborder{{arr.length<8?'_3':''}} {{arr.length<8?'_3':''}}"  wx:for="{{arr}}"  data-id='{{item.id}}' data-index="{{index}}" data-eff="{{item.eff}}" data-text="{{item.text}}" bindtap='selectClick' >
               <image src='{{item.icon}}' class='ico'></image>
               <text class="{{item.eff==1?'graymengban':''}}"></text>
             </view>

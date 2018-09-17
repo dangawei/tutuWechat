@@ -176,13 +176,12 @@ opacity: 0;
 .levelthree_beselected{
  
    position: relative;
-   
    margin-top:-20rpx;
    margin:0 80rpx;
 
 }
 .manytextborder_text{
-  margin-top:80rpx;
+  margin-top:40rpx;
 }
 
 .manytextborder_text text{
@@ -198,7 +197,7 @@ opacity: 0;
 
 }
 .manytextborder_text text:last-child{
-  margin-right:0px;
+  /* margin-right:0px; */
 }
 .manytextborder_textfour text{
   margin-bottom:7rpx;
@@ -252,7 +251,7 @@ top:80rpx;
 .manytextborder_text1type{
   width:42%;
   margin:0 auto;
-  margin-top:80rpx;
+  margin-top:40rpx;
 }
 .manytextborder_text1type text{
   margin-bottom:14rpx;
@@ -261,7 +260,7 @@ top:80rpx;
 .manytextborder_text1type{
   width:42%;
   margin:0 auto;
-  margin-top:80rpx;
+  margin-top:40rpx;
 }
 .manytextborder_text1type text{
   margin-bottom:14rpx;
@@ -270,7 +269,8 @@ top:80rpx;
 .manytextborder_text2type{
   width:42%;
   margin:0 auto;
-  margin-top:80rpx;
+  margin-top:40rpx;
+
 }
 .manytextborder_text2type text{
   margin-bottom:14rpx;
@@ -279,7 +279,6 @@ top:80rpx;
 .manytextborder_text3type{
   width:62%;
   margin:0 auto;
-  margin-top:80rpx;
 }
 .manytextborder_text3type text{
   margin-bottom:14rpx;
@@ -319,16 +318,13 @@ top:80rpx;
 .manytextborder_text4type{
 width:80%;
 margin:0 auto;
-margin-top:80rpx;
+margin-top:40rpx;
 }
 .manytextborder_text4type text{
 margin-bottom:14rpx;
 }
 /*五五分部  */
 .manytextborder_text5type{
-
-
-margin-top:80rpx;
 width:100%;
 
 }
@@ -336,4 +332,8 @@ width:100%;
 margin-bottom:14rpx;
 margin-left:8rpx;
 margin-right:8rpx;
+}
+.scroll-height{
+  height: 306rpx;
+  padding-top: 40rpx;
 }

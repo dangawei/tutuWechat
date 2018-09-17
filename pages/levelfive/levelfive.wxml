@@ -28,36 +28,25 @@
     <!--2倍格式的选择  -->
     <view class="levelthree_beselected">
     <!-- {{len}} -->
-    <scroll-view scroll-y="true" class="scroll-height {{len < 8?'':'hiddencontent'}}">
-      <view class="manyImgborder_image  manyImgborder_image{{correctyes.length}}type {{len>7 ?'manyImgborder_imagefour':''}} manyImgborder_imagefour text-left">
-
-        <view class="imgborder{{len<8?'_3':''}} {{len<8?'_3':''}}"  wx:for="{{arr}}"  data-id='{{item.id}}' data-index="{{index}}" data-eff="{{item.eff}}" data-text="{{item.text}}" bindtap='selectClick' >
-          <image src="{{item.icon}}" class='ico'></image>
-          <text class="{{item.eff==1?'graymengban':''}}"></text>
+      <!-- <scroll-view scroll-y="true" class="scroll-height"> -->
+        <view class="manyImgborder_image  manyImgborder_image{{correctyes.length}}type {{len>7 ?'manyImgborder_imagefour':''}} manyImgborder_imagefour text-center {{len < 8?'':'hiddencontent'}}">
+          <view class="imgborder{{len<8?'_3':''}} {{len<8?'_3':''}}"  wx:for="{{arr}}"  data-id='{{item.id}}' data-index="{{index}}" data-eff="{{item.eff}}" data-text="{{item.text}}" bindtap='selectClick' >
+            <image src="{{item.icon}}" class='ico'></image>
+            <text class="{{item.eff==1?'graymengban':''}}"></text>
+          </view>
         </view>
-      </view>
-    </scroll-view>
-
-
+      <!-- </scroll-view> -->
     <!--8个以上的时候  -->
-    <view class="ml25">
-      <scroll-view scroll-y="true" class="scroll-height {{len >= 8?'':'hiddencontent'}}">
-        <view class="levelthree_beselected_more">
-          <!-- <swiper class="swiper-box" current="{{currentid}}" indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorcolor}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-            <block>
-              <swiper-item class="banner"> -->
-                <view class="manytextborder_text  manyImgborder_image manytextborder_textfour text-left">
-                  <view  wx:for="{{ arr }}" wx:for-item="k" data-id="{{k.id}}" data-eff="{{k.eff}}" bindtap="selectClick"  class='imgborder {{k.eff==1?"grayborder":""}}'>
+      <view class="ml25">
+        <scroll-view scroll-y="true" class="scroll-height {{len >= 8?'':'hiddencontent'}}">
+            <view class="levelthree_beselected_more nyImgborder_image manytextborder_textfour text-center">
+                  <view  wx:for="{{ arr }}" wx:for-item="k" data-id="{{k.id}}" data-eff="{{k.eff}}" data-index="{{index}}" data-text="{{item.text}}" bindtap="selectClick"  class='imgborder {{k.eff==1?"grayborder":""}}'>
                     <image src="{{k.icon}}"  ></image>
                     <text class="{{k.eff==1?'graymengban':''}}"></text>
                   </view>
-                </view>
-              <!-- </swiper-item>
-            </block> -->
-          <!-- </swiper> -->
-        </view>
-      </scroll-view>
-    </view>
+            </view>
+        </scroll-view>
+      </view>
     </view>
 
   </view>

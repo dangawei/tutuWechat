@@ -242,3 +242,7 @@ left:38%;
 .imgborder image,.imgborder_1 image,.imgborder_2 image,.imgborder_3 image,.imgborder_many image{
 padding-top:10rpx;
 }
+.ml25{
+  padding-left: 15px;
+  padding-right: 15px;
+}
