@@ -34,7 +34,7 @@
         <view bindtap='jixu' hover-class='none'>
           <view  class="Startbreak_btn">继续闯关</view>
         </view>
-        <navigator hover-class='none' url="/pages/slidemenu/slidemenu?bookId={{book_id}}&bookName={{book_name}}&unitId=&unitName=">
+        <navigator hover-class='none' url="/pages/slidemenu/slidemenu?bookId={{book_id}}&bookName={{book_name}}&unitId={{unitId}}&unitName={{existence_unit}}">
           <view class="selectpart_btn">选择Part</view>
         </navigator>
       </view>

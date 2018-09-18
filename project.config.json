@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 8,
 			"list": [
 				{
 					"id": 0,
@@ -53,7 +53,7 @@
 					"id": 3,
 					"name": "partlist",
 					"pathName": "pages/partlist/partlist",
-					"query": "bookId=7&bookName=人教版PEP六年级上&unitId=130&unitName=Unit 1&partId=512&partName=Part A"
+					"query": "bookId=7&bookName=人教版PEP六年级上&unitId=131&unitName=Unit 2&partId=518&partName=Part A"
 				},
 				{
 					"id": 4,
@@ -83,7 +83,7 @@
 					"id": 8,
 					"name": "levelthree",
 					"pathName": "pages/levelthree/levelthree",
-					"query": "bookId=7&unitId=141&partId=579&customPassId=2611&pass=3"
+					"query": "bookId=7&unitId=130&partId=512&customPassId=2212&pass=3"
 				},
 				{
 					"id": 9,

@@ -82,11 +82,6 @@ border:6rpx solid #09d034;
   background-color: #ededed;
   border:6rpx solid #ddd;
   z-index:99;
-  
- 
-
-
-
 }
 
 /*红色闪两下的状态*/
@@ -167,8 +162,8 @@ margin-top:15rpx;
 padding-bottom:20rpx;
 } */
 .manyImgborder_image image{
-  width:125rpx;
-  height:125rpx;
+  width:132rpx;
+  height:132rpx;
   padding-top:10rpx;
 }
 .manyImgborder_image image:last-child{

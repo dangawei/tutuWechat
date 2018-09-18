@@ -125,7 +125,6 @@ Page({
   },
   // 点击进入partlist
   enterPartlist(e){
-    console.log()
     if (e.currentTarget.dataset.canunlock==2){
       this.popup.showPopup();
     }else{

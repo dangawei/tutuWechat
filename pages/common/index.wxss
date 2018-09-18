@@ -358,6 +358,7 @@ margin-left:8rpx;
 margin-bottom:16rpx;
 position: relative;
 text-align:center;
+overflow:hidden;
 }
 .imgborder_many{
 width:22.7%;

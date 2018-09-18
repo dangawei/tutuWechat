@@ -133,8 +133,8 @@ Page({
         // [yes2]: currentData.sourceVOS,
         // 结束
         //录音文件
-        // video: encodeURI(res.data.data.question_title_voice).replace(/'/, "%27"),
-        video: this.data.all[xuhao - 1].sentenceAudio,
+        video: encodeURI(this.data.all[xuhao - 1].sentenceAudio).replace(/'/, "%27"),
+        // video: this.data.all[xuhao - 1].sentenceAudio,
         customPassId: this.data.all[xuhao - 1].customsPassId,
 
       })
@@ -164,6 +164,7 @@ Page({
           if (a == all_img[i].text.toLowerCase()) {
             all_img[i].eff = 0
             all_img[i].show = 0
+            all_img[i].icon = encodeURI(all_img[i].icon).replace(/'/, "%27"),
             arrayYes[index] = {...all_img[i]};
             // return
             // xia++;
@@ -181,7 +182,6 @@ Page({
         arr: data
       })
       // that.updatadataarr();//对答案列表进行分页
-
     }
   },
   /**
@@ -221,7 +221,7 @@ Page({
     innerAudioContext.play();
   },
   selectClick: function (e) {
-    console.log(e)
+    // console.log(e)
     var that = this
     if (e.currentTarget.dataset.eff == 1) {
       return;
@@ -263,27 +263,21 @@ Page({
       that.setData({
         clicking: 0
       })
-    }, 2000);
+    }, 2300);
 
   },
   // 答对后执行
   dadui: function (e, number) {
-    console.log(e)
+    // console.log(e)
     innerAudioContext.stop();
     var that = this;
     innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/ding.mp3';
     innerAudioContext.play();
-    // for (var i = 0; i < that.data.arr.length; i++) {
-    //   if (e.currentTarget.dataset.id == that.data.arr[i].id) {
-    //     var arr_id = i
-    //     break;
-    //   }
-    // }
     var arr_id = e.currentTarget.dataset.index
     if (this.data.arr[arr_id].eff != 0) {
       return;
     }
-    console.log(this.data.correctyes);
+    // console.log(this.data.correctyes);
     var selectlist = 'correctyes[' + this.data.selectindex + '].show';
     var effective = 'arr[' + arr_id + '].eff';
     this.setData({
@@ -295,6 +289,8 @@ Page({
     // this.updatadataarr();
     // 判断这题目是否答完
     if (this.data.selectindex == this.data.correctyes.length) {
+      innerAudioContext.src = that.data.video;
+      innerAudioContext.play();
       that.setData({
         score: this.data.score + 20,
         clicking: 1
@@ -302,9 +298,10 @@ Page({
       this.setData({
         errornum: 0,
       })
-      innerAudioContext.src = that.data.video;
-
-      innerAudioContext.play();
+      console.log(that.data.video)
+      // innerAudioContext.src = this.data.exercises.music;
+    // innerAudioContext.play();
+      
       if (parseInt(that.data.xuhao) == this.data.number) {
         setTimeout(function () {
           that.wancheng()
@@ -411,8 +408,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    innerAudioContext.src = this.data.exercises.music;
-    innerAudioContext.play();
+    // innerAudioContext.src = this.data.exercises.music;
+    // innerAudioContext.play();
   },
 
   /**
@@ -433,7 +430,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    innerAudioContext.stop();
+    // innerAudioContext.stop();
   },
 
   /**

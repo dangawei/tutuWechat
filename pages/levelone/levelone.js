@@ -120,6 +120,7 @@ Page({
       for (let i = 0; i < all_img.length; i++) {
         all_img[i].text = all_img[i].text.replace(/[\u4e00-\u9fa5]/g,'')
         all_img[i].eff = 0
+        all_img[i].icon = encodeURI(all_img[i].icon).replace(/'/, "%27")
         // xia++;
       }
       // console.log(all_img)

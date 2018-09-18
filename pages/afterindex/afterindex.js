@@ -93,6 +93,7 @@ Page({
               //存在闯过关卡记录
               type: 1,
               existence_unit: res.data.data.latestPassRecordVO.unitName,
+              unitId: res.data.data.latestPassRecordVO.unitsId,
               existence_part: res.data.data.latestPassRecordVO.partName,
               part_id: res.data.data.latestPassRecordVO.partsId
             })

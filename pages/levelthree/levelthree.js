@@ -124,6 +124,7 @@ Page({
       var correctDate = this.data.all[xuhao - 1].sourceIds
       var correctDates = correctDate.replace(/[\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\,|\<|\.|\>|\?]/g,"")
       var arrayYes = correctDates.split("/")
+      var nary = correctDates.split("/");
       that.setData({
         currentData: this.data.all[xuhao - 1],
         // //正确的图片
@@ -163,13 +164,27 @@ Page({
           if (a == all_img[i].text.toLowerCase()){
             all_img[i].eff = 0
             all_img[i].show=0
-            arrayYes[index] = all_img[i]
+            // all_img[i].text = all_img[i].text.replace(/[\u4e00-\u9fa5]/g, '')
+            all_img[i].icon = encodeURI(all_img[i].icon).replace(/'/, "%27"),
+            arrayYes[index] = { ...all_img[i] };
             // return
             // xia++;
           }
         }
       }
-      var arrayCopy = all_img;
+      var arrayCopy = all_img.concat();
+      nary = nary.sort();
+      for (let i = 0; i < nary.length - 1; i++){
+        if (nary[i] == nary[i + 1]){
+          for (let x = 0; x < all_img.length; x++) {
+            let naryCopy = nary[i].toLowerCase();
+            if (naryCopy == all_img[x].text.toLowerCase()) {
+              var objOne = { ...all_img[x]}
+              arrayCopy.push(objOne);
+            }
+          }
+        }
+      }
       // var arrayCopy = arrayYes.concat();
       // console.log([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }].sort(app.randomsort))
       var data = arrayCopy.sort(app.randomsort)

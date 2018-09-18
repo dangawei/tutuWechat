@@ -123,6 +123,7 @@ Page({
       // var xia = 0
       for (let i = 0; i < all_img.length; i++) {
         all_img[i].eff = 0
+        all_img[i].icon = encodeURI(all_img[i].icon).replace(/'/, "%27")
         // xia++;
       }
       data = data.sort(app.randomsort)
