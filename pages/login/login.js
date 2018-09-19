@@ -146,10 +146,11 @@ Page({
     var _this=this
     wx.login({
       success: res => {
+        console.log(111111);
         if (res.code) {
+          console.log(22222);
           wx.request({
             url: http_host +'user/login/mini',
-            // url: "https://api.weixin.qq.com/sns/jscode2session?appid=" + appid + "&secret=" + secret + "&js_code=" + res.code + "&grant_type=authorization_code",
             method: "POST",
             data: {
               avatar: option.avatarUrl,
@@ -161,6 +162,7 @@ Page({
               'Content-Type': 'application/json'
             },
             success: function (reset) {
+              console.log(333333);
               console.log(reset.data)
               if(reset.data.code==0){
                 app.globalData.userInfo = reset.data.data

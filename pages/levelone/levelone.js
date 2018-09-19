@@ -7,7 +7,11 @@ const img_url = util.img_url;
 const innerAudioContext = wx.createInnerAudioContext();
 innerAudioContext.autoplay = true;
 innerAudioContext.obeyMuteSwitch = false;
+innerAudioContext.onPlay(() => {
+  // console.log('开始播放')
+})
 innerAudioContext.onError((res) => {
+  // console.log(res)
 })
 Page({
 
@@ -43,7 +47,6 @@ Page({
   // 加载数据
   getjiazai: function (reset) {
     var that = this;
-    
     that.setData({
       clicksound: 1
     })
@@ -129,8 +132,11 @@ Page({
         all_img: all_img,
         textNumber: all_img.length
       })
+      var voice = encodeURI(that.data.currentData.sentenceAudio).replace(/ /, "%90").replace(/'/, "%27")
+      // voice = encodeURI(voice).replace(/'/, "%27")
+      // console.log(voice);
       // 默认进来放一次音乐
-      innerAudioContext.src = that.data.currentData.sentenceAudio;
+      innerAudioContext.src = voice;
       innerAudioContext.play();
     }
   },
@@ -168,13 +174,12 @@ Page({
   },
   // 点击单个图片播放音乐
   singelClick: function (e) {
-    innerAudioContext.src = '';
-
     var that = this
     //停止播放之前的音乐     防止两重音
     innerAudioContext.stop();
+    var voice = encodeURI(e.currentTarget.dataset.audio).replace(/ /, "%90").replace(/'/, "%27")
     //播放某个图片下的音频文件
-    innerAudioContext.src = e.currentTarget.dataset.audio
+    innerAudioContext.src = voice
     innerAudioContext.play();
     that.setData({
       clicksound: 1,
@@ -193,9 +198,10 @@ Page({
     this.setData({
       indexImg: -1
     })
+    var voice = encodeURI(this.data.currentData.sentenceAudio).replace(/ /, "%90").replace(/'/, "%27")
     //停止播放之前的音乐     防止两重音
     innerAudioContext.stop();
-    innerAudioContext.src = this.data.currentData.sentenceAudio
+    innerAudioContext.src = voice
     innerAudioContext.play();
   },
   /**

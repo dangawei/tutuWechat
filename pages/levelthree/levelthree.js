@@ -196,9 +196,9 @@ Page({
         arr: data
       })
       // that.updatadataarr();//对答案列表进行分页
-
+      var voice = encodeURI(that.data.video).replace(/ /, "%90").replace(/'/, "%27")
       // 默认进来放一次音乐
-      innerAudioContext.src = that.data.video;
+      innerAudioContext.src = voice;
 
       innerAudioContext.play();
     }
@@ -234,8 +234,9 @@ Page({
 
   },
   soundClicks:function(){
+    var voice = encodeURI(this.data.video).replace(/ /, "%90").replace(/'/, "%27")
     innerAudioContext.stop();
-    innerAudioContext.src = this.data.video;
+    innerAudioContext.src = voice;
 
     innerAudioContext.play();
   },
@@ -365,7 +366,8 @@ Page({
   // 点击播放按钮的效果
   soundClick: function () {
     var that = this
-    innerAudioContext.src = this.data.video;
+    var voice = encodeURI(this.data.video).replace(/ /, "%90").replace(/'/, "%27")
+    innerAudioContext.src = voice;
     innerAudioContext.play();
     that.setData({
       clicksound: 1
@@ -424,7 +426,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    innerAudioContext.src = this.data.exercises.music;
+    var voice = encodeURI(this.data.exercises.music).replace(/ /, "%90").replace(/'/, "%27")
+    innerAudioContext.src = voice;
     innerAudioContext.play();
   },
 

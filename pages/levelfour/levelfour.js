@@ -224,10 +224,9 @@ jiazai:function (xuhao)
       [zhi]: "__"
     })
   }
-
-  innerAudioContext.src = ''
+  var voice = encodeURI(that.data.video).replace(/ /, "%90").replace(/'/, "%27")
   // 默认进来放一次音乐
-  innerAudioContext.src = that.data.video;
+  innerAudioContext.src = voice;
   innerAudioContext.play();
   that.setData({
     clicksound: 1
@@ -347,8 +346,9 @@ dadui:function (e,number)
   //点击播放的时候的状态
   soundClick: function () {
     var that = this
+    var voice = encodeURI(that.data.video).replace(/ /, "%90").replace(/'/, "%27")
     innerAudioContext.stop()
-    innerAudioContext.src = this.data.video;
+    innerAudioContext.src = voice;
     innerAudioContext.play();
     that.setData({
       clicksound: 1

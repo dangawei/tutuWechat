@@ -106,8 +106,9 @@ Page({
         })
       }
     })
+    var voice = encodeURI(that.data.audio).replace(/ /, "%90").replace(/'/, "%27")
     // 默认进来放一次音乐
-    innerAudioContext.src = that.data.audio;
+    innerAudioContext.src = voice;
     innerAudioContext.play();
   },
   //获取数据
@@ -144,9 +145,10 @@ Page({
   },
   // 点击播放正确
   singelClickAll() {
+    var voice = encodeURI(this.data.audio).replace(/ /, "%90").replace(/'/, "%27")
     //停止播放之前的音乐     防止两重音
     innerAudioContext.stop();
-    innerAudioContext.src = this.data.audio
+    innerAudioContext.src = voice
     innerAudioContext.play();
   },
   singelClick: function (e) {
@@ -163,9 +165,10 @@ Page({
     // 判断是否正确
     if (this.data.correctId == e.currentTarget.dataset.id) {
       //停止播放之前音乐文件   防止两重音
+      var voice = encodeURI(util.ok).replace(/ /, "%90").replace(/'/, "%27")
       innerAudioContext.stop();
       // innerAudioContext.src = 'https://www.chengxuyuantoutiao.com/a/sound/ding.mp3';
-      innerAudioContext.src = util.ok;
+      innerAudioContext.src = voice;
       var up = "data[" + xia + "].green";
       that.setData({
         //绿色  下标的值
@@ -294,7 +297,8 @@ Page({
     that.setData({
       clicksound: 1
     })
-    innerAudioContext.src = this.data.video;
+    var voice = encodeURI(this.data.video).replace(/ /, "%90").replace(/'/, "%27")
+    innerAudioContext.src = voice;
     innerAudioContext.play();
     setTimeout(function () {
       that.setData({

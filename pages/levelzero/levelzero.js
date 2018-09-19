@@ -7,7 +7,11 @@ const img_url = util.img_url;
 const innerAudioContext = wx.createInnerAudioContext();
 innerAudioContext.autoplay = true;
 innerAudioContext.obeyMuteSwitch = false;
+innerAudioContext.onPlay(() => {
+  // console.log('开始播放')
+})
 innerAudioContext.onError((res) => {
+  // console.log(res)
 })
 Page({
 
@@ -130,8 +134,9 @@ Page({
       that.setData({
         all_img: all_img
       })
+      var voice = encodeURI(that.data.all_img[0].audio).replace(/ /, "%90").replace(/'/, "%27");
       // 默认进来放一次音乐
-      innerAudioContext.src = that.data.all_img[0].audio;
+      innerAudioContext.src = voice;
 
       innerAudioContext.play();
     }
@@ -278,10 +283,11 @@ jiazai:function (xuhao)
   // 点击单个图片播放音乐
   singelClick: function (e) {
     var that = this
+    var voice = encodeURI(e.currentTarget.dataset.audio).replace(/ /, "%90").replace(/'/, "%27")
     //停止播放之前的音乐     防止两重音
     innerAudioContext.stop();
     //播放某个图片下的音频文件
-    innerAudioContext.src = e.currentTarget.dataset.audio
+    innerAudioContext.src = voice
     innerAudioContext.play();
     that.setData({
       clicksound: 1
@@ -366,7 +372,7 @@ jiazai:function (xuhao)
    */
   onUnload: function () {
     //用户点击左上角返回 
-    innerAudioContext.stop();
+    // innerAudioContext.stop();
     
     // wx.redirectTo({      //关闭当前页面，跳转到应用内的某个页面
     //   url: "/pages/partlist/partlist?id=" + app.part.id + '&name=' + app.part.name + '&cart_number=' + app.part.cart_number

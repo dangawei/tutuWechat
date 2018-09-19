@@ -215,8 +215,9 @@ Page({
 
   },
   soundClicks: function () {
+    var voice = encodeURI(this.data.video).replace(/ /, "%90").replace(/'/, "%27")
     innerAudioContext.stop();
-    innerAudioContext.src = this.data.video;
+    innerAudioContext.src = voice;
 
     innerAudioContext.play();
   },
@@ -289,7 +290,8 @@ Page({
     // this.updatadataarr();
     // 判断这题目是否答完
     if (this.data.selectindex == this.data.correctyes.length) {
-      innerAudioContext.src = that.data.video;
+      var voice = encodeURI(that.data.video).replace(/ /, "%90").replace(/'/, "%27")
+      innerAudioContext.src = voice;
       innerAudioContext.play();
       that.setData({
         score: this.data.score + 20,
@@ -349,7 +351,8 @@ Page({
   // 点击播放按钮的效果
   soundClick: function () {
     var that = this
-    innerAudioContext.src = this.data.video;
+    var voice = encodeURI(that.data.video).replace(/ /, "%90").replace(/'/, "%27")
+    innerAudioContext.src = voice;
     innerAudioContext.play();
     that.setData({
       clicksound: 1
