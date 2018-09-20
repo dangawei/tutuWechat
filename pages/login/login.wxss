@@ -48,3 +48,6 @@
   bottom: 15px;
   transform: translateX(-50%);
 }
+.free-btn-bordernone::after{
+  border: none;
+}

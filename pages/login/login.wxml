@@ -39,9 +39,9 @@
   <view class='wx-login-box'>
     <view class="wx-login-cell">
         <text>微信登录</text>
-        <view style="text-align:center;" bindtap='getUserInfo'>
+        <button open-type="getUserInfo" style="text-align:center;background-color:transparent;" class='free-btn-bordernone' bindgetuserinfo='getUserInfo'>
           <image src='http://img.tutukids.com/group1/M00/00/0A/微信@2x.png' style="width: 50px; height: 50px;"></image>
-        </view>
+        </button>
     </view>
   </view>
 </view>

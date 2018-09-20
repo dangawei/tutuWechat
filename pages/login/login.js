@@ -125,11 +125,32 @@ Page({
     // 获取用户信息
     wx.getSetting({
       success: res => {
-        if (res.authSetting['scope.userInfo']) {
+        console.log(res)
+        if (!res.authSetting['scope.userInfo']){
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success() {
+              wx.getUserInfo({
+                success: reset => {
+                  // 可以将 res 发送给后台解码出 unionId
+                  _this.login(reset.userInfo)
+                  // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+                  // 所以此处加入 callback 以防止这种情况
+                  if (this.userInfoReadyCallback) {
+                    this.userInfoReadyCallback(reset)
+                  }
+                }
+              })
+            }
+          })
+        }else {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: reset => {
               // 可以将 res 发送给后台解码出 unionId
+              // setTimeout(function () {
+                // _this.login(reset.userInfo)
+              // }, 100)
               _this.login(reset.userInfo)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
@@ -144,11 +165,12 @@ Page({
   },
   login(option) {
     var _this=this
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.login({
       success: res => {
-        console.log(111111);
         if (res.code) {
-          console.log(22222);
           wx.request({
             url: http_host +'user/login/mini',
             method: "POST",
@@ -164,6 +186,7 @@ Page({
             success: function (reset) {
               console.log(333333);
               console.log(reset.data)
+              wx.hideLoading()
               if(reset.data.code==0){
                 app.globalData.userInfo = reset.data.data
                 wx.setStorage(

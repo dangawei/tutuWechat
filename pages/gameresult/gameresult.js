@@ -28,16 +28,16 @@ Page({
     score_path:'',
     img_url: img_url,
     typecenterbgimg: [
-      'http://img.tutukids.com/group1/M00/00/0A/centerbgexcellent.png',
-      "http://img.tutukids.com/group1/M00/00/0A/centerbggood.png",
-      "http://img.tutukids.com/group1/M00/00/0A/centerbggood.png",
-      'http://img.tutukids.com/group1/M00/00/0A/centerbgbad.png',
+      'https://www.chengxuyuantoutiao.com/a/centerbgexcellent.png',
+      "https://www.chengxuyuantoutiao.com/a/centerbggood.png",
+      "https://www.chengxuyuantoutiao.com/a/centerbggood.png",
+      'https://www.chengxuyuantoutiao.com/a/centerbgbad.png',
     ],
     typeimg: [
-      'http://img.tutukids.com/group1/M00/00/0A/exelent.png',
-      'http://img.tutukids.com/group1/M00/00/0A/good.png',
-      'http://img.tutukids.com/group1/M00/00/0A/notbad.png',
-      'http://img.tutukids.com/group1/M00/00/0A/bad.png',
+      'https://www.chengxuyuantoutiao.com/a/exelent.png',
+      'https://www.chengxuyuantoutiao.com/a/good.png',
+      'https://www.chengxuyuantoutiao.com/a/notbad.png',
+      'https://www.chengxuyuantoutiao.com/a/bad.png',
     ],
     musicsrc: [
       'http://img.tutukids.com/group1/M00/00/0A/sound/perfect.mp3',
@@ -110,7 +110,7 @@ Page({
     })
     // 白色矩形背景换成本地路径
     wx.getImageInfo({
-      src: 'http://img.tutukids.com/group1/M00/00/0A/bg.png',
+      src: 'https://www.chengxuyuantoutiao.com/a/bg.png',
       success: function (res) {
         //res.path是网络图片的本地地址
         let qrCodePath = res.path;
@@ -124,7 +124,7 @@ Page({
     })
     // 黄色圆形背景换成本地路径
     wx.getImageInfo({
-      src: 'http://img.tutukids.com/group1/M00/00/0A/yellowcircle.png',
+      src: 'https://www.chengxuyuantoutiao.com/a/yellowcircle.png',
       success: function (res) {
         //res.path是网络图片的本地地址
         let qrCodePath = res.path;
@@ -136,9 +136,9 @@ Page({
         //失败回调
       }
     })
-    // http://img.tutukids.com/group1/M00/00/0A/logoposter.png
+    // https://www.chengxuyuantoutiao.com/a/logoposter.png
     wx.getImageInfo({
-      src: 'http://img.tutukids.com/group1/M00/00/0A/logoposter.png',
+      src: 'https://www.chengxuyuantoutiao.com/a/logoposter.png',
       success: function (res) {
         //res.path是网络图片的本地地址
         let qrCodePath = res.path;
@@ -152,7 +152,7 @@ Page({
     })
     // 海报背景换成本地路径
     wx.getImageInfo({
-      src: 'http://img.tutukids.com/group1/M00/00/0A/gameresultbg.png',
+      src: 'https://www.chengxuyuantoutiao.com/a/gameresultbg.png',
       success: function (res) {
         //res.path是网络图片的本地地址
         let qrCodePath = res.path;
@@ -166,7 +166,7 @@ Page({
     })
     // 二维码换成本地路径
     wx.getImageInfo({
-      src: 'http://img.tutukids.com/group1/M00/00/0A/minderweima.png',
+      src: 'https://www.chengxuyuantoutiao.com/a/minderweima.png',
       success: function (res) {
         //res.path是网络图片的本地地址
         let qrCodePath = res.path;
@@ -180,7 +180,7 @@ Page({
     })
     // 按钮背景图片换成本地路径
     wx.getImageInfo({
-      src: 'http://img.tutukids.com/group1/M00/00/0A/gameresultnext.png',
+      src: 'https://www.chengxuyuantoutiao.com/a/gameresultnext.png',
       success: function (res) {
         //res.path是网络图片的本地地址
         let qrCodePath = res.path;
@@ -571,7 +571,7 @@ Page({
       wx.canvasToTempFilePath({
         canvasId: 'mycanvas',
         success: function (res) {
-          // console.log(res)
+          console.log(res)
           var tempFilePath = res.tempFilePath;
           console.log(tempFilePath)//此为生成出来的图片地址 运用图片保存api（saveImageToPhotosAlbum）可以将海报保存至本地
           that.setData({
