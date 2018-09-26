@@ -135,7 +135,7 @@ font-size:30rpx;
 .nav_border_common .default .nav_border_common_img{
   width:32rpx;
   height:44rpx;
-  background-image: url('https://www.chengxuyuantoutiao.com/a/indexdh.png');
+  background-image: url('http://img.tutukids.com/group1/M00/00/0A/indexdh.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size:100%;
@@ -145,7 +145,7 @@ font-size:30rpx;
 .nav_border_common .active .nav_border_common_img{
   width:34rpx;
   height:44rpx;
-  background-image: url('https://www.chengxuyuantoutiao.com/a/indexdh2.png');
+  background-image: url('http://img.tutukids.com/group1/M00/00/0A/indexdh2.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size:100%;
@@ -155,7 +155,7 @@ font-size:30rpx;
 .nav_border_common .default .nav_border_common_img2{
   width:29rpx;
   height:45rpx;
-  background-image: url('https://www.chengxuyuantoutiao.com/a/indexdhrabit.png');
+  background-image: url('http://img.tutukids.com/group1/M00/00/0A/indexdhrabit.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size:100%;
@@ -165,7 +165,7 @@ font-size:30rpx;
 .nav_border_common .active .nav_border_common_img2{
   width:34rpx;
   height:45rpx;
-  background-image: url('https://www.chengxuyuantoutiao.com/a/indexdhrabit2.png');
+  background-image: url('http://img.tutukids.com/group1/M00/00/0A/indexdhrabit2.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size:100%;

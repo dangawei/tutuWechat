@@ -1,7 +1,7 @@
 @import "../common/index.wxss";
 page,.page{
   background-color:#ffd744;
-  background-image: url("https://www.chengxuyuantoutiao.com/a/bj.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/bj.png");
   background-repeat: no-repeat;
   background-position: bottom center;
   background-size:100%;
@@ -115,7 +115,7 @@ page,.page{
   height:74rpx;
   margin:0 auto;
   line-height:70rpx;
-  background-image: url("https://www.chengxuyuantoutiao.com/a/beginbtn.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/beginbtn.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -152,19 +152,19 @@ page,.page{
 /*状态标识图片 */
 /* 优秀 */
 .scores_icon_excelent{
-  background-image: url("https://www.chengxuyuantoutiao.com/a/exelent.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/exelent.png");
 }
 /* 良好 */
 .scores_icon_good{
-  background-image: url("https://www.chengxuyuantoutiao.com/a/good.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/good.png");
 }
 /* 及格 */
 .scores_icon_notbad{
-  background-image: url("https://www.chengxuyuantoutiao.com/a/notbad.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/notbad.png");
 }
 /* 不及格 */
 .scores_icon_bad{
-  background-image: url("https://www.chengxuyuantoutiao.com/a/bad.png");
+  background-image: url("http://img.tutukids.com/group1/M00/00/0A/bad.png");
 }
 .green{
   color:#09ce31;
