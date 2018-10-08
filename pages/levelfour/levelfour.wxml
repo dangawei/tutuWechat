@@ -17,7 +17,7 @@
   <view class="levelfour_border">
     <view class="levelfour_border_img  {{istrue==0?'':'hiddencontent'}}">
       <image src="{{img_url+'spellcheck.png'}}"></image>
-      <view class="{{istrue==0?'':'hiddencontent'}}">拼写正确后会出现图片</view>
+      <view class="{{istrue==0?'':'hiddencontent'}}">拼写正确后出现图片</view>
     </view>
     <view class="levelfour_border_img levelfour_border_img2  {{istrue==1?'':'hiddencontent'}}">
       <image src="{{img}}"></image>

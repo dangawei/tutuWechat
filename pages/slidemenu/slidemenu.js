@@ -3,6 +3,7 @@ const util = require("../../utils/config.js");
 const app = getApp()
 const http_host = util.http_host;
 const img_url = util.img_url;
+const urlimg = util.urlimg;
 Page({
 
   /**
@@ -23,7 +24,6 @@ Page({
     * 生命周期函数--监听页面加载
     */
   onLoad: function (e) {
-    console.log(e);
     wx.setStorageSync("unitId", e.unitId)
     wx.setStorageSync("partId", e.partId)
     wx.setStorageSync("unitName", e.unitName)
@@ -203,7 +203,7 @@ Page({
       title: wx.getStorageSync("userInfo").realName + '  邀请你来闯关啦~图图小学英语课后趣味练习！',
       desc: '转发描述',
       path: '/pages/login/login',
-      imageUrl: 'http://img.tutukids.com/group1/M00/00/0A/转发海报.png',
+      imageUrl: urlimg,
       success: function (res) {
         // 转发成功
       },

@@ -2,6 +2,7 @@ const util = require("../../utils/config.js");
 
 const app = getApp();
 const http_host = util.http_host;
+const urlimg = util.urlimg;
 Page({
 
   /**
@@ -69,7 +70,7 @@ Page({
       title: wx.getStorageSync("userInfo").realName + '  邀请你来闯关啦~图图小学英语课后趣味练习！',
       desc: '转发描述',
       path: '/pages/login/login',
-      imageUrl: 'http://img.tutukids.com/group1/M00/00/0A/转发海报.png',
+      imageUrl: urlimg,
       success: function (res) {
         // 转发成功
       },
@@ -101,6 +102,7 @@ Page({
                 wx.reLaunch({
                   url: '/pages/login/login'
                 })
+                wx.setStorageSync("isLogin",0)
               } else if (res.data.code == 46){
                 app.tanchuang('登录账号有误,点击确定重新登录！')
               } else{

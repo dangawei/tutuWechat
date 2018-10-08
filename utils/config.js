@@ -7,6 +7,7 @@ module.exports = {
   //图片地址
   // img_url: "https://www.chengxuyuantoutiao.com/tutukidsServer/tutuenglish/",
   img_url: "http://img.tutukids.com/group1/M00/00/0A/",
+  urlimg : encodeURI("http://img.tutukids.com/group1/M00/00/0A/转发海报.png"),
     error1:"http://img.tutukids.com/group1/M00/00/0A/error1.mp3",
     error2:"http://img.tutukids.com/group1/M00/00/0A/error2.mp3",
     error3: "http://img.tutukids.com/group1/M00/00/0A/error3.mp3",

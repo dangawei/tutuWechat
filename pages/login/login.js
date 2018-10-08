@@ -2,6 +2,8 @@ const util = require("../../utils/config.js");
 
 const app = getApp();
 const http_host = util.http_host;
+const img_url = util.img_url;
+const urlimg = util.urlimg;
 const regPhone = /^[1][3,4,5,6,7,8][0-9]{9}$/;
 Page({
   data: {
@@ -107,6 +109,14 @@ Page({
   },
   /** 生命周期函数--监听页面加载 */
   onLoad: function (options) {
+    console.log(wx.getStorageSync("isLogin"))
+    if (wx.getStorageSync("isLogin") || wx.getStorageSync("isLogin")==0){
+      if (wx.getStorageSync("isLogin")==1){
+        this.getUserInfo()
+      }
+    }else{
+      this.getUserInfo()
+    }
   },
   /**
   * 生命周期函数--监听页面初次渲染完成
@@ -121,6 +131,7 @@ Page({
 
   },
   getUserInfo: function (res) {
+    console.log(1111);
     let _this = this;
     // 获取用户信息
     wx.getSetting({
@@ -185,7 +196,6 @@ Page({
             },
             success: function (reset) {
               console.log(333333);
-              console.log(reset.data)
               wx.hideLoading()
               if(reset.data.code==0){
                 app.globalData.userInfo = reset.data.data
@@ -196,6 +206,7 @@ Page({
                   }
                 )
                 wx.setStorageSync('bookId', reset.data.data.textbookIdPractice)
+                wx.setStorageSync("isLogin", 1)
                 app.book.id = reset.data.data.textbookIdPractice
                 app.book.bookId = reset.data.data.textbookIdPractice
                 _this.setData({
@@ -233,7 +244,7 @@ Page({
       title: wx.getStorageSync("userInfo").realName + '  邀请你来闯关啦~图图小学英语课后趣味练习！',
       desc: '转发描述',
       path: '/pages/login/login',
-      imageUrl: '../images/转发海报.png',
+      imageUrl: urlimg,
       success: function (res) {
         // 转发成功
       },

@@ -3,6 +3,7 @@ const util = require("../../utils/config.js");
 const app = getApp()
 const http_host = util.http_host;
 const img_url = util.img_url;
+const urlimg = util.urlimg;
 const innerAudioContext = wx.createInnerAudioContext();
 innerAudioContext.autoplay = true;
 innerAudioContext.onError((res) => {
