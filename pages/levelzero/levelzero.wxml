@@ -18,7 +18,7 @@
                 <text  wx:if="{{xuhao != 1}}" class='{{index ==clickmusic?"activegreen":""}}'>{{item.text}}</text>
                 </view>
               <view class="soundimage_border">
-                <image src="https://www.chengxuyuantoutiao.com/a/listen_03.png" data-audio="{{audio}}" bindtap='singelClick'>
+                <image src="http://img.tutukids.com/group1/M00/00/0A/listen_03.png" data-audio="{{audio}}" bindtap='singelClick'>
                 </image>
                 <view class="{{clicksound==1?'pulsesmall_single':'hiddencontent'}}"></view>
               </view>

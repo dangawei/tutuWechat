@@ -63,7 +63,7 @@ Page({
   },
   //选择版本获得教材
   selectdataindex: function (event) {
-    let e = event.currentTarget.dataset.bookVersionId
+    let e = event.currentTarget.dataset.bookversionid
     let that = this
     this.setData({
       bookVersionId: e

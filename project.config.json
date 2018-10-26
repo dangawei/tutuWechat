@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 19,
 			"list": [
 				{
 					"id": 0,
@@ -143,6 +143,12 @@
 					"id": -1,
 					"name": "aboutus",
 					"pathName": "pages/aboutus/aboutus",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "addsubject",
+					"pathName": "pages/addsubject/addsubject",
 					"query": ""
 				}
 			]
