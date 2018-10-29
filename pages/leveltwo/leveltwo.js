@@ -100,6 +100,7 @@ Page({
       sourceIds: this.data.all[index].sourceIds
     })
     that.data.data.forEach(function(obj){
+      obj.icon = encodeURI(obj.icon).replace(/'/, "%27")
       if (obj.text.toLowerCase() == (that.data.sourceIds).toLowerCase()){
         that.setData({
           audio: obj.audio,

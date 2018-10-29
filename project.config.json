@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -53,7 +53,7 @@
 					"id": 3,
 					"name": "partlist",
 					"pathName": "pages/partlist/partlist",
-					"query": "bookId=7&bookName=人教版PEP六年级上&unitId=143&unitName=Unit 4&partId=590&partName=Part A"
+					"query": "bookId=10&bookName=新概念Starter A一年级&unitId=243&unitName=Unit 1&partId=1206&partName=Lesson 1"
 				},
 				{
 					"id": 4,
