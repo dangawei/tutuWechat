@@ -34,76 +34,14 @@ Page({
     })
     this.setData({
       bookId:e.bookId,
+      unitId: e.unitId,
+      unitName:e.unitName,
       bookName:e.bookName
     })
     //显示加载提示框
     // wx.showLoading({
     //   title: '加载中',
     // })
-
-    var that = this
-    //获取所有单元数组详情
-    wx.request({
-      url: http_host + 'practice/units/list/' + e.bookId,
-      data: {
-        //从app中取出用户数据
-        bookId: e.bookId
-      },
-      header: {
-        'token': wx.getStorageSync("userInfo").token,
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        if (res.data.code == 0) {
-          if (e.unitId == '' || e.unitId == null) {
-            var liang = res.data.data.unitsVOS[0].id
-            var unitname = res.data.data.unitsVOS[0].text
-          } else {
-            var liang = e.unitId
-            var unitname = e.unitName
-          }
-          that.setData({
-            unit_list: res.data.data.unitsVOS,
-            unitId: liang,
-            unitName: unitname
-          })
-          that.data.unit_list.forEach(function(obj){
-            if (obj.id == liang){
-              that.setData({
-                partsVOS: obj.partsVOS
-              })
-            }
-          })
-          app.unit.id = liang
-          app.unit.name = unitname
-        } else if (res.data.code == 46){
-          app.tanchuang('登录账号有误,点击确定重新登录！')
-        }else {
-          //返回数据失败
-          app.tanchuang('获取unit错误！')
-        }
-
-        that.setData({
-          //单元高亮赋值
-          curNav: liang,
-        })
-
-        //查询单元下所有part
-        // res.data.data.unitsVOS.forEach(function(a){
-        //   if(a.id==liang){
-        //     that.setData({
-        //       part_list: a.partsVOS
-        //     })
-        //   }
-        // })
-        // that.part_list(liang)
-      },
-      error: function (res) {
-        console.log('404');
-      },
-    })
-
-
   },
   //事件处理函数
   switchRightTab: function (e) {
@@ -163,11 +101,57 @@ Page({
   * 生命周期函数--监听页面显示
   */
   onShow: function () {
-    // if (this.data.shuaxin) {
-    //   wx.navigateTo({
-    //     url: "/pages/slidemenu/slidemenu?id=" + app.unit.id
-    //   })
-    // }
+    var that = this
+    //获取所有单元数组详情
+    wx.request({
+      url: http_host + 'practice/units/list/' + this.data.bookId,
+      data: {
+        //从app中取出用户数据
+        bookId: this.data.bookId
+      },
+      header: {
+        'token': wx.getStorageSync("userInfo").token,
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        if (res.data.code == 0) {
+          if (that.data.unitId == '' || that.data.unitId == null) {
+            var liang = res.data.data.unitsVOS[0].id
+            var unitname = res.data.data.unitsVOS[0].text
+          } else {
+            var liang = that.data.unitId
+            var unitname = that.data.unitName
+          }
+          that.setData({
+            unit_list: res.data.data.unitsVOS,
+            unitId: liang,
+            unitName: unitname
+          })
+          that.data.unit_list.forEach(function (obj) {
+            if (obj.id == liang) {
+              that.setData({
+                partsVOS: obj.partsVOS
+              })
+            }
+          })
+          app.unit.id = liang
+          app.unit.name = unitname
+        } else if (res.data.code == 46) {
+          app.tanchuang('登录账号有误,点击确定重新登录！')
+        } else {
+          //返回数据失败
+          app.tanchuang('获取unit错误！')
+        }
+
+        that.setData({
+          //单元高亮赋值
+          curNav: liang,
+        })
+      },
+      error: function (res) {
+        console.log('404');
+      },
+    })
   },
 
   /**

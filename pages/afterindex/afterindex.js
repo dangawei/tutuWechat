@@ -46,29 +46,61 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
+    
     var that = this
     if (wx.getStorageSync("bookId")){
       app.book.id = wx.getStorageSync("bookId")
     }
-   //获取当前教材详细内容
+  },
+
+  //点击关卡跳转页面
+  jixu: function (e) {
+    // 已修改
+    app.card.id = this.data.curren_card_id
+    app.card.name = this.data.curren_part_title_name
+    //跳转至对应页面
+    wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开6个页面，之后按钮就没有响应的）
+      url: "/pages/partlist/partlist?bookId=" + wx.getStorageSync("bookId") + "&bookName=" + wx.getStorageSync("bookName") + "&unitId=" + wx.getStorageSync("unitId") + "&unitName=" + wx.getStorageSync("unitName") + "&partId=" + wx.getStorageSync("partId") + "&partName=" + wx.getStorageSync("partName") 
+    })
+  },
+
+  //partList排序
+  compare: function compare(property) {
+    return function (a, b) {
+      var value1 = a[property];
+      var value2 = b[property];
+      return value1 - value2;
+    }
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    console.log(111111);
+    var that=this;
+    this.setData({
+      shuaxin: true,
+      showDialogshare:false,
+    })
+    //获取当前教材详细内容
     wx.request({
       url: http_host + 'practice/book/detail/' + app.book.id,
       data: {
-       //从app中取出用户数据
+        //从app中取出用户数据
         bookId: app.book.id
       },
       header: {
-       'token': wx.getStorageSync("userInfo").token,
-      //  'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
-       'Content-Type': 'application/json'
+        'token': wx.getStorageSync("userInfo").token,
+        //  'token': "ZH5PoB87IVmjVJ7Fg6dSi6wq3kGJwazIUgX*XWLz1p4=",
+        'Content-Type': 'application/json'
       },
       success: function (res) {
-       //判断返回数据是否正确
-       if(res.data.code == 0)
-       {
+        //判断返回数据是否正确
+        if (res.data.code == 0) {
           that.setData({
             //所有数据 方便以后调用
-            all:res.data.data,
+            all: res.data.data,
             //给单元赋值
             unitlist: res.data.data.unitsVOS,
             //给教材名称赋值
@@ -77,10 +109,10 @@ Page({
             book_id: res.data.data.id,
             //教材图片
             book_img: res.data.data.icon,
-            
+
           })
           //判断是否闯过关
-         if (res.data.data.latestPassRecordVO != null){
+          if (res.data.data.latestPassRecordVO != null) {
             wx.setStorageSync("unitId", res.data.data.latestPassRecordVO.unitsId)
             wx.setStorageSync("partId", res.data.data.latestPassRecordVO.partsId)
             wx.setStorageSync("unitName", res.data.data.latestPassRecordVO.unitName)
@@ -93,9 +125,9 @@ Page({
               curren_card_id: res.data.data.latestPassRecordVO.customPassId,
               //存在闯过关卡记录
               type: 1,
-              existence_unit: res.data.data.latestPassRecordVO.unitName,
+              existence_unit: wx.getStorageSync("unitName"),
               unitId: res.data.data.latestPassRecordVO.unitsId,
-              existence_part: res.data.data.latestPassRecordVO.partName,
+              existence_part: wx.getStorageSync("partName"),
               part_id: res.data.data.latestPassRecordVO.partsId
             })
             app.unit.name = res.data.data.latestPassRecordVO.unitName
@@ -127,7 +159,7 @@ Page({
           //       var partlist = []
           //       var xia = 0
           //       for (var i in list) {
-           
+
           //         if (list[i].id == that.data.curren_card_id)
           //         {
           //           app.partList.lishi_xia = xia
@@ -148,49 +180,18 @@ Page({
           //     }
           //   },
           // })
-       } else if (res.data.code == 46) {
-         app.tanchuang('登录账号有误,点击确定重新登录！')
-        //  setTimeout(function () {
-        //    wx.reLaunch({
-        //      url: '/pages/login/login'
-        //    })
-        //  }, 1500)
-       } else{
-         //返回数据不正确
-         app.tanchuang('获取教材详情错误！')
-       }
-     }
-   })
-
-  },
-
-  //点击关卡跳转页面
-  jixu: function (e) {
-    // 已修改
-    app.card.id = this.data.curren_card_id
-    app.card.name = this.data.curren_part_title_name
-    //跳转至对应页面
-    wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开6个页面，之后按钮就没有响应的）
-      url: "/pages/partlist/partlist?bookId=" + wx.getStorageSync("bookId") + "&bookName=" + wx.getStorageSync("bookName") + "&unitId=" + wx.getStorageSync("unitId") + "&unitName=" + wx.getStorageSync("unitName") + "&partId=" + wx.getStorageSync("partId") + "&partName=" + wx.getStorageSync("partName") 
-    })
-  },
-
-  //partList排序
-  compare: function compare(property) {
-    return function (a, b) {
-      var value1 = a[property];
-      var value2 = b[property];
-      return value1 - value2;
-    }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    this.setData({
-      shuaxin: true,
-      showDialogshare:false,
+        } else if (res.data.code == 46) {
+          app.tanchuang('登录账号有误,点击确定重新登录！')
+          //  setTimeout(function () {
+          //    wx.reLaunch({
+          //      url: '/pages/login/login'
+          //    })
+          //  }, 1500)
+        } else {
+          //返回数据不正确
+          app.tanchuang('获取教材详情错误！')
+        }
+      }
     })
   },
 
@@ -205,6 +206,10 @@ Page({
       // })
     }   
     // currPage.onLoad();
+    this.setData({
+      existence_unit: wx.getStorageSync("unitName"),
+      existence_part: wx.getStorageSync("partName"),
+    })
     
   },
 

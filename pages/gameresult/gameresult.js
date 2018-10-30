@@ -89,7 +89,6 @@ Page({
     this.setData({
       types:t
     })
-    console.log(this.data.musicsrc[this.data.types])
     innerAudioContext.src = this.data.musicsrc[this.data.types]
     innerAudioContext.play();
     var that = this
@@ -290,18 +289,48 @@ Page({
     }
    
   },
-  //跳转页面
+  //重新闯关
   tiaozhuan:function()
   {
+    // wx.navigateBack({ changed: true });//返回上一页
+    // wx.redirectTo({
+      
+    // })
+    var url;
+    var index = parseInt(this.data.pass)
+    var data = wx.getStorageSync("part")
+    switch (index) {
+      case 0:
+        url = 'levelzero/levelzero?bookId=' + wx.getStorageSync("bookId") + '&unitId=' + wx.getStorageSync("unitId") + '&partId=' + wx.getStorageSync("partId") + '&customPassId=' + data[index].id + '&pass=0'
+        break;
+      case 1:
+        url = 'levelone/levelone?bookId=' + wx.getStorageSync("bookId") + '&unitId=' + wx.getStorageSync("unitId") + '&partId=' + wx.getStorageSync("partId") + '&customPassId=' + data[index].id + '&pass=1'
+        break;
+      case 2:
+        url = 'leveltwo/leveltwo?bookId=' + wx.getStorageSync("bookId") + '&unitId=' + wx.getStorageSync("unitId") + '&partId=' + wx.getStorageSync("partId") + '&customPassId=' + data[index].id + '&pass=2'
+        break;
+      case 3:
+        url = 'levelthree/levelthree?bookId=' + wx.getStorageSync("bookId") + '&unitId=' + wx.getStorageSync("unitId") + '&partId=' + wx.getStorageSync("partId") + '&customPassId=' + data[index].id + '&pass=3'
+        break;
+      case 4:
+        url = 'levelfour/levelfour?bookId=' + wx.getStorageSync("bookId") + '&unitId=' + wx.getStorageSync("unitId") + '&partId=' + wx.getStorageSync("partId") + '&customPassId=' + data[index].id + '&pass=4'
+        break;
+      case 5:
+        url = 'levelfive/levelfive?bookId=' + wx.getStorageSync("bookId") + '&unitId=' + wx.getStorageSync("unitId") + '&partId=' + wx.getStorageSync("partId") + '&customPassId=' + data[index].id + '&pass=5'
+        break;
+      default:
+        // 所有不符合条件执行代码
+        app.tanchuang('哎呀，出错了！')
+    }
     wx.redirectTo({
-      url: "/pages/" + app.again.url
+      url: "/pages/" + url
     })
   },
 // 完成
   wancheng:function()
   {
-    wx.redirectTo({    
-      url: "/pages/partlist/partlist?id="+app.part.id+"&name="+app.part.name
+    wx.navigateBack({
+      delta:1
     })
   },
  

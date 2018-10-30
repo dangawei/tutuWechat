@@ -125,7 +125,6 @@ Page({
       var correctDate = this.data.all[xuhao - 1].sourceIds
       var correctDates = correctDate.replace(/[\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\,|\<|\.|\>|\?]/g, "")
       var arrayYes = correctDates.split("/")
-      console.log(arrayYes)
       that.setData({
         currentData: this.data.all[xuhao - 1],
         // //正确的图片
@@ -134,12 +133,11 @@ Page({
         // [yes2]: currentData.sourceVOS,
         // 结束
         //录音文件
-        video: encodeURI(this.data.all[xuhao - 1].sentenceAudio).replace(/'/, "%27"),
+        video: encodeURI(this.data.all[xuhao - 1].sentenceAudio).replace(/'/, "%27").replace(/,/, "%2c"),
         // video: this.data.all[xuhao - 1].sentenceAudio,
         customPassId: this.data.all[xuhao - 1].customsPassId,
 
       })
-      // console.log(this.data.currentData)
       // 判断是否闯关完成
       if (parseInt(xuhao) == this.data.number) {
         this.setData({
@@ -270,52 +268,47 @@ Page({
   },
   // 答对后执行
   dadui: function (e, number) {
-    // console.log(e)
     innerAudioContext.stop();
     var that = this;
     innerAudioContext.src = 'http://app.yizhizaibo.cn/eat/public/tutu/ding.mp3';
     innerAudioContext.play();
     var arr_id = e.currentTarget.dataset.index
-    if (this.data.arr[arr_id].eff != 0) {
+    if (that.data.arr[arr_id].eff != 0) {
       return;
     }
     // console.log(this.data.correctyes);
-    var selectlist = 'correctyes[' + this.data.selectindex + '].show';
+    var selectlist = 'correctyes[' + that.data.selectindex + '].show';
     var effective = 'arr[' + arr_id + '].eff';
     this.setData({
       [selectlist]: 1,
-      selectindex: this.data.selectindex + 1,
+      selectindex: that.data.selectindex + 1,
       [effective]: 1
     })
-    // console.log(this.data.correctyes);
-    // this.updatadataarr();
     // 判断这题目是否答完
-    if (this.data.selectindex == this.data.correctyes.length) {
-      var voice = encodeURI(that.data.video).replace(/ /, "%90").replace(/'/, "%27")
-      innerAudioContext.src = voice;
-      innerAudioContext.play();
+    if (that.data.selectindex == that.data.correctyes.length) {
+      setTimeout(function () {
+        innerAudioContext.stop();
+        innerAudioContext.src = that.data.video;
+        innerAudioContext.play();
+      }, 500)
       that.setData({
-        score: this.data.score + 20,
-        clicking: 1
-      })
-      this.setData({
+        score: that.data.score + 20,
+        clicking: 1,
         errornum: 0,
       })
-      console.log(that.data.video)
-      // innerAudioContext.src = this.data.exercises.music;
-    // innerAudioContext.play();
-      
-      if (parseInt(that.data.xuhao) == this.data.number) {
-        setTimeout(function () {
-          that.wancheng()
-        }, 2800)
-      } else {
-        setTimeout(function () {
-          //下一题
-          that.jiazai(parseInt(that.data.xuhao) + 1)
-        }, 2800)
-      }
-
+      // innerAudioContext.onEnded((res) => {
+        if (parseInt(that.data.xuhao) == that.data.number) {
+          setTimeout(function () {
+            that.wancheng()
+          }, 3500)
+          
+        } else {
+          setTimeout(function () {
+            //下一题
+            that.jiazai(parseInt(that.data.xuhao) + 1)
+          }, 3500)
+        }
+      // })
     }
 
   },
@@ -405,7 +398,6 @@ Page({
     for (var i = 0; i < arr.length; i++) {
       arr[i] = arr[i].replace(/'/, "%27")
     }
-    console.log(arr);
     return arr;
   },
   /**

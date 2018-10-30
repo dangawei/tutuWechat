@@ -109,7 +109,6 @@ Page({
   },
   /** 生命周期函数--监听页面加载 */
   onLoad: function (options) {
-    console.log(wx.getStorageSync("isLogin"))
     if (wx.getStorageSync("isLogin") || wx.getStorageSync("isLogin")==0){
       if (wx.getStorageSync("isLogin")==1){
         this.getUserInfo()
@@ -131,12 +130,10 @@ Page({
 
   },
   getUserInfo: function (res) {
-    console.log(1111);
     let _this = this;
     // 获取用户信息
     wx.getSetting({
       success: res => {
-        console.log(res)
         if (!res.authSetting['scope.userInfo']){
           wx.authorize({
             scope: 'scope.userInfo',
@@ -195,7 +192,6 @@ Page({
               'Content-Type': 'application/json'
             },
             success: function (reset) {
-              console.log(333333);
               wx.hideLoading()
               if(reset.data.code==0){
                 app.globalData.userInfo = reset.data.data

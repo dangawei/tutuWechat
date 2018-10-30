@@ -90,6 +90,11 @@ Page({
       })
     }
     var data = this.data.all[index].sourceVOS.sort(app.randomsort)
+    for(let j=0;j<data.length;j++){
+      data[j].icon = encodeURI(data[j].icon).replace(/'/, "%27")
+      // data[j].audio = encodeURI(data[j].audio).replace(/'/, "%27")
+      data[j].audio = encodeURI(data[j].audio).replace(/ /, "%90").replace(/'/, "%27")
+    }
     this.setData({
       stop: 0,
       clicking: 0,
@@ -100,7 +105,6 @@ Page({
       sourceIds: this.data.all[index].sourceIds
     })
     that.data.data.forEach(function(obj){
-      obj.icon = encodeURI(obj.icon).replace(/'/, "%27")
       if (obj.text.toLowerCase() == (that.data.sourceIds).toLowerCase()){
         that.setData({
           audio: obj.audio,
@@ -108,9 +112,9 @@ Page({
         })
       }
     })
-    var voice = encodeURI(that.data.audio).replace(/ /, "%90").replace(/'/, "%27")
+    console.log(that.data.audio)
     // 默认进来放一次音乐
-    innerAudioContext.src = voice;
+    innerAudioContext.src = that.data.audio;
     innerAudioContext.play();
   },
   //获取数据
@@ -291,7 +295,7 @@ Page({
     for (var i in array) {
       arr.push(array[i]);
     }
-    console.log(arr);
+    
     return arr;
   },
   soundClick: function () {

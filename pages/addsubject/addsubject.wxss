@@ -53,7 +53,7 @@ box-sizing: border-box;
 /*内容开始  */
 .nav_tag_container{
   position: relative;
-  top:100rpx;
+  top:200rpx;
   margin-top:10px;
 }
 .nav_tag_container2{
